@@ -5,7 +5,7 @@ const FPS = 30;
 
 // Cada episódio: pasta public/epN com scenes.js, words.json e narracao.mp3
 // audio: false = sem narração (a narração será gravada depois)
-const EPISODES = [{ id: "AureaEp1", ep: "ep1", seconds: 79.3, audio: false }];
+const EPISODES = [{ id: "AureaEp1", ep: "ep1", seconds: 93.3, audio: false }];
 
 export const RemotionRoot: React.FC = () => {
   return (

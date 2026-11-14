@@ -49,7 +49,7 @@ function buildCaptions(words) {
     if (/[.,:…!?]$/.test(tk.t)) flush();
   }
   flush();
-  CHUNKS = chunks.map((c, i) => ({ s: c[0].s, e: (chunks[i + 1] ? chunks[i + 1][0].s : c[c.length - 1].e + .6), toks: c }));
+  CHUNKS = chunks.map((c, i) => ({ s: c[0].s, e: Math.min(chunks[i + 1] ? chunks[i + 1][0].s : 1e9, c[c.length - 1].e + .8), toks: c }));
 }
 function captionSVG(t) {
   const c = CHUNKS.find(c => t >= c.s - 0.03 && t < c.e);
@@ -89,7 +89,7 @@ function resolveStarts(words) {
   const ws = words.filter(w => w.type === 'word' && !w.text.startsWith('['));
   let from = 0;
   for (const sc of SCENES) {
-    if (sc.k == null) continue;
+    if (sc.k == null) { if (sc.at != null) sc.s = sc.at; continue; }
     const key = sc.k.split(' ');
     let found = -1;
     for (let i = from; i < ws.length; i++) if (key.every((k, j) => ws[i + j] && norm(ws[i + j].text) === k)) { found = i; break; }

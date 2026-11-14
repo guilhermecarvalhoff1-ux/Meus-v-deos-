@@ -79,93 +79,97 @@ Caio espera no mato.
 Sem se mexer.
 
 21
-00:00:44,358 --> 00:00:45,151
-O dragão cai.
+00:00:43,957 --> 00:00:58,158
+[PAUSA — LUTA CONTRA O DRAGÃO, SEM NARRAÇÃO]
 
 22
-00:00:45,445 --> 00:00:47,246
-Um baú dourado aparece no chão.
+00:00:58,358 --> 00:00:59,151
+O dragão cai.
 
 23
-00:00:47,561 --> 00:00:48,109
-Dentro:
+00:00:59,445 --> 00:01:01,246
+Um baú dourado aparece no chão.
 
 24
-00:00:48,359 --> 00:00:49,434
-Coração de Rubi.
+00:01:01,561 --> 00:01:02,109
+Dentro:
 
 25
-00:00:49,656 --> 00:00:50,153
-Valor:
+00:01:02,359 --> 00:01:03,434
+Coração de Rubi.
 
 26
-00:00:50,340 --> 00:00:52,106
-três mil e duzentos reais.
+00:01:03,656 --> 00:01:04,153
+Valor:
 
 27
-00:00:52,306 --> 00:00:52,467
-Um.
+00:01:04,340 --> 00:01:06,106
+três mil e duzentos reais.
 
 28
-00:00:52,991 --> 00:00:53,611
-Dois.
+00:01:06,306 --> 00:01:06,467
+Um.
 
 29
-00:00:53,863 --> 00:00:54,582
-Mão Leve.
+00:01:06,991 --> 00:01:07,611
+Dois.
 
 30
-00:00:55,020 --> 00:00:55,835
-O baú some.
+00:01:07,863 --> 00:01:08,582
+Mão Leve.
 
 31
-00:00:56,070 --> 00:00:57,002
-O celular vibra:
+00:01:09,020 --> 00:01:09,835
+O baú some.
 
 32
-00:00:57,205 --> 00:00:59,335
-mais três mil e duzentos reais.
+00:01:10,070 --> 00:01:11,002
+O celular vibra:
 
 33
-00:00:59,464 --> 00:01:01,930
-Pela primeira vez no mês, Caio sorri.
+00:01:11,205 --> 00:01:13,335
+mais três mil e duzentos reais.
 
 34
-00:01:02,246 --> 00:01:03,394
-Aí chega uma mensagem.
+00:01:13,464 --> 00:01:15,930
+Pela primeira vez no mês, Caio sorri.
 
 35
-00:01:03,584 --> 00:01:05,047
-Da líder da Coroa Negra.
+00:01:16,246 --> 00:01:17,394
+Aí chega uma mensagem.
 
 36
-00:01:05,280 --> 00:01:05,949
-"Bom roubo.
+00:01:17,584 --> 00:01:19,047
+Da líder da Coroa Negra.
 
 37
-00:01:06,244 --> 00:01:07,502
-Agora olha pra trás."
+00:01:19,280 --> 00:01:19,949
+"Bom roubo.
 
 38
-00:01:07,823 --> 00:01:08,490
-Caio olha.
+00:01:20,244 --> 00:01:21,502
+Agora olha pra trás."
 
 39
-00:01:08,710 --> 00:01:11,851
-Agachado no mato, atrás dele, tem outro jogador.
+00:01:21,823 --> 00:01:22,490
+Caio olha.
 
 40
-00:01:12,197 --> 00:01:13,148
-A mesma roupa.
+00:01:22,710 --> 00:01:25,851
+Agachado no mato, atrás dele, tem outro jogador.
 
 41
-00:01:13,381 --> 00:01:14,477
-A mesma classe.
+00:01:26,197 --> 00:01:27,148
+A mesma roupa.
 
 42
-00:01:15,493 --> 00:01:16,530
-O mesmo nome.
+00:01:27,381 --> 00:01:28,477
+A mesma classe.
 
 43
-00:01:17,393 --> 00:01:19,107
+00:01:29,493 --> 00:01:30,530
+O mesmo nome.
+
+44
+00:01:31,393 --> 00:01:33,107
 Segue pra ver a parte dois.

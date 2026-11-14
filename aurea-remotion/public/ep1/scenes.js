@@ -343,7 +343,7 @@ function hand(x, y, s, rot = 0, opts = {}) {
 // =====================================================================
 const THIEF = { hair: 'hood', hairCol: '#2f5f6a', top: '#2f5f6a', outfit: 'hoodie', mask: true };
 const REAL_CAIO = { hair: 'short', hairCol: '#1f1a17', top: '#c99a2e', outfit: 'hoodie' };
-const PART = { words: 'words4.json', end: 79.3, abTime: 9999,
+const PART = { words: 'words4luta.json', end: 93.3, abTime: 9999,
   merges: [
     [['mais','três','mil','e','duzentos','reais'], '+R$ 3.200'],
     [['três','mil','e','duzentos','reais'], 'R$ 3.200'],
@@ -436,6 +436,21 @@ const SCENES = [
   { k: 'caio espera', z: [1.0, 1.08], c: [540, 1100], f: (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 12 })}${stoneDragon(540, 1300, .6, t)}</g>`; s += bushes(t, 300, true).replace(/<circle/g, '<circle opacity=".95"') + bushes(t + 4, 1750, true); s += g(headG({ ...THIEF, eyes: 'dot', brows: 'serious', look: -8 }), 'translate(860,1660) scale(1.7)'); return s + vignette(true); } },
   // 17 Sem se mexer (close)
   { k: 'sem se mexer', z: [1.0, 1.12], c: [540, 900], f: (t, p) => `<g filter="url(#b18)">${gameMeadow(t, { dusk: true })}</g>` + bust({ x: 540, y: 1050, s: 2.7, ...THIEF, eyes: 'dot', brows: 'serious', blink: false }) + bushes(t, 1700, true) + `<path d="M700,780 q8,24 0,40" stroke="#9fd6ff" stroke-width="6" fill="none" opacity=".8"/>` + vignette(true) },
+  // ===== LUTA ESTENDIDA (sem narração, ~14 s de suspense) =====
+  // L1 Rugido do dragão
+  { at: 44.2, z: [1.15, 1.25], c: [540, 900], f: (t, p) => { const sh = Math.sin(t * 60) * 10 * (1 - p); let s = gameMeadow(t, { dusk: true, seed: 12 }) + `<rect width="${W}" height="${H}" fill="#2a0a00" opacity=".25"/>`; s += g(stoneDragon(0, 0, 1.6, t), `translate(${540 + sh},${1700 + sh})`); for (let i = 0; i < 3; i++) { const rr = ((p * 1.5 + i / 3) % 1); s += `<circle cx="540" cy="1000" r="${100 + rr * 700}" fill="none" stroke="#ffb27a" stroke-width="${14 * (1 - rr)}" opacity="${1 - rr}"/>`; } return s + gameFG(t, true) + vignette(true); } },
+  // L2 Guilda ataca, HP 18% -> 12%
+  { at: 46.2, z: [1.0, 1.06], c: [540, 1200], f: (t, p) => { let s = gameMeadow(t, { dusk: true, seed: 12 }); s += stoneDragon(560, 1400, .95, t); const r = rng(22); for (let i = 0; i < 8; i++) { const ph = (t * 3 + i / 8) % 1; s += `<path d="M${300 + r() * 500},${1000 + r() * 400} l${60 + 80 * ph},${-40 - 60 * ph}" stroke="#fff4c8" stroke-width="${10 * (1 - ph)}" stroke-linecap="round" filter="url(#glow)" opacity="${1 - ph}"/>`; } [[180, '#22252b', -110], [360, '#2a2018', -60], [760, '#121418', -120], [920, '#22252b', -70]].forEach(([x, c, a], i) => { s += guildMember(x, 1820, .62, t + i, c, { flip: x > 540, armR: a + 60 * Math.sin(t * 9 + i) }); }); s += bossBar(lerp(.18, .12, ease(p)), t); return s + gameFG(t, true) + vignette(); } },
+  // L3 Cauda arremessa um cavaleiro
+  { at: 48.2, z: [1.05, 1.0], c: [540, 1200], f: (t, p) => { let s = gameMeadow(t, { dusk: true, seed: 12 }); s += g(stoneDragon(0, 0, .95, t), `translate(560,1400) rotate(${Math.sin(p * Math.PI) * -6})`); const fly = easeOut(seg(p, .15, .8)); s += g(guildMember(0, 0, .62, t, '#2a2018', { eyes: 'wide', mouth: 'o', brows: 'up' }), `translate(${lerp(820, 1180, fly)},${lerp(1820, 1300, fly) + fly * fly * 300}) rotate(${fly * 120})`); s += popup(820, lerp(1300, 1100, fly), '-2.430', seg(p, .15, .3) * (1 - seg(p, .8, 1)), 110, '#ff5d5d'); s += bossBar(.12, t); return s + gameFG(t, true) + vignette(); } },
+  // L4 Caio no mato: mão tremendo, batimento
+  { at: 50.2, z: [1.0, 1.15], c: [540, 1000], f: (t, p) => { const beat = Math.pow(Math.max(0, Math.sin(t * 8)), 8); let s = `<g filter="url(#b18)">${gameMeadow(t, { dusk: true })}</g>` + bushes(t, 300, true); s += bust({ x: 420, y: 1150, s: 2.2, ...THIEF, eyes: 'dot', brows: 'serious', look: 14 }); s += hand(830 + Math.sin(t * 40) * 4, 1500, 1.6, -20, { glove: true, sleeve: '#2f5f6a' }); s += bushes(t + 5, 1800, true); s += `<rect width="${W}" height="${H}" fill="url(#vigS)" opacity="${.4 + .5 * beat}"/><rect width="${W}" height="${H}" fill="#ff1a1a" opacity="${.08 * beat}"/>`; return s; } },
+  // L5 HP 5%... 3%
+  { at: 52.2, z: [1.0, 1.2], c: [540, 400], f: (t, p) => { let s = `<g filter="url(#b10)">${gameMeadow(t, { dusk: true, seed: 12 })}${stoneDragon(540, 1400, .95, t)}</g><rect width="${W}" height="${H}" fill="#000" opacity=".4"/>`; s += bossBar(p < .5 ? .05 : .03, t, true); s += txt(540, 760, `${p < .5 ? 5 : 3}%`, 260, '#ff3a3a', { w: 900, extra: `stroke="#000" stroke-width="16" paint-order="stroke" filter="url(#glow)" opacity="${.6 + .4 * Math.abs(Math.sin(t * 10))}"` }); return s + vignette(true); } },
+  // L6 Golpe final em câmera lenta
+  { at: 54.2, z: [1.0, 1.08], c: [540, 1000], f: (t, p) => { let s = gameMeadow(t * .2, { dusk: true, seed: 12 }) + `<rect width="${W}" height="${H}" fill="#1a0a20" opacity=".35"/>`; s += stoneDragon(760, 1500, .8, t * .2); s += fullBody({ x: 380, y: lerp(1750, 1450, easeOut(p)), s: 1.15, top: '#121418', legs: '#1a1c22', armR: -170, armL: -150, item: `<g transform="translate(0,250) rotate(180)"><path d="M-22,54 L22,54 L12,560 L0,600 L-12,560Z" fill="#fff8d8" filter="url(#glow2)"/><rect x="-50" y="36" width="100" height="20" rx="6" fill="#c9a24a"/></g>`, head: { hair: 'marina', hairCol: '#14110f', eyes: 'dot', brows: 'angry', mouth: 'open' } }, t * .2); const r = rng(26); for (let i = 0; i < 30; i++) s += `<circle cx="${r() * W}" cy="${(r() * H - t * 30 + H) % H}" r="${3 + r() * 5}" fill="#fff4c8" opacity=".7"/>`; return s + gameFG(t * .2, true) + vignette(true); } },
+  // L7 1%... a mão avança... clarão
+  { at: 56.2, z: [1.0, 1.25], c: [540, 1300], f: (t, p) => { if (p > .9) return `<rect width="${W}" height="${H}" fill="#fff"/>`; let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 12 })}${stoneDragon(540, 1250, .7, t)}</g>` + bushes(t, 1750, true); s += hand(540, lerp(2100, 1650, easeOut(seg(p, .2, .8))), 1.8, 0, { glove: true, sleeve: '#2f5f6a' }); s += bossBar(.01, t, true); s += `<rect width="${W}" height="${H}" fill="#fff" opacity="${seg(p, .75, .9)}"/>`; return s + vignette(true); } },
   // 18 O dragão cai
   { k: 'o dragão cai', z: [1.0, 1.06], c: [540, 1300], f: (t, p) => { const fp = easeIn(seg(p, 0, .6)); let s = gameMeadow(t, { dusk: true, seed: 12 }); s += g(stoneDragon(0, 0, 1.0, t, { fall: fp, dead: fp > .9 }), `translate(${540 + (p > .55 && p < .7 ? Math.sin(t * 70) * 8 : 0)},1450)`); if (p > .55) { const dp = seg(p, .55, 1); const r = rng(18); for (let i = 0; i < 20; i++) s += `<circle cx="${540 + (r() - .5) * 900 * dp}" cy="${1450 - r() * 300 * dp}" r="${40 + r() * 60}" fill="#b8a890" opacity="${(1 - dp) * .6}" filter="url(#b10)"/>`; } return s + gameFG(t, true) + vignette(); } },
   // 19 Baú dourado
@@ -481,4 +496,10 @@ function boar(x, y, s, t) {
   d += `<ellipse cx="-160" cy="-120" rx="70" ry="60" fill="#7a5640"/><ellipse cx="-220" cy="-104" rx="30" ry="24" fill="#c98a7a"/><circle cx="-228" cy="-104" r="5" fill="#3a2a20"/><circle cx="-212" cy="-104" r="5" fill="#3a2a20"/>`;
   d += `<path d="M-196,-86 q-20,-6 -26,-34" stroke="#f2ead8" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="-150" cy="-150" r="10" fill="#1a1210"/><path d="M-130,-178 l20,-26 l6,30Z" fill="#5a3a2a"/>`;
   return g(d, `translate(${x},${y}) scale(${s})`);
+}
+
+// barra de vida do chefe
+function bossBar(hp, t, danger) {
+  const flick = danger ? (.6 + .4 * Math.abs(Math.sin(t * 12))) : 1;
+  return g(`<rect x="-440" y="-70" width="880" height="140" rx="20" fill="#0b0d10" opacity=".85" stroke="#c9a24a" stroke-width="4"/>` + txt(-410, -16, 'DRAGÃO DE PEDRA · CHEFE', 34, '#c9a24a', { a: 'start', ls: 2 }) + txt(410, -16, `${Math.max(1, Math.round(hp * 100))}%`, 38, '#ff5d5d', { a: 'end', w: 900 }) + `<rect x="-410" y="10" width="820" height="30" rx="15" fill="#33373c"/><rect x="-410" y="10" width="${820 * hp}" height="30" rx="15" fill="#ff3a3a" opacity="${flick}"/>`, 'translate(540,230)');
 }
