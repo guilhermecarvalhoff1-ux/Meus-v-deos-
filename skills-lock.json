@@ -13,6 +13,18 @@
       "skillPath": ".claude/skills/blender/SKILL.md",
       "computedHash": "37a8e8e38a0c86109dfac21326c4120e7ff76f7882a5056f4ac3beadc5e65702"
     },
+    "claude-video": {
+      "source": "agricidaniel/claude-video",
+      "sourceType": "github",
+      "skillPath": "skills/video/SKILL.md",
+      "computedHash": "ba0c65e2b671bb768b5650d398ed619d3cc66a386e1c3c32de57d048dd4a1fde"
+    },
+    "claude-video-caption": {
+      "source": "agricidaniel/claude-video",
+      "sourceType": "github",
+      "skillPath": "skills/video-caption/SKILL.md",
+      "computedHash": "23024899b5d490e1667df37956350c775908b989bc59323896b8417866cf0924"
+    },
     "elevenlabs": {
       "source": "digitalsamba/claude-code-video-toolkit",
       "sourceType": "github",
@@ -168,6 +180,12 @@
       "sourceType": "github",
       "skillPath": "skills/video-toolkit/SKILL.md",
       "computedHash": "c2dbb22982a13f1c23750942eaa0a362861a415adbc646a7ade191ca8a1f1470"
+    },
+    "watch": {
+      "source": "bradautomates/claude-video",
+      "sourceType": "github",
+      "skillPath": "skills/watch/SKILL.md",
+      "computedHash": "26c7f5055f38651b6da2649506ad34f3d98ade4b540e417acb74efbf3258bf72"
     },
     "youtube-stats": {
       "source": "digitalsamba/claude-code-video-toolkit",

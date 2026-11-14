@@ -2,7 +2,7 @@
 const CAIO = { hair: 'short', hairCol: '#1f1a17', top: '#c99a2e', outfit: 'hoodie' };
 const HUNTER = { hair: 'hood', hairCol: '#3f6a3a', top: '#6b4a32', outfit: 'hoodie' };
 const GOLD = '#ffc928';
-const PART = { words: 'words3.json', end: 74.6, abTime: 9999,
+const PART_OLD = { words: 'words3.json', end: 74.6, abTime: 9999,
   merges: [
     [['dezenove','anos'], '19 ANOS'],
     [['trinta','e','sete','reais'], 'R$ 37'],
@@ -95,7 +95,7 @@ const ICON_WAR = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#
 const ICON_PAL = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#e9eef2"/><circle cy="-110" r="64" fill="${SK}"/><path d="M-60,-40 h120 v90 q-60,60 -120,0z" fill="#e0b44c"/><path d="M0,-30 v70 M-30,0 h60" stroke="#c22" stroke-width="12"/>`;
 const ICON_HUN = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#6b4a32"/><path d="M-90,-100 C-90,-230 90,-230 90,-100 L80,-40 L-80,-40Z" fill="#3f6a3a"/><circle cy="-100" r="56" fill="${SK}"/><circle cx="-18" cy="-100" r="6" fill="#222"/><circle cx="18" cy="-100" r="6" fill="#222"/><path d="M130,-200 q-60,120 0,240" stroke="#9a6a3a" stroke-width="12" fill="none"/><path d="M130,-200 V40" stroke="#ddd" stroke-width="3"/>`;
 
-const SCENES = [
+const SCENES_OLD = [
   // 01 2049, jogo paga em dinheiro
   { k: 'em 2049', z: [1.1, 1.0], c: [540, 800], f: (t, p) => { let s = cityBG(t, { tower: false }); s += g(`<rect x="-330" y="-330" width="660" height="660" rx="60" fill="#0f2a33" opacity=".9" stroke="${GOLD}" stroke-width="6"/>` + txt(0, -60, 'ÁUREA', 140, GOLD, { w: 900, ls: 10, extra: 'filter="url(#glow)"' }) + txt(0, 40, 'ONLINE', 50, '#e9fbff', { ls: 16 }) + coin(0, 180, 1.4, Math.sin(t * 3) * 20), 'translate(540,820)'); s += g(`<rect x="-120" y="-44" width="240" height="88" rx="14" fill="#0f2a33" stroke="${GOLD}" stroke-width="3"/>` + txt(0, 20, '2049', 60, '#ffffff'), 'translate(540,1580)'); return s + vignette(); } },
   // 02 cada monstro vira PIX
@@ -164,7 +164,7 @@ const SKIN_DEFS = `<linearGradient id="sk2" x1="0" y1="0" x2="1" y2="1"><stop of
 <radialGradient id="slimeIn" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#e8fffa" stop-opacity=".9"/><stop offset="1" stop-color="#7fe8d8" stop-opacity="0"/></radialGradient>
 <linearGradient id="wolfG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d6570"/><stop offset=".6" stop-color="#8a929c"/><stop offset="1" stop-color="#b8bec5"/></linearGradient>`;
 
-function hoodCol(o) { return o.hairCol === '#3f6a3a' ? 'url(#hunterG)' : 'url(#hoodG)'; }
+function hoodCol(o) { return o.hairCol === '#3f6a3a' ? 'url(#hunterG)' : (o.hairCol || 'url(#hoodG)'); }
 function headG(o) {
   let s = `<defs>${SKIN_DEFS}</defs>`;
   const hood = o.hair === 'hood';
@@ -182,7 +182,7 @@ function headG(o) {
   if (o.headband) s += `<path d="M-66,-40 C-40,-72 40,-72 66,-40" stroke="#eef6fb" stroke-width="10" fill="none" stroke-linecap="round"/>`;
   return s;
 }
-function face2(o) {
+function face2base(o) {
   const lx = o.look || 0; let s = '';
   const ey = -6;
   if (o.eyes === 'closed') s += `<path d="M${-34 + lx},${ey} q11,9 22,0 M${12 + lx},${ey} q11,9 22,0" stroke="#2a1d17" stroke-width="5" fill="none" stroke-linecap="round"/>`;
@@ -337,3 +337,137 @@ function hand(x, y, s, rot = 0, opts = {}) {
   }
   return g(h, `translate(${x},${y}) rotate(${rot}) scale(${s})`);
 }
+
+// =====================================================================
+// ÁUREA — EPISÓDIO 1: MÃO LEVE (Caio, o ladrão de drop)
+// =====================================================================
+const THIEF = { hair: 'hood', hairCol: '#2f5f6a', top: '#2f5f6a', outfit: 'hoodie', mask: true };
+const REAL_CAIO = { hair: 'short', hairCol: '#1f1a17', top: '#c99a2e', outfit: 'hoodie' };
+const PART = { words: 'words4.json', end: 72, abTime: 9999,
+  merges: [
+    [['mais','três','mil','e','duzentos','reais'], '+R$ 3.200'],
+    [['três','mil','e','duzentos','reais'], 'R$ 3.200'],
+    [['três','segundos'], '3 SEGUNDOS'],
+    [['nível','doze'], 'NÍVEL 12'],
+    [['dez','metros'], '10 METROS'],
+    [['trinta','e','sete','reais'], 'R$ 37'],
+    [['dois','meses'], '2 MESES'],
+    [['nível','oitenta'], 'NÍVEL 80'],
+    [['quarenta','minutos'], '40 MINUTOS'],
+    [['parte','dois'], 'PARTE 2'],
+  ],
+  hl: ['áurea','monstro','dinheiro','drop','dono','caio','ladrão','arma','mão','leve','item','pix','aluguel','coroa','negra','guilda','rica','dragão','pedra','mato','cai','baú','dourado','coração','rubi','some','vibra','sorri','mensagem','líder','roubo','trás','olha','outro','jogador','roupa','classe','nome','segue','alvo']
+};
+
+// lenço cobrindo a boca do ladrão
+function face2(o) {
+  let s = face2base(o.mask ? { ...o, mouth: 'none' } : o);
+  if (o.mask) s += `<path d="M-60,14 C-30,8 30,8 60,14 L58,40 C50,74 28,84 0,84 C-28,84 -50,74 -58,40Z" fill="#1d3a42"/><path d="M-60,14 C-30,8 30,8 60,14" stroke="#4a8a96" stroke-width="5" fill="none"/><path d="M-20,40 q20,10 40,0 M-30,60 q30,10 60,0" stroke="#000" stroke-width="3" fill="none" opacity=".25"/>`;
+  return s;
+}
+function guildMember(x, y, s, t, col, opts = {}) {
+  const armor = `<path d="M-60,-10 L60,-10 L54,40 L-54,40Z" fill="#c9a24a" opacity=".9"/>`;
+  return fullBody({ x, y, s, top: col, legs: '#1a1c22', armR: opts.armR ?? -20, armL: 15, item: opts.item || `<g transform="translate(0,250) rotate(180)"><rect x="-10" y="-30" width="20" height="70" rx="6" fill="#3a2a1e"/><rect x="-46" y="36" width="92" height="18" rx="6" fill="#c9a24a"/><path d="M-18,54 L18,54 L10,420 L0,450 L-10,420Z" fill="#dfe6ec"/></g>`, flip: opts.flip, head: { hair: opts.hair || 'short', hairCol: opts.hairCol || '#2a2420', eyes: opts.eyes || 'dot', mouth: opts.mouth || 'flat', brows: opts.brows || 'serious' } }, t) + g(`<path d="M-50,0 L-30,-40 L-10,-10 L0,-50 L10,-10 L30,-40 L50,0Z" fill="#c9a24a"/>`, `translate(${x},${y - 760 * s}) scale(${s})`);
+}
+function crownEmblem(x, y, s, glow = true) {
+  return g(`<circle r="170" fill="#121418" stroke="#c9a24a" stroke-width="12"/><path d="M-100,50 L-110,-60 L-50,-10 L0,-90 L50,-10 L110,-60 L100,50Z" fill="#0b0c0f" stroke="#c9a24a" stroke-width="10" stroke-linejoin="round"/><rect x="-100" y="50" width="200" height="34" rx="6" fill="#c9a24a"/><circle cx="0" cy="-90" r="12" fill="#d23"/>`, `translate(${x},${y}) scale(${s})`, glow ? 'filter="url(#sh)"' : '');
+}
+function stoneDragon(x, y, s, t, opts = {}) {
+  const fall = opts.fall || 0, br = 1 + .02 * Math.sin(t * 2);
+  let d = `<ellipse cx="0" cy="10" rx="${380 + fall * 80}" ry="40" fill="#000" opacity=".3" filter="url(#b10)"/>`;
+  d += g(`<path d="M-120,-260 L-420,-560 L-300,-380 L-460,-420 L-260,-250Z" fill="#6a6f78"/><path d="M120,-260 L420,-560 L300,-380 L460,-420 L260,-250Z" fill="#5a5f68"/>` +
+    `<path d="M-280,0 L-320,-180 L-200,-320 L0,-360 L200,-320 L320,-180 L280,0Z" fill="#7a7f88"/><path d="M-200,-320 L0,-360 L-40,-200 L-220,-160Z" fill="#8f949c"/><path d="M0,-360 L200,-320 L160,-160 L-40,-200Z" fill="#6a6f78"/><path d="M-220,-160 L-40,-200 L160,-160 L120,0 L-180,0Z" fill="#5d626a"/>` +
+    `<path d="M-120,-150 l40,-20 l20,40 M60,-110 l50,10 l-10,40" stroke="#ff7a2a" stroke-width="8" fill="none" opacity=".8" filter="url(#glow)"/>` +
+    g(`<path d="M-60,0 L-140,-120 L-60,-200 L60,-200 L140,-120 L60,0Z" fill="#8a8f98"/><path d="M-60,-200 L-90,-280 L-30,-210Z M60,-200 L90,-280 L30,-210Z" fill="#5a5f68"/><path d="M-60,0 L60,0 L40,60 L-40,60Z" fill="#6a6f78"/><circle cx="-50" cy="-110" r="18" fill="${opts.dead ? '#3a3a3a' : '#ff8a2a'}" filter="url(#glow)"/><circle cx="50" cy="-110" r="18" fill="${opts.dead ? '#3a3a3a' : '#ff8a2a'}" filter="url(#glow)"/>`, `translate(0,${-330 + fall * 260}) rotate(${fall * 30})`), `rotate(${fall * 8}) scale(1,${br * (1 - fall * .35)})`);
+  return g(d, `translate(${x},${y}) scale(${s})`);
+}
+function chest(x, y, s, t, open = 0) {
+  return g(`<ellipse cx="0" cy="-60" rx="260" ry="200" fill="#ffd24a" opacity="${.25 + .1 * Math.sin(t * 4)}" filter="url(#b30)"/><rect x="-150" y="-120" width="300" height="140" rx="16" fill="#8a5a2a"/><rect x="-150" y="-120" width="300" height="140" rx="16" fill="none" stroke="#ffc928" stroke-width="12"/><rect x="-20" y="-80" width="40" height="50" rx="6" fill="#ffc928"/>` + g(`<path d="M-150,0 C-150,-90 150,-90 150,0Z" fill="#a06a32" stroke="#ffc928" stroke-width="12"/>`, `translate(0,-120) rotate(${-open * 35},-150,0)`), `translate(${x},${y}) scale(${s})`);
+}
+function ruby(x, y, s, t) {
+  return g(`<circle r="150" fill="#ff3a5a" opacity=".3" filter="url(#b30)"/><path d="M0,110 C-130,10 -150,-70 -90,-110 C-50,-135 -10,-110 0,-80 C10,-110 50,-135 90,-110 C150,-70 130,10 0,110Z" fill="#d81e4a"/><path d="M-90,-110 C-50,-135 -10,-110 0,-80 L-30,-20Z" fill="#ff7a96"/><path d="M0,-80 L60,-30 L0,110 L-30,-20Z" fill="#a8103a" opacity=".6"/><circle cx="-60" cy="-70" r="14" fill="#fff" opacity=".8"/>`, `translate(${x},${y}) scale(${s * (1 + .03 * Math.sin(t * 3))}) rotate(${Math.sin(t) * 5})`);
+}
+function bushes(t, y0 = 1500, dark = false) {
+  const r = rng(91); let s = '';
+  for (let i = 0; i < 14; i++) { const x = r() * W, yy = y0 + r() * 500, rr = 140 + r() * 120, sw = Math.sin(t * 1.3 + i) * 6; s += `<circle cx="${x + sw}" cy="${yy}" r="${rr}" fill="${dark ? (r() < .5 ? '#2e4a26' : '#3a5a2e') : (r() < .5 ? '#3f8a2e' : '#4fa03a')}"/><circle cx="${x - rr * .3 + sw}" cy="${yy - rr * .4}" r="${rr * .45}" fill="${dark ? '#4a6a36' : '#6cc04a'}" opacity=".7"/>`; }
+  return s;
+}
+function pullLine(x0, y0, x1, y1, p) {
+  const xe = lerp(x0, x1, p), ye = lerp(y0, y1, p);
+  return `<path d="M${x0},${y0} Q${(x0 + xe) / 2},${Math.min(y0, ye) - 160} ${xe},${ye}" stroke="#ffd24a" stroke-width="10" fill="none" stroke-dasharray="30 14" filter="url(#glow)" opacity=".95"/>`;
+}
+function chatBox(x, y, s, title, msg, n) {
+  return g(`<rect x="-420" y="-150" width="840" height="300" rx="28" fill="#0b0d10" opacity=".9" stroke="#c9a24a" stroke-width="5"/>` + crownEmblem(-330, -70, .32, false) + txt(-270, -70, title, 38, '#c9a24a', { a: 'start', ls: 1 }) + txt(-270, -26, 'MENSAGEM PRIVADA', 26, '#9aa6ae', { a: 'start', ls: 3 }) + txt(-380, 80, msg.slice(0, n), 52, '#ffffff', { a: 'start', fam: 'NU', w: 800 }), `translate(${x},${y}) scale(${s})`, 'filter="url(#sh)"');
+}
+const KNIFE = `<g transform="translate(0,250) rotate(200)"><rect x="-10" y="-20" width="20" height="60" rx="6" fill="#4a3424"/><rect x="-34" y="34" width="68" height="14" rx="6" fill="#6a5a4a"/><path d="M-14,48 L14,48 L4,200 L-8,190Z" fill="#9a7a5a"/><path d="M-6,80 l8,6 M-4,130 l8,4" stroke="#6a4a2a" stroke-width="4"/></g>`;
+
+const SCENES = [
+  // 01 Quem mata não fica com o dinheiro
+  { k: 'no áurea quem', z: [1.1, 1.0], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { bigTreeX: 120 }); const kp = seg(p, .2, .3); if (kp < 1) s += slime(720, 1560, 1.1, t).replace('<g transform', `<g opacity="${1 - kp}" transform`); s += guildMember(460, 1720, 1.0, t, '#22252b', { armR: -120 + 100 * seg(p, .1, .25) }); const cp = seg(p, .35, .7); if (p > .25) s += coin(lerp(720, 120, easeIn(cp)), lerp(1500, 1650, cp) - Math.sin(cp * Math.PI) * 300, 1.2, t * 300); if (p > .35) s += pullLine(80, 1700, 720, 1500, Math.min(1, cp * 1.5)); s += bushes(t, 1750); s += `<circle cx="70" cy="1690" r="10" fill="#fff"/><circle cx="110" cy="1690" r="10" fill="#fff"/>`; return s + gameFG(t) + vignette(); } },
+  // 02 Drop fica 3 segundos
+  { k: 'quando um', z: [1.0, 1.1], c: [540, 1100], f: (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t)}</g>`; s += `<ellipse cx="540" cy="1250" rx="200" ry="50" fill="#ffd24a" opacity=".35" filter="url(#b18)"/>` + g(`<path d="M-90,0 L-60,-110 L60,-110 L90,0Z" fill="#7a4a2a"/><path d="M-60,-110 C-60,-150 60,-150 60,-110" stroke="#ffc928" stroke-width="10" fill="none"/>`, `translate(540,${1240 + Math.sin(t * 3) * 6}) scale(1.4)`); const left = 3 - Math.min(3, p * 3); s += `<circle cx="540" cy="760" r="120" fill="#0b0d10" opacity=".8"/><circle cx="540" cy="760" r="120" fill="none" stroke="#ffc928" stroke-width="14" stroke-dasharray="${left / 3 * 754} 760" transform="rotate(-90,540,760)"/>` + txt(540, 790, Math.ceil(left || 0.01).toString(), 110, '#ffffff', { w: 900 }); return s + vignette(); } },
+  // 03 Sem dono
+  { k: 'sem dono', z: [1.0, 1.06], c: [540, 1100], f: (t, p) => `<g filter="url(#b5)">${gameMeadow(t)}</g>` + g(`<path d="M-90,0 L-60,-110 L60,-110 L90,0Z" fill="#7a4a2a"/><path d="M-60,-110 C-60,-150 60,-150 60,-110" stroke="#ffc928" stroke-width="10" fill="none"/>`, `translate(540,1240) scale(1.4)`) + g(`<rect x="-200" y="-50" width="400" height="100" rx="16" fill="#0b0d10" opacity=".85" stroke="#9aa6ae" stroke-width="3"/>` + txt(0, 18, 'DONO: —', 50, '#9aa6ae', { ls: 4 }), 'translate(540,960)') + vignette() },
+  // 04 Tudo que o Caio precisa (olhos no mato)
+  { k: 'três segundos é', z: [1.0, 1.15], c: [540, 1100], f: (t, p) => { let s = gameMeadow(t, { seed: 6 }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".15"/>` + bushes(t, 1100); const blink = (t % 2.4) < .12; s += g(headG({ ...THIEF, eyes: blink ? 'closed' : 'dot', brows: 'serious', look: 12 }), 'translate(540,1180) scale(1.6)'); s += bushes(t + 2, 1450); return s + gameFG(t) + vignette(true); } },
+  // 05 Classe: Ladrão
+  { k: 'classe ladrão', z: [1.0, 1.06], f: (t, p) => { const icon = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#2f5f6a"/><path d="M-96,-90 C-96,-230 96,-230 96,-90 L86,-30 L-86,-30Z" fill="#2f5f6a"/><circle cy="-100" r="56" fill="${SK}"/><path d="M-56,-90 C-30,-96 30,-96 56,-90 L50,-60 C40,-46 -40,-46 -50,-60Z" fill="#1d3a42"/><circle cx="-18" cy="-112" r="7" fill="#222"/><circle cx="18" cy="-112" r="7" fill="#222"/><circle cx="110" cy="60" r="40" fill="#c9a24a"/>` + txt(110, 74, 'R$', 30, '#6a4a0a'); return gameMeadow(t) + `<rect width="${W}" height="${H}" fill="#fff" opacity=".18"/>` + classCard(540, 820, 1.15 * lerp(.9, 1, easeOut(seg(p, 0, .3))), 'LADRÃO', '#1d3a42', icon, { shine: seg(p, .1, .7), border: '#7fd6e6' }) + gameFG(t) + vignette(); } },
+  // 06 Nível 12
+  { k: 'nível doze', z: [1.0, 1.08], c: [540, 1100], f: (t, p) => gameMeadow(t) + fullBody({ x: 540, y: 1700, s: 1.6, top: '#2f5f6a', legs: '#1f2a2e', armR: -15, armL: 8, item: KNIFE, head: { ...THIEF, eyes: 'dot', brows: 'serious', blink: (t % 2.6) < .12 } }, t) + g(`<rect x="-230" y="-50" width="460" height="100" rx="16" fill="#0b1a12" opacity=".8"/>` + txt(0, 18, 'NÍVEL 12 · LADRÃO', 44, '#d8ffe0', { ls: 2 }), 'translate(540,260)') + gameFG(t) + vignette() },
+  // 07 Nenhuma arma decente
+  { k: 'nenhuma arma', z: [1.0, 1.1], c: [540, 900], f: (t, p) => `<g filter="url(#b10)">${gameMeadow(t)}</g>` + g(`<rect x="-26" y="-80" width="52" height="190" rx="14" fill="#4a3424"/><rect x="-80" y="100" width="160" height="34" rx="12" fill="#6a5a4a"/><path d="M-36,134 L36,134 L14,620 L-20,590Z" fill="#9a7a5a"/><path d="M-10,250 l20,10 M-14,400 l22,8 M-6,520 l16,6" stroke="#6a4a2a" stroke-width="8"/>`, 'translate(560,640) rotate(190)') + hand(540, 1400, 1.7, 10, { glove: true, fist: true, sleeve: '#2f5f6a' }) + g(`<rect x="-280" y="-60" width="560" height="120" rx="18" fill="#0b0d10" opacity=".85" stroke="#9a7a5a" stroke-width="4"/>` + txt(0, -6, 'FACA ENFERRUJADA', 44, '#e9fbff', { ls: 2 }) + txt(0, 40, 'DANO 3', 34, '#ff7a6a', { ls: 3 }), 'translate(540,260)', `opacity="${seg(p, .2, .4)}"`) + vignette() },
+  // 08 Habilidade rara: Mão Leve
+  { k: 'mas ele tem', z: [1.0, 1.06], f: (t, p) => { const icon = `<circle cy="-60" r="150" fill="#ffd24a" opacity=".25" filter="url(#b18)"/>` + hand(0, -20, 1.1, 0, { glove: true }) + `<path d="M-160,-200 Q0,-320 160,-200" stroke="#ffd24a" stroke-width="10" fill="none" stroke-dasharray="26 12" filter="url(#glow)"/>`; return archiveBG(t, { palette: () => '#ffd24a' }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".5"/>` + classCard(540, 820, 1.15, 'MÃO LEVE', '#3a2a10', icon, { shine: seg(p, .1, .7), border: '#ffd24a' }) + g(`<rect x="-110" y="-30" width="220" height="60" rx="30" fill="#ffd24a"/>` + txt(0, 14, 'RARA', 34, '#3a2a10', { ls: 4 }), 'translate(700,430) rotate(8)', `opacity="${seg(p, .3, .45)}"`) + vignette(true); } },
+  // 09 Pega qualquer item a 10 metros
+  { k: 'pega qualquer', z: [1.0, 1.06], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { seed: 8 }); const pp = easeIn(seg(p, .25, .8)); s += fullBody({ x: 220, y: 1720, s: 1.0, top: '#2f5f6a', legs: '#1f2a2e', armR: -95, armL: 10, head: { ...THIEF, eyes: 'dot', brows: 'serious' } }, t); s += coin(lerp(900, 330, pp), lerp(1650, 1240, pp), 1.1, t * 200); if (p > .2) s += pullLine(330, 1240, 900, 1650, 1 - pp * .0); s += `<path d="M300,1830 H900" stroke="#fff" stroke-width="6" stroke-dasharray="20 14" opacity=".8"/>` + txt(600, 1890, '10 METROS', 48, '#ffffff', { extra: 'stroke="#000" stroke-width="8" paint-order="stroke"' }); return s + gameFG(t) + vignette(); } },
+  // 10 Cada item vira PIX
+  { k: 'e no áurea', z: [1.0, 1.06], f: (t, p) => { let s = gameMeadow(t); const r = rng(10); for (let i = 0; i < 10; i++) s += coin(150 + r() * 780, 1100 + r() * 700 - easeOut(p) * 200 * r(), .8 + r() * .5, t * 150 * r()); s += g(`<rect x="-320" y="-80" width="640" height="160" rx="34" fill="#0b1a12" opacity=".9"/><circle cx="-240" r="46" fill="#32bcad"/>` + txt(-240, 14, 'PIX', 32, '#fff') + txt(40, -10, 'PIX RECEBIDO', 36, '#9fe3d0') + txt(40, 50, '+ R$ 4,50', 56, '#ffffff'), `translate(540,${lerp(-140, 340, easeOut(seg(p, .1, .3)))})`); return s + gameFG(t) + vignette(); } },
+  // 11 Vida real: R$37 e aluguel atrasado
+  { k: 'na vida real', z: [1.0, 1.08], c: [540, 900], f: (t, p) => room(t) + bust({ x: 380, y: 1260, s: 1.7, ...REAL_CAIO, eyes: 'dot', mouth: 'flat', brows: 'sad', breath: t, blink: (t % 3) < .12 }) + g(`<rect x="-180" y="-230" width="360" height="460" fill="#f6f4ef" filter="url(#sh)"/>` + txt(0, -150, 'ALUGUEL', 50, '#3a4a5a', { ls: 4 }) + [...Array(4)].map((_, i) => `<rect x="-130" y="${-100 + i * 44}" width="${200 + (i * 37) % 60}" height="14" rx="7" fill="#d6dde2"/>`).join('') + g(`<rect x="-160" y="-50" width="320" height="100" rx="10" fill="none" stroke="#c22" stroke-width="10"/>` + txt(0, 20, 'ATRASADO', 60, '#c22', { w: 900 }), 'translate(0,140) rotate(-10)'), `translate(800,${lerp(1100, 980, easeOut(seg(p, .1, .4)))}) rotate(6)`) + vignette() },
+  // 12 Alvo: Coroa Negra
+  { k: 'hoje o alvo', z: [1.0, 1.1], f: (t, p) => { let s = `<rect width="${W}" height="${H}" fill="#08090b"/><ellipse cx="540" cy="820" rx="460" ry="460" fill="#c9a24a" opacity=".15" filter="url(#b60)"/>`; s += crownEmblem(540, 640, lerp(1.4, 1.7, easeOut(p))); s += txt(540, 1010, 'COROA NEGRA', 96, '#c9a24a', { w: 900, ls: 8, op: seg(p, .2, .4) }); return s + vignette(true); } },
+  // 13 A guilda mais rica
+  { k: 'a guilda mais', z: [1.0, 1.06], f: (t, p) => { let s = `<rect width="${W}" height="${H}" fill="#08090b"/>`; s += g(`<rect x="-380" y="-60" width="760" height="120" rx="20" fill="#121418" stroke="#c9a24a" stroke-width="4"/>` + txt(0, 22, 'RANKING · SERVIDOR SUL', 44, '#c9a24a', { ls: 3 }), 'translate(540,300)'); [['1', 'COROA NEGRA', 'R$ 2.400.000'], ['2', 'LOBOS DO NORTE', 'R$ 610.000'], ['3', 'ORDEM DE PRATA', 'R$ 330.000']].forEach(([n, nm, v], i) => { s += g(`<rect x="-400" y="-70" width="800" height="140" rx="20" fill="${i ? '#16181d' : '#2a2210'}" stroke="${i ? '#33373c' : '#c9a24a'}" stroke-width="4"/>` + txt(-330, 22, n, 70, i ? '#9aa6ae' : '#ffc928', { w: 900 }) + txt(-250, 0, nm, 44, '#ffffff', { a: 'start' }) + txt(-250, 46, v, 34, i ? '#9aa6ae' : '#ffc928', { a: 'start', fam: 'NU' }), `translate(540,${520 + i * 180})`, `opacity="${seg(p, i * .12, i * .12 + .2)}"`); }); return s + vignette(true); } },
+  // 14 Cinco jogadores nível 80
+  { k: 'cinco jogadores', z: [1.06, 1.0], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { dusk: false, seed: 9 }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".15"/>`; [[140, '#22252b', 'flip'], [330, '#2a2018'], [540, '#121418'], [750, '#2a2018', 'flip'], [940, '#22252b']].forEach(([x, c, f], i) => { s += guildMember(x, 1700 - (i === 2 ? 40 : 0), i === 2 ? .95 : .82, t + i, c, { flip: f === 'flip', armR: -20 - i * 5 }); }); s += g(`<rect x="-200" y="-50" width="400" height="100" rx="16" fill="#0b0d10" opacity=".85" stroke="#c9a24a" stroke-width="3"/>` + txt(0, 20, 'NÍVEL 80', 60, '#c9a24a', { ls: 4 }), 'translate(540,260)'); return s + gameFG(t) + vignette(); } },
+  // 15 40 minutos contra o dragão de pedra
+  { k: 'faz quarenta', z: [1.08, 1.0], c: [540, 1200], f: (t, p) => { let s = gameMeadow(t, { dusk: true, seed: 12 }); s += stoneDragon(540, 1450, 1.0, t); const r = rng(15); for (let i = 0; i < 6; i++) { const fl = (t * 2 + i / 6) % 1; s += `<circle cx="${200 + r() * 680}" cy="${1300 - fl * 400}" r="${20 + 30 * fl}" fill="${['#ff7a2a', '#ffd24a', '#7fd6ff'][i % 3]}" opacity="${1 - fl}" filter="url(#glow)"/>`; } [[160, '#22252b'], [330, '#2a2018'], [760, '#121418'], [930, '#22252b']].forEach(([x, c], i) => { s += guildMember(x, 1800, .62, t + i, c, { flip: x > 540, armR: -80 + 60 * Math.sin(t * 6 + i) }); }); s += g(`<rect x="-160" y="-50" width="320" height="100" rx="16" fill="#0b0d10" opacity=".85"/>` + txt(0, 20, `${40 + Math.floor(t)}:${String(Math.floor((t * 60) % 60)).padStart(2, '0')}`, 60, '#ff7a6a', { w: 900 }), 'translate(540,240)'); return s + gameFG(t, true) + vignette(); } },
+  // 16 Caio espera no mato (POV do mato)
+  { k: 'caio espera', z: [1.0, 1.08], c: [540, 1100], f: (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 12 })}${stoneDragon(540, 1300, .6, t)}</g>`; s += bushes(t, 300, true).replace(/<circle/g, '<circle opacity=".95"') + bushes(t + 4, 1750, true); s += g(headG({ ...THIEF, eyes: 'dot', brows: 'serious', look: -8 }), 'translate(860,1660) scale(1.7)'); return s + vignette(true); } },
+  // 17 Sem se mexer (close)
+  { k: 'sem se mexer', z: [1.0, 1.12], c: [540, 900], f: (t, p) => `<g filter="url(#b18)">${gameMeadow(t, { dusk: true })}</g>` + bust({ x: 540, y: 1050, s: 2.7, ...THIEF, eyes: 'dot', brows: 'serious', blink: false }) + bushes(t, 1700, true) + `<path d="M700,780 q8,24 0,40" stroke="#9fd6ff" stroke-width="6" fill="none" opacity=".8"/>` + vignette(true) },
+  // 18 O dragão cai
+  { k: 'o dragão cai', z: [1.0, 1.06], c: [540, 1300], f: (t, p) => { const fp = easeIn(seg(p, 0, .6)); let s = gameMeadow(t, { dusk: true, seed: 12 }); s += g(stoneDragon(0, 0, 1.0, t, { fall: fp, dead: fp > .9 }), `translate(${540 + (p > .55 && p < .7 ? Math.sin(t * 70) * 8 : 0)},1450)`); if (p > .55) { const dp = seg(p, .55, 1); const r = rng(18); for (let i = 0; i < 20; i++) s += `<circle cx="${540 + (r() - .5) * 900 * dp}" cy="${1450 - r() * 300 * dp}" r="${40 + r() * 60}" fill="#b8a890" opacity="${(1 - dp) * .6}" filter="url(#b10)"/>`; } return s + gameFG(t, true) + vignette(); } },
+  // 19 Baú dourado
+  { k: 'um baú', z: [1.0, 1.1], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { dusk: true, seed: 12 }); s += `<path d="M440,0 L640,0 L700,1400 L380,1400Z" fill="#ffd24a" opacity="${.18 * seg(p, 0, .3)}" filter="url(#b18)"/>`; s += chest(540, 1420, 1.3 * easeOut(seg(p, 0, .35)) + .01, t); return s + gameFG(t, true) + vignette(); } },
+  // 20 Coração de Rubi
+  { k: 'dentro coração', z: [1.0, 1.08], c: [540, 860], f: (t, p) => `<g filter="url(#b10)">${gameMeadow(t, { dusk: true })}</g><rect width="${W}" height="${H}" fill="#000" opacity=".4"/>` + chest(540, 1500, 1.4, t, 1) + ruby(540, lerp(1300, 820, easeOut(seg(p, 0, .5))), 1.6, t) + vignette(true) },
+  // 21 Valor R$3.200
+  { k: 'valor três', z: [1.0, 1.06], c: [540, 860], f: (t, p) => `<g filter="url(#b10)">${gameMeadow(t, { dusk: true })}</g><rect width="${W}" height="${H}" fill="#000" opacity=".45"/>` + ruby(540, 680, 1.2, t) + g(`<rect x="-300" y="-80" width="600" height="160" rx="24" fill="#0b0d10" opacity=".9" stroke="#ffc928" stroke-width="5"/>` + txt(0, -14, 'VALOR DE MERCADO', 30, '#9aa6ae', { ls: 4 }) + txt(0, 54, `R$ ${Math.floor(lerp(0, 3200, easeOut(seg(p, .1, .7)))).toLocaleString('pt-BR')}`, 76, '#ffc928', { w: 900 }), 'translate(540,980)') + vignette(true) },
+  // 22 Um. Dois.
+  { k: 'um dois', z: [1.0, 1.12], c: [540, 1100], f: (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 12 })}</g>` + chest(540, 1150, .9, t, 1) + bushes(t, 1750, true); s += hand(540, lerp(2100, 1720, easeOut(seg(p, 0, .4))), 1.8, 0, { glove: true, sleeve: '#2f5f6a' }); s += txt(540, 700, p < .5 ? '1' : '2', 300, '#ffffff', { w: 900, extra: `stroke="#000" stroke-width="18" paint-order="stroke" opacity="${1 - ((p * 2) % 1) * .6}"` }); return s + vignette(true); } },
+  // 23 Mão Leve!
+  { k: 'mão leve', z: [1.05, 1.0], c: [540, 1300], f: (t, p) => { const pp = easeIn(seg(p, .1, .6)); let s = gameMeadow(t, { dusk: true, seed: 12 }); s += `<rect width="${W}" height="${H}" fill="#ffd24a" opacity="${.35 * (1 - seg(p, 0, .15))}"/>`; s += chest(lerp(800, 160, pp), lerp(1350, 1750, pp), lerp(1, .4, pp), t, 1); s += pullLine(140, 1780, 800, 1350, 1); s += bushes(t, 1800, true); s += txt(540, 640, 'MÃO LEVE!', 130, '#ffd24a', { w: 900, extra: 'stroke="#2a1c00" stroke-width="14" paint-order="stroke" filter="url(#glow)"', op: 1 - seg(p, .7, 1) }); return s + vignette(); } },
+  // 24 O baú some (guilda confusa)
+  { k: 'o baú some', z: [1.0, 1.06], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { dusk: true, seed: 12 }); s += `<ellipse cx="540" cy="1460" rx="${120 + 200 * seg(p, 0, .4)}" ry="40" fill="#ffd24a" opacity="${.6 * (1 - seg(p, 0, .4))}" filter="url(#b10)"/>`; [[200, '#22252b', 0], [880, '#2a2018', 1]].forEach(([x, c, f]) => { s += guildMember(x, 1780, .85, t, c, { flip: !!f, eyes: 'wide', mouth: 'o', brows: 'up' }); }); s += txt(200, 1000, '?', 140, '#fff', { w: 900, extra: 'stroke="#000" stroke-width="10" paint-order="stroke"' }) + txt(880, 1000, '?!', 140, '#fff', { w: 900, extra: 'stroke="#000" stroke-width="10" paint-order="stroke"' }); return s + gameFG(t, true) + vignette(); } },
+  // 25 Celular vibra +R$3.200
+  { k: 'o celular vibra', z: [1.0, 1.08], f: (t, p) => { const vib = p > .1 && p < .6 ? Math.sin(t * 90) * 8 : 0; return room(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".4"/>` + g(phone(0, 0, 2.4, 0, `<rect x="-106" y="-212" width="212" height="424" rx="26" fill="#0f1a14"/><circle cx="0" cy="-110" r="40" fill="#32bcad"/>` + txt(0, -98, 'PIX', 24, '#fff') + txt(0, -20, 'PIX RECEBIDO', 22, '#9fe3d0') + txt(0, 40, '+R$ 3.200,00', 34, '#ffffff', { w: 900 })), `translate(${540 + vib},880) rotate(${vib * .3})`) + vignette(); } },
+  // 26 Caio sorri
+  { k: 'pela primeira', z: [1.0, 1.1], c: [540, 860], f: (t, p) => room(t) + bust({ x: 540, y: 1100, s: 2.7, ...REAL_CAIO, eyes: 'dot', mouth: p > .3 ? 'smile' : 'flat', brows: 'neutral', breath: t }) + `<rect width="${W}" height="${H}" fill="#ffd24a" opacity=".06"/>` + vignette() },
+  // 27 Chega uma mensagem
+  { k: 'aí chega', z: [1.0, 1.06], f: (t, p) => `<g filter="url(#b10)">${gameMeadow(t, { dusk: true, seed: 12 })}</g><rect width="${W}" height="${H}" fill="#000" opacity=".45"/>` + g(chatBox(0, 0, 1, 'NOVA MENSAGEM', '...', 3), `translate(540,${lerp(-200, 760, easeOut(seg(p, 0, .3)))})`) + vignette(true) },
+  // 28 Da líder da Coroa Negra
+  { k: 'da líder', z: [1.0, 1.1], c: [540, 860], f: (t, p) => { let s = `<rect width="${W}" height="${H}" fill="#08090b"/><ellipse cx="540" cy="900" rx="500" ry="600" fill="#c9a24a" opacity=".1" filter="url(#b60)"/>`; s += bust({ x: 540, y: 1080, s: 2.4, hair: 'marina', hairCol: '#14110f', top: '#121418', outfit: 'coat', eyes: 'dot', mouth: 'smile', brows: 'serious' }); s += g(`<path d="M-90,0 L-100,-80 L-50,-40 L0,-110 L50,-40 L100,-80 L90,0Z" fill="#c9a24a" stroke="#8a6a1a" stroke-width="6"/>`, 'translate(540,770) scale(1.6)'); return s + vignette(true); } },
+  // 29 "Bom roubo. Agora olha pra trás."
+  { k: 'bom roubo', z: [1.0, 1.08], f: (t, p) => { const msg = 'Bom roubo. Agora olha pra trás.'; return `<g filter="url(#b10)">${gameMeadow(t, { dusk: true, seed: 12 })}</g><rect width="${W}" height="${H}" fill="#000" opacity=".5"/>` + chatBox(540, 760, 1, 'LÍDER · COROA NEGRA', msg, Math.ceil(seg(p, 0, .8) * msg.length)) + vignette(true); } },
+  // 30 Caio olha
+  { k: 'caio olha', z: [1.0, 1.15], c: [540, 900], f: (t, p) => `<g filter="url(#b18)">${gameMeadow(t, { dusk: true })}</g>` + g(bust({ x: 0, y: 0, s: 2.7, ...THIEF, eyes: 'wide', brows: 'up', look: lerp(0, -16, easeOut(p)) }), `translate(540,1050) scale(${lerp(1, -1, easeOut(seg(p, .2, .5))) || .01},1)`) + vignette(true) },
+  // 31 Agachado no mato, outro jogador
+  { k: 'agachado no', z: [1.06, 1.0], c: [540, 1200], f: (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 3 })}</g>` + `<rect width="${W}" height="${H}" fill="#000" opacity=".35"/>` + bushes(t, 1300, true); s += g(headG({ ...THIEF, eyes: 'dot', brows: 'serious' }), `translate(540,${lerp(1500, 1260, easeOut(seg(p, .1, .6)))}) scale(1.7)`); s += `<circle cx="505" cy="1250" r="14" fill="#ff3a3a" opacity="${seg(p, .5, .7)}" filter="url(#glow)"/><circle cx="575" cy="1250" r="14" fill="#ff3a3a" opacity="${seg(p, .5, .7)}" filter="url(#glow)"/>`; s += bushes(t + 3, 1650, true); return s + vignette(true); } },
+  // 32 Mesma roupa, mesma classe
+  { k: 'a mesma roupa', z: [1.0, 1.05], c: [540, 1200], f: (t, p) => { let s = gameMeadow(t, { dusk: true, seed: 4 }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".3"/>`; s += fullBody({ x: 290, y: 1720, s: 1.05, top: '#2f5f6a', legs: '#1f2a2e', item: KNIFE, armR: -15, head: { ...THIEF, eyes: 'wide', brows: 'up', look: 10 } }, t); s += fullBody({ x: 790, y: 1720, s: 1.05, top: '#2f5f6a', legs: '#1f2a2e', item: KNIFE, armR: -15, flip: true, head: { ...THIEF, eyes: 'dot', brows: 'serious', look: 10 } }, t + .5); s += g(`<rect x="-180" y="-44" width="360" height="88" rx="14" fill="#0b0d10" opacity=".85"/>` + txt(0, 16, 'LADRÃO · NV 12', 38, '#7fd6e6'), 'translate(290,880)') + g(`<rect x="-180" y="-44" width="360" height="88" rx="14" fill="#0b0d10" opacity=".85"/>` + txt(0, 16, 'LADRÃO · NV 12', 38, '#7fd6e6'), 'translate(790,880)', `opacity="${seg(p, .3, .5)}"`); return s + gameFG(t, true) + vignette(true); } },
+  // 33 O mesmo nome
+  { k: 'o mesmo nome', z: [1.0, 1.12], c: [540, 820], f: (t, p) => { const gl = (Math.floor(t * 14) % 5 === 0) ? 1 : 0; if (p > .92) return `<rect width="${W}" height="${H}" fill="#000"/>`; let s = `<rect width="${W}" height="${H}" fill="#08090b"/>`; for (let i = 0; i < 2; i++) s += g(`<rect x="-380" y="-80" width="760" height="160" rx="22" fill="#0b0d10" stroke="#ff3a3a" stroke-width="6"/>` + txt(0, 26, 'CaioLadrão_07', 80, '#ffffff', { w: 900 }), `translate(${540 + (i ? gl * 14 : 0)},${640 + i * 300})`, `opacity="${i ? seg(p, .2, .4) : 1}"`); s += `<rect y="${600 + gl * 300}" width="${W}" height="20" fill="#ff3a3a" opacity="${gl * .5}"/>`; return s + vignette(true); } },
+  // 34 Segue pra parte 2
+  { k: 'segue pra', z: [1.0, 1.06], f: (t, p) => `<rect width="${W}" height="${H}" fill="#050505"/>` + g(headG({ ...THIEF, eyes: 'dot', brows: 'serious' }), 'translate(330,1000) scale(2)') + g(headG({ ...THIEF, eyes: 'dot', brows: 'serious' }), 'translate(750,1000) scale(2)') + `<circle cx="707" cy="990" r="14" fill="#ff3a3a" filter="url(#glow)"/><circle cx="793" cy="990" r="14" fill="#ff3a3a" filter="url(#glow)"/>` + txt(540, 420, 'PARTE 2', 140, '#ffc928', { w: 900, ls: 8, op: seg(p, .1, .4), extra: 'stroke="#000" stroke-width="14" paint-order="stroke"' }) + vignette(true) },
+];
