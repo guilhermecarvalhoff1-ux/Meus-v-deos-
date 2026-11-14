@@ -343,7 +343,7 @@ function hand(x, y, s, rot = 0, opts = {}) {
 // =====================================================================
 const THIEF = { hair: 'hood', hairCol: '#2f5f6a', top: '#2f5f6a', outfit: 'hoodie', mask: true };
 const REAL_CAIO = { hair: 'short', hairCol: '#1f1a17', top: '#c99a2e', outfit: 'hoodie' };
-const PART = { words: 'words4.json', end: 72, abTime: 9999,
+const PART = { words: 'words4.json', end: 79.3, abTime: 9999,
   merges: [
     [['mais','três','mil','e','duzentos','reais'], '+R$ 3.200'],
     [['três','mil','e','duzentos','reais'], 'R$ 3.200'],

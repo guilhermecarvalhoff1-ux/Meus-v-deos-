@@ -4,7 +4,7 @@ import { Episode } from "./Episode";
 const FPS = 30;
 
 // Cada episódio: pasta public/epN com scenes.js, words.json e narracao.mp3
-const EPISODES = [{ id: "AureaEp1", ep: "ep1", seconds: 74.6 }];
+const EPISODES = [{ id: "AureaEp1", ep: "ep1", seconds: 79.3 }];
 
 export const RemotionRoot: React.FC = () => {
   return (
