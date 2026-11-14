@@ -18,7 +18,7 @@ declare global {
   }
 }
 
-export type EpisodeProps = { ep: string };
+export type EpisodeProps = { ep: string; audio?: boolean };
 
 const FONTS = `
 @font-face{font-family:RC;src:url(${staticFile("fonts/roboto-condensed-latin-700-normal.woff2")});font-weight:700}
@@ -56,7 +56,7 @@ const loadEngine = async (ep: string) => {
   window.__aureaEp = ep;
 };
 
-export const Episode: React.FC<EpisodeProps> = ({ ep }) => {
+export const Episode: React.FC<EpisodeProps> = ({ ep, audio = true }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const [ready, setReady] = useState(Boolean(window.AUREA && window.__aureaEp === ep));
@@ -85,7 +85,7 @@ export const Episode: React.FC<EpisodeProps> = ({ ep }) => {
         xmlns="http://www.w3.org/2000/svg"
         dangerouslySetInnerHTML={{ __html: svg }}
       />
-      <Audio src={staticFile(`${ep}/narracao.mp3`)} />
+      {audio ? <Audio src={staticFile(`${ep}/narracao.mp3`)} /> : null}
     </AbsoluteFill>
   );
 };

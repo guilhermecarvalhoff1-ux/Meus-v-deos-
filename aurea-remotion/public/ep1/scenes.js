@@ -403,7 +403,7 @@ const KNIFE = `<g transform="translate(0,250) rotate(200)"><rect x="-10" y="-20"
 
 const SCENES = [
   // 01 Quem mata não fica com o dinheiro
-  { k: 'no áurea quem', z: [1.1, 1.0], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { bigTreeX: 120 }); const kp = seg(p, .2, .3); if (kp < 1) s += slime(720, 1560, 1.1, t).replace('<g transform', `<g opacity="${1 - kp}" transform`); s += guildMember(460, 1720, 1.0, t, '#22252b', { armR: -120 + 100 * seg(p, .1, .25) }); const cp = seg(p, .35, .7); if (p > .25) s += coin(lerp(720, 120, easeIn(cp)), lerp(1500, 1650, cp) - Math.sin(cp * Math.PI) * 300, 1.2, t * 300); if (p > .35) s += pullLine(80, 1700, 720, 1500, Math.min(1, cp * 1.5)); s += bushes(t, 1750); s += `<circle cx="70" cy="1690" r="10" fill="#fff"/><circle cx="110" cy="1690" r="10" fill="#fff"/>`; return s + gameFG(t) + vignette(); } },
+  { k: 'no áurea quem', z: [1.1, 1.0], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t, { bigTreeX: 120 }); const kp = seg(p, .2, .3); if (kp < 1) s += boar(760, 1640, 1.0, t).replace('<g transform', `<g opacity="${1 - kp}" transform`); s += guildMember(460, 1720, 1.0, t, '#22252b', { armR: -120 + 100 * seg(p, .1, .25) }); const cp = seg(p, .35, .7); if (p > .25) s += coin(lerp(720, 120, easeIn(cp)), lerp(1500, 1650, cp) - Math.sin(cp * Math.PI) * 300, 1.2, t * 300); if (p > .35) s += pullLine(80, 1700, 720, 1500, Math.min(1, cp * 1.5)); s += bushes(t, 1750); s += `<circle cx="70" cy="1690" r="10" fill="#fff"/><circle cx="110" cy="1690" r="10" fill="#fff"/>`; return s + gameFG(t) + vignette(); } },
   // 02 Drop fica 3 segundos
   { k: 'quando um', z: [1.0, 1.1], c: [540, 1100], f: (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t)}</g>`; s += `<ellipse cx="540" cy="1250" rx="200" ry="50" fill="#ffd24a" opacity=".35" filter="url(#b18)"/>` + g(`<path d="M-90,0 L-60,-110 L60,-110 L90,0Z" fill="#7a4a2a"/><path d="M-60,-110 C-60,-150 60,-150 60,-110" stroke="#ffc928" stroke-width="10" fill="none"/>`, `translate(540,${1240 + Math.sin(t * 3) * 6}) scale(1.4)`); const left = 3 - Math.min(3, p * 3); s += `<circle cx="540" cy="760" r="120" fill="#0b0d10" opacity=".8"/><circle cx="540" cy="760" r="120" fill="none" stroke="#ffc928" stroke-width="14" stroke-dasharray="${left / 3 * 754} 760" transform="rotate(-90,540,760)"/>` + txt(540, 790, Math.ceil(left || 0.01).toString(), 110, '#ffffff', { w: 900 }); return s + vignette(); } },
   // 03 Sem dono
@@ -471,3 +471,14 @@ const SCENES = [
   // 34 Segue pra parte 2
   { k: 'segue pra', z: [1.0, 1.06], f: (t, p) => `<rect width="${W}" height="${H}" fill="#050505"/>` + g(headG({ ...THIEF, eyes: 'dot', brows: 'serious' }), 'translate(330,1000) scale(2)') + g(headG({ ...THIEF, eyes: 'dot', brows: 'serious' }), 'translate(750,1000) scale(2)') + `<circle cx="707" cy="990" r="14" fill="#ff3a3a" filter="url(#glow)"/><circle cx="793" cy="990" r="14" fill="#ff3a3a" filter="url(#glow)"/>` + txt(540, 420, 'PARTE 2', 140, '#ffc928', { w: 900, ls: 8, op: seg(p, .1, .4), extra: 'stroke="#000" stroke-width="14" paint-order="stroke"' }) + vignette(true) },
 ];
+
+// javali (monstro comum do campo)
+function boar(x, y, s, t) {
+  const b = 1 + .02 * Math.sin(t * 5);
+  let d = `<ellipse cx="0" cy="6" rx="190" ry="24" fill="#000" opacity=".25" filter="url(#b5)"/>`;
+  for (const lx of [-110, -40, 60, 120]) d += `<rect x="${lx - 16}" y="-90" width="32" height="96" rx="10" fill="#4a3226"/>`;
+  d += `<ellipse cx="0" cy="-130" rx="170" ry="${100 * b}" fill="#6b4a36"/><path d="M-120,-200 l10,-30 l15,24 l12,-34 l16,30 l14,-28 l14,30" fill="#3a2a20"/>`;
+  d += `<ellipse cx="-160" cy="-120" rx="70" ry="60" fill="#7a5640"/><ellipse cx="-220" cy="-104" rx="30" ry="24" fill="#c98a7a"/><circle cx="-228" cy="-104" r="5" fill="#3a2a20"/><circle cx="-212" cy="-104" r="5" fill="#3a2a20"/>`;
+  d += `<path d="M-196,-86 q-20,-6 -26,-34" stroke="#f2ead8" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="-150" cy="-150" r="10" fill="#1a1210"/><path d="M-130,-178 l20,-26 l6,30Z" fill="#5a3a2a"/>`;
+  return g(d, `translate(${x},${y}) scale(${s})`);
+}

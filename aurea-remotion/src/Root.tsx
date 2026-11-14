@@ -4,7 +4,8 @@ import { Episode } from "./Episode";
 const FPS = 30;
 
 // Cada episódio: pasta public/epN com scenes.js, words.json e narracao.mp3
-const EPISODES = [{ id: "AureaEp1", ep: "ep1", seconds: 79.3 }];
+// audio: false = sem narração (a narração será gravada depois)
+const EPISODES = [{ id: "AureaEp1", ep: "ep1", seconds: 79.3, audio: false }];
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ export const RemotionRoot: React.FC = () => {
           fps={FPS}
           width={1080}
           height={1920}
-          defaultProps={{ ep: e.ep }}
+          defaultProps={{ ep: e.ep, audio: e.audio }}
         />
       ))}
     </Folder>
