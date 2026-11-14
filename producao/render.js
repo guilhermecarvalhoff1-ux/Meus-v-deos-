@@ -13,12 +13,13 @@ function serve() {
 }
 (async () => {
   const [mode, out, a, b, fpsArg] = process.argv.slice(2);
+  const PQ = process.env.PART === '2' ? '?p=2' : '';
   fs.mkdirSync(out, { recursive: true });
   const srv = await serve();
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
-  page.on('pageerror', e => console.error('PAGEERR', e.message));
-  await page.goto(`http://127.0.0.1:${srv.address().port}/index.html`);
+  page.on('pageerror', e => console.error('PAGEERR', e.message)); page.on('console', m => { if (m.type() === 'error') console.error('CONSOLE', m.text()); });
+  await page.goto(`http://127.0.0.1:${srv.address().port}/index.html${PQ}`);
   await page.evaluate(() => window.ready);
   if (mode === 'preview') {
     const times = await page.evaluate(() => SCENES.map((s, i) => { const e = SCENES[i + 1] ? SCENES[i + 1].s : END; return s.s + (e - s.s) * 0.6; }));

@@ -12,12 +12,13 @@ svg{display:block}
 </style></head><body>
 <svg id="v" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
 <script src="lib.js"></script>
-<script src="scenes.js"></script>
+<script>document.write('<script src="'+(new URLSearchParams(location.search).get("p")==="2"?"scenes2.js":"scenes.js")+'"><\/script>')</script>
 <script>
-const END = 138.0;
+const CFG = (typeof PART !== "undefined") ? PART : { words: "words.json", end: 138.0, abTime: 127.9, merges: [], hl: [] };
+const END = CFG.end;
 let WORDS = [];
 // Junta números falados em numerais
-const MERGES = [
+const MERGES = [...CFG.merges,
   [['quarenta','e','dois','mil','reais'], 'R$ 42 MIL'],
   [['quarenta','e','oito','mil','duzentos','e','treze'], 'Nº 48.213'],
   [['quarenta','e','dois','mil'], '42 MIL'],
@@ -30,7 +31,7 @@ const MERGES = [
   [['sete','meses'], '7 MESES'],
   [['seis','anos'], '6 ANOS'],
 ];
-const HL = new Set(['pior','pagando','lethe','2031','promessa','lembrança','ruim','cadeira','sumiu','graça','memórias','catálogo','medo','paixão','luto','caro','rica','sentir','distante','2009','amsterdã','aranha','pressão','propranolol','desaparecido','continuava','dor','tudo','marina','theo','rio','leve','vazia','livre','café','chora','botas','amarelas','gela','lembra','deu','recibo','infantil','celular','ninguém','sabia','cartão','devolve','arquivo','lembranças','dela','a','b','destruir','encarar','invadir','volta']);
+const HL = new Set([...CFG.hl,'pior','pagando','lethe','2031','promessa','lembrança','ruim','cadeira','sumiu','graça','memórias','catálogo','medo','paixão','luto','caro','rica','sentir','distante','2009','amsterdã','aranha','pressão','propranolol','desaparecido','continuava','dor','tudo','marina','theo','rio','leve','vazia','livre','café','chora','botas','amarelas','gela','lembra','deu','recibo','infantil','celular','ninguém','sabia','cartão','devolve','arquivo','lembranças','dela','a','b','destruir','encarar','invadir','volta']);
 const norm = w => w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
 let CHUNKS = [];
 function buildCaptions(words) {
@@ -74,8 +75,8 @@ function captionSVG(t) {
     if (!word) return '';
     const n = norm(word);
     let hl = tk.hl || HL.has(n);
-    if ((n === 'a' || n === 'b') && !(t > 127.9 && word.length === 1 && (word === 'A' || word === 'B'))) hl = false;
-    if (n === 'a' && word === 'A' && t > 127.9) hl = true;
+    if ((n === 'a' || n === 'b') && !(t > CFG.abTime && word.length === 1 && (word === 'A' || word === 'B'))) hl = false;
+    if (n === 'a' && word === 'A' && t > CFG.abTime) hl = true;
     return `<tspan fill="${hl ? '#ffc928' : '#ffffff'}">${(i ? ' ' : '') + word.toUpperCase()}</tspan>`;
   }).join('');
   return `<g transform="translate(540,1250) scale(${sc})"><text x="0" y="0" font-family="RC" font-weight="900" font-size="86" text-anchor="middle" stroke="#000" stroke-width="16" stroke-linejoin="round" paint-order="stroke" letter-spacing="1">${spans}</text></g>`;
@@ -98,7 +99,19 @@ function render(t) {
   out += captionSVG(t);
   document.getElementById('v').innerHTML = out;
 }
-window.ready = fetch('words.json').then(r => r.json()).then(j => { buildCaptions(j.words); return document.fonts.load('900 86px RC').then(() => document.fonts.load('800 40px NU')); }).then(() => { render(0); return true; });
+function resolveStarts(words) {
+  const ws = words.filter(w => w.type === 'word' && !w.text.startsWith('['));
+  let from = 0;
+  for (const sc of SCENES) {
+    if (sc.k == null) continue;
+    const key = sc.k.split(' ');
+    let found = -1;
+    for (let i = from; i < ws.length; i++) if (key.every((k, j) => ws[i + j] && norm(ws[i + j].text) === k)) { found = i; break; }
+    if (found < 0) { console.error('NAO ACHEI', sc.k); sc.s = SCENES[SCENES.indexOf(sc) - 1].s + 2; continue; }
+    sc.s = SCENES.indexOf(sc) === 0 ? 0 : ws[found].start - 0.05; from = found + 1;
+  }
+}
+window.ready = fetch(CFG.words).then(r => r.json()).then(j => { resolveStarts(j.words); buildCaptions(j.words); return document.fonts.load('900 86px RC').then(() => document.fonts.load('800 40px NU')); }).then(() => { render(0); return true; });
 window.render = render;
 </script>
 </body></html>
