@@ -1,0 +1,302 @@
+// ÁUREA — EPISÓDIO 1
+const CAIO = { hair: 'short', hairCol: '#1f1a17', top: '#c99a2e', outfit: 'hoodie' };
+const HUNTER = { hair: 'hood', hairCol: '#3f6a3a', top: '#6b4a32', outfit: 'hoodie' };
+const GOLD = '#ffc928';
+const PART = { words: 'words3.json', end: 74.6, abTime: 9999,
+  merges: [
+    [['dezenove','anos'], '19 ANOS'],
+    [['trinta','e','sete','reais'], 'R$ 37'],
+    [['oito','mil','reais'], 'R$ 8 MIL'],
+    [['duzentos','e','catorze','jogos'], '214 JOGOS'],
+    [['cem','por','cento'], '100%'],
+    [['nível','um'], 'NÍVEL 1'],
+    [['mais','oitenta','centavos'], '+R$ 0,80'],
+    [['trinta','dias'], '30 DIAS'],
+    [['nove','mil','e','quatrocentos','reais'], 'R$ 9.400'],
+    [['dia','trinta','e','um'], 'DIA 31'],
+    [['nível','quarenta'], 'NÍVEL 40'],
+    [['parte','dois'], 'PARTE 2'],
+  ],
+  hl: ['2049','dinheiro','verdade','pix','caio','mãe','hospital','capacete','visor','sincronizando','classe','mago','guerreiro','paladino','caçador','nada','madeira','gosma','desvia','bate','estoura','adaga','ferro','paga','para','lobo','cinzento','ataca','recua','perder','levanta','nome','jogador','dele','segue','monstro']
+};
+
+// ---------- cenário do jogo ----------
+function gameMeadow(t, opts = {}) {
+  const dusk = opts.dusk;
+  let s = `<defs>${linGrad('gsky', dusk ? [[0, '#3a2a5a'], [.5, '#c46a5a'], [1, '#f2b47a']] : [[0, '#6fb4e6'], [1, '#d9eeff']])}${linGrad('ggr', dusk ? [[0, '#4a6a3a'], [1, '#2a3a22']] : [[0, '#8fd45a'], [1, '#4fa83a']])}</defs>`;
+  s += `<rect width="${W}" height="${H}" fill="url(#gsky)"/>`;
+  if (!dusk) { const r = rng(5); for (let i = 0; i < 5; i++) { const cx = ((r() * W + t * 12) % (W + 300)) - 150, cy = 200 + r() * 400; s += `<g opacity=".9"><ellipse cx="${cx}" cy="${cy}" rx="110" ry="40" fill="#fff"/><ellipse cx="${cx - 50}" cy="${cy - 20}" rx="60" ry="40" fill="#fff"/><ellipse cx="${cx + 40}" cy="${cy - 26}" rx="70" ry="46" fill="#fff"/></g>`; } }
+  else s += `<circle cx="760" cy="760" r="120" fill="#ffd28a" opacity=".9" filter="url(#glow2)"/>`;
+  s += `<g filter="url(#b5)"><path d="M-60,1000 L180,620 L330,820 L520,560 L760,880 L940,660 L1160,1000Z" fill="${dusk ? '#5a4a6a' : '#9db4cc'}"/><path d="M440,640 L520,560 L600,660 L560,650 L520,620Z" fill="#f4f8fb" opacity="${dusk ? .4 : .95}"/></g>`;
+  s += `<g filter="url(#b5)">`;
+  const r = rng(9);
+  for (let i = 0; i < 9; i++) { const x = r() * W, y = 960 + r() * 60, rr = 50 + r() * 50; s += `<rect x="${x - 8}" y="${y}" width="16" height="70" fill="#6b4a32"/><circle cx="${x}" cy="${y - rr * .4}" r="${rr}" fill="${dusk ? '#3a5a32' : (r() < .5 ? '#5aa83a' : '#4a9a34')}"/>`; }
+  s += `</g><rect y="1000" width="${W}" height="${H}" fill="url(#ggr)"/>`;
+  s += grass(t, 1940, 90, opts.seed || 3, dusk ? '#3f5f33' : '#6cc04a', dusk ? '#33502a' : '#58ad3c', 260, '');
+  if (!dusk) { const r2 = rng(13); for (let i = 0; i < 26; i++) s += `<circle cx="${r2() * W}" cy="${1100 + r2() * 760}" r="${5 + r2() * 5}" fill="${['#fff', '#ffe46a', '#ff9ac0'][i % 3]}"/>`; }
+  return s;
+}
+function slime(x, y, s, t, opts = {}) {
+  const sq = 1 + .06 * Math.sin(t * 6), jump = opts.jump || 0;
+  let b = `<ellipse cx="0" cy="${4 + jump * 0}" rx="${110}" ry="18" fill="#000" opacity=".2"/>`;
+  b += g(`<path d="M-110,0 C-120,-80 -60,-160 0,-160 C60,-160 120,-80 110,0Z" fill="#7be08a" opacity=".92"/><path d="M-70,-110 C-50,-140 -10,-150 20,-146" stroke="#d8ffe0" stroke-width="14" fill="none" stroke-linecap="round" opacity=".8"/><circle cx="-34" cy="-70" r="11" fill="#1c3a22"/><circle cx="34" cy="-70" r="11" fill="#1c3a22"/><path d="M-14,-40 q14,10 28,0" stroke="#1c3a22" stroke-width="6" fill="none" stroke-linecap="round"/>`, `translate(0,${-jump * 160}) scale(${1 / sq},${sq})`);
+  if (opts.hp != null) b += g(`<rect x="-120" y="-60" width="240" height="70" rx="14" fill="#0b1a12" opacity=".75"/>` + txt(0, -20, 'GOSMA · NV 1', 26, '#d8ffe0', { fam: 'NU' }) + `<rect x="-100" y="-6" width="200" height="12" rx="6" fill="#33443a"/><rect x="-100" y="-6" width="${200 * opts.hp}" height="12" rx="6" fill="#ff5d5d"/>`, 'translate(0,-230)');
+  return g(b, `translate(${x},${y}) scale(${s})`);
+}
+function wolf(x, y, s, t, opts = {}) {
+  const bow = opts.bow || 0;
+  let w = `<ellipse cx="0" cy="10" rx="260" ry="26" fill="#000" opacity=".25"/>`;
+  w += `<path d="M180,-170 C280,-200 330,-260 360,-330" stroke="#6f7680" stroke-width="40" fill="none" stroke-linecap="round"/>`;
+  for (const [lx, d] of [[-150, 0], [-90, 1], [110, 0], [170, 1]]) w += `<rect x="${lx - 18}" y="-140" width="40" height="150" rx="18" fill="${d ? '#5d646d' : '#767e88'}"/>`;
+  w += `<ellipse cx="20" cy="-190" rx="230" ry="110" fill="#7c848e"/><ellipse cx="20" cy="-150" rx="190" ry="60" fill="#a9b0b8" opacity=".5"/>`;
+  w += g(`<path d="M-60,-40 L-30,-150 L10,-60Z" fill="#6a717a"/><path d="M20,-50 L60,-150 L80,-50Z" fill="#6a717a"/><ellipse cx="0" cy="0" rx="100" ry="80" fill="#858d97"/><path d="M-90,10 L-210,50 L-200,80 L-80,70Z" fill="#9aa1aa"/><circle cx="-206" cy="62" r="16" fill="#222"/><circle cx="-30" cy="-10" r="10" fill="${opts.eye || '#ffd24a'}"/><path d="M-50,-28 l30,6" stroke="#3a3f45" stroke-width="6" stroke-linecap="round"/>`, `translate(-190,${-240 + bow * 150}) rotate(${-bow * 25})`);
+  if (opts.tag) w += g(`<rect x="-260" y="-56" width="520" height="112" rx="18" fill="#0b0d10" opacity=".8" stroke="${opts.tagCol || '#ff5d5d'}" stroke-width="4"/>` + txt(0, -8, opts.tag, opts.tagSize || 40, opts.tagCol || '#ff5d5d', { ls: 2 }) + `<rect x="-200" y="18" width="400" height="14" rx="7" fill="#33373c"/><rect x="-200" y="18" width="${400 * (opts.hp ?? 1)}" height="14" rx="7" fill="#ff5d5d"/>`, 'translate(-20,-560)');
+  return g(w, `translate(${x},${y}) scale(${s})`);
+}
+// corpo inteiro (avatar), pés em (0,0)
+function fullBody(o, t = 0) {
+  const sk = SK, top = o.top || '#6b4a32', legs = o.legs || '#3a3a2e';
+  const step = o.walk ? Math.sin(t * 8) * 14 : 0;
+  let b = `<ellipse cx="0" cy="0" rx="110" ry="18" fill="#000" opacity=".22"/>`;
+  b += `<rect x="-58" y="-300" width="48" height="300" rx="22" fill="${legs}" transform="rotate(${step},-34,-300)"/><rect x="10" y="-300" width="48" height="300" rx="22" fill="${legs}" transform="rotate(${-step},34,-300)"/>`;
+  b += `<rect x="-64" y="-20" width="60" height="28" rx="12" fill="#2a2018"/><rect x="4" y="-20" width="60" height="28" rx="12" fill="#2a2018"/>`;
+  b += `<path d="M-90,-300 L-80,-520 C-60,-560 60,-560 80,-520 L90,-300Z" fill="${top}"/><rect x="-92" y="-330" width="184" height="26" fill="#2a2018"/><rect x="-14" y="-334" width="28" height="34" fill="#c9a24a"/>`;
+  const aL = o.armL ?? 10, aR = o.armR ?? -10;
+  b += g(`<rect x="-22" y="0" width="44" height="230" rx="20" fill="${top}"/><circle cx="0" cy="240" r="28" fill="${sk}"/>`, `translate(-96,-520) rotate(${aL})`);
+  b += g(`<rect x="-22" y="0" width="44" height="230" rx="20" fill="${top}"/><circle cx="0" cy="240" r="28" fill="${sk}"/>` + (o.item || ''), `translate(96,-520) rotate(${aR})`);
+  b += g(headG({ ...HUNTER, ...o.head }), 'translate(0,-640) scale(.95)');
+  return g(b, `translate(${o.x},${o.y}) scale(${o.s || 1}) ${o.flip ? 'scale(-1,1)' : ''}`);
+}
+const STICK = `<rect x="-10" y="150" width="20" height="330" rx="8" fill="#9a6a3a" transform="rotate(-20,0,240)"/>`;
+const DAGGER = `<g transform="translate(0,250) rotate(180)"><rect x="-10" y="-20" width="20" height="60" rx="6" fill="#4a3424"/><rect x="-40" y="34" width="80" height="16" rx="6" fill="#9aa3ac"/><path d="M-16,50 L16,50 L0,230Z" fill="#dfe6ec"/></g>`;
+function coin(x, y, s, rot = 0) { return g(`<circle r="50" fill="#e0a51a"/><circle r="42" fill="${GOLD}"/>` + txt(0, 14, 'R$', 36, '#9a6a0a', { w: 900 }), `translate(${x},${y}) rotate(${rot}) scale(${s})`, 'filter="url(#shs)"'); }
+function popup(x, y, text, op = 1, size = 90, col = GOLD) { return txt(x, y, text, size, col, { w: 900, op, extra: 'stroke="#3a2a00" stroke-width="10" paint-order="stroke" filter="url(#glow)"' }); }
+function room(t) {
+  let s = `<defs>${linGrad('rm', [[0, '#1c2430'], [1, '#2a3340']])}</defs><rect width="${W}" height="${H}" fill="url(#rm)"/>`;
+  s += `<rect x="640" y="240" width="320" height="380" fill="#3a4a5a"/><rect x="660" y="260" width="280" height="340" fill="#6a8aa8" opacity=".5"/>`;
+  s += `<g filter="url(#b10)"><rect x="80" y="300" width="380" height="620" fill="#2a2f38"/>`;
+  for (let i = 0; i < 4; i++) for (let k = 0; k < 7; k++) s += `<rect x="${100 + k * 50}" y="${330 + i * 150}" width="40" height="110" fill="${['#c94a3a', '#3a7ac9', '#3aa860', '#c9a23a', '#8a4ac9'][(i + k) % 5]}"/>`;
+  s += `</g><rect x="0" y="1400" width="${W}" height="600" fill="#151a21"/>`;
+  return s;
+}
+function bill(x, y, s, paid = 0) {
+  let b = `<rect x="-260" y="-360" width="520" height="720" fill="#f6f4ef" filter="url(#sh)"/>` + txt(0, -270, 'HOSPITAL SÃO LUCAS', 34, '#3a4a5a', { ls: 2 }) + `<path d="M-200,-230 H200" stroke="#c9d3d9" stroke-width="4"/>`;
+  for (let i = 0; i < 6; i++) b += `<rect x="-200" y="${-190 + i * 54}" width="${220 + (i * 37) % 120}" height="16" rx="8" fill="#d6dde2"/>`;
+  b += txt(-200, 200, 'TOTAL DEVIDO', 34, '#6b7a84', { a: 'start' }) + txt(0, 290, 'R$ 8.000,00', 92, '#c22', { w: 900 });
+  if (paid > 0) b += g(`<rect x="-220" y="-70" width="440" height="140" rx="14" fill="none" stroke="#2a9a50" stroke-width="14"/>` + txt(0, 40, 'PAGO', 120, '#2a9a50', { w: 900, ls: 10 }), `rotate(-14) scale(${lerp(2.2, 1, easeOut(paid))})`, `opacity="${Math.min(1, paid * 3) * .9}"`);
+  return g(b, `translate(${x},${y}) scale(${s})`);
+}
+function classCard(x, y, s, name, col, icon, opts = {}) {
+  const inner = `<rect x="-200" y="-300" width="400" height="430" rx="16" fill="${col}" opacity=".85"/>` + icon + txt(0, 220, name, 70, '#ffffff', { ls: 6 });
+  return card(x, y, 460, 640, inner, { s, tilt: opts.tilt || 0, shine: opts.shine, border: opts.border || '#ffffff', bg: '#ffffff', op: .18 });
+}
+const ICON_MAGE = `<path d="M-60,40 L0,-200 L60,40Z" fill="#5a3aa8"/><circle cy="60" r="70" fill="${SK}"/><path d="M-120,40 H120" stroke="#5a3aa8" stroke-width="18"/><circle cx="120" cy="-140" r="26" fill="#bfa8ff" filter="url(#glow)"/>`;
+const ICON_WAR = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#8a3a2a"/><circle cy="-110" r="64" fill="${SK}"/><path d="M-70,-150 a70,60 0 0 1 140,0z" fill="#9aa3ac"/><rect x="100" y="-230" width="20" height="300" fill="#dfe6ec"/>`;
+const ICON_PAL = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#e9eef2"/><circle cy="-110" r="64" fill="${SK}"/><path d="M-60,-40 h120 v90 q-60,60 -120,0z" fill="#e0b44c"/><path d="M0,-30 v70 M-30,0 h60" stroke="#c22" stroke-width="12"/>`;
+const ICON_HUN = `<rect x="-90" y="-60" width="180" height="200" rx="40" fill="#6b4a32"/><path d="M-90,-100 C-90,-230 90,-230 90,-100 L80,-40 L-80,-40Z" fill="#3f6a3a"/><circle cy="-100" r="56" fill="${SK}"/><circle cx="-18" cy="-100" r="6" fill="#222"/><circle cx="18" cy="-100" r="6" fill="#222"/><path d="M130,-200 q-60,120 0,240" stroke="#9a6a3a" stroke-width="12" fill="none"/><path d="M130,-200 V40" stroke="#ddd" stroke-width="3"/>`;
+
+const SCENES = [
+  // 01 2049, jogo paga em dinheiro
+  { k: 'em 2049', z: [1.1, 1.0], c: [540, 800], f: (t, p) => { let s = cityBG(t, { tower: false }); s += g(`<rect x="-330" y="-330" width="660" height="660" rx="60" fill="#0f2a33" opacity=".9" stroke="${GOLD}" stroke-width="6"/>` + txt(0, -60, 'ÁUREA', 140, GOLD, { w: 900, ls: 10, extra: 'filter="url(#glow)"' }) + txt(0, 40, 'ONLINE', 50, '#e9fbff', { ls: 16 }) + coin(0, 180, 1.4, Math.sin(t * 3) * 20), 'translate(540,820)'); s += g(`<rect x="-120" y="-44" width="240" height="88" rx="14" fill="#0f2a33" stroke="${GOLD}" stroke-width="3"/>` + txt(0, 20, '2049', 60, '#ffffff'), 'translate(540,1580)'); return s + vignette(); } },
+  // 02 cada monstro vira PIX
+  { k: 'cada monstro', z: [1.0, 1.06], f: (t, p) => { let s = gameMeadow(t); const pp = seg(p, .25, .4); if (pp < 1) s += slime(540, 1500, 1.6, t, {}).replace('<g transform', `<g opacity="${1 - pp}" transform`); const r = rng(2); for (let i = 0; i < 14; i++) { const a = r() * 6.28, d = easeOut(seg(p, .3, .9)) * (200 + r() * 260); if (p > .3) s += coin(540 + Math.cos(a) * d, 1300 + Math.sin(a) * d * .6 - easeOut(seg(p, .3, .9)) * 200, .9, t * 200 * r()); } s += g(`<rect x="-300" y="-70" width="600" height="140" rx="30" fill="#0b1a12" opacity=".85"/><circle cx="-230" r="40" fill="#32bcad"/>` + txt(-230, 14, 'PIX', 30, '#fff') + txt(30, -6, 'PIX RECEBIDO', 34, '#9fe3d0', { a: 'middle' }) + txt(30, 46, '+ R$ 0,80', 50, '#ffffff'), `translate(540,${lerp(-120, 300, easeOut(seg(p, .4, .6)))})`); return s + gameFG(t) + vignette(); } },
+  // 03 Caio 19 anos R$37
+  { k: 'caio tem', z: [1.0, 1.08], c: [540, 900], f: (t, p) => room(t) + bust({ x: 400, y: 1200, s: 1.7, ...CAIO, eyes: 'dot', mouth: 'flat', brows: 'serious', blink: (t % 3) < .12 , breath: t }) + phone(820, 1300, 1.2, 8, `<rect x="-106" y="-212" width="212" height="424" rx="26" fill="#0f1a14"/>` + txt(0, -110, 'SALDO', 30, '#8fd8b0', { ls: 3 }) + txt(0, -40, 'R$ 37,00', 54, '#ffffff', { w: 900 })) + hand(840, 1500, 1, 8, { sleeve: CAIO.top, fist: true }) + vignette() },
+  // 04 Mãe deve 8 mil
+  { k: 'a mãe dele', z: [1.0, 1.08], f: (t, p) => `<rect width="${W}" height="${H}" fill="#3a3330"/><ellipse cx="540" cy="900" rx="500" ry="700" fill="#6a5a50" opacity=".5" filter="url(#b60)"/>` + bill(540, 700, 1.15, 0) + vignette() },
+  // 05 214 jogos 100%
+  { k: 'ele já zerou', z: [1.08, 1.0], f: (t, p) => { let s = `<rect width="${W}" height="${H}" fill="#1c2430"/>`; const r = rng(214); for (let row = 0; row < 7; row++) { s += `<rect x="60" y="${300 + row * 200 + 150}" width="960" height="16" fill="#4a3a2a"/>`; for (let k = 0; k < 14; k++) s += `<rect x="${70 + k * 68}" y="${300 + row * 200 + 20 + r() * 20}" width="58" height="${130 - r() * 20}" rx="4" fill="${['#c94a3a', '#3a7ac9', '#3aa860', '#c9a23a', '#8a4ac9', '#2a2f38'][Math.floor(r() * 6)]}"/>`; } s += `<rect width="${W}" height="${H}" fill="#000" opacity=".35"/>`; s += g(`<rect x="-280" y="-150" width="560" height="300" rx="30" fill="#0f2a33" stroke="${GOLD}" stroke-width="6"/>` + `<path d="M-200,-80 h60 v40 q0,50 -30,60 v30 h20 v20 h-60 v-20 h20 v-30 q-30,-10 -30,-60z" fill="${GOLD}"/>` + txt(60, -20, '214', 110, '#ffffff', { w: 900 }) + txt(60, 80, '100% EM TODOS', 40, GOLD, { ls: 2 }), `translate(540,${lerp(1000, 900, easeOut(p))})`); return s + vignette(); } },
+  // 06 comprou o capacete
+  { k: 'então ele comprou', z: [1.0, 1.1], c: [540, 1000], f: (t, p) => { let s = room(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".3"/>`; s += `<path d="M180,1200 L900,1200 L860,1700 L220,1700Z" fill="#2a2f38" filter="url(#sh)"/>` + txt(540, 1500, 'ÁUREA', 80, GOLD, { ls: 10 }); s += g(`<path d="M-460,0 L360,0 L380,-60 L-440,-60Z" fill="#3a404a"/>`, `translate(540,${1180 - 40 * easeOut(p)}) rotate(${-25 * easeOut(p)})`); s += g(helmet(1).replace(/#5fd0ff/g, GOLD).replace(/#0e2733/g, '#2a1e05'), `translate(540,${lerp(1200, 900, easeOut(seg(p, .2, .8)))}) scale(1.7)`); s += `<ellipse cx="540" cy="900" rx="360" ry="300" fill="${GOLD}" opacity="${.2 * seg(p, .3, .8)}" filter="url(#b60)"/>`; return s + vignette(); } },
+  // 07 ele deita (close: mãos colocando o capacete)
+  { k: 'ele deita', z: [1.0, 1.1], c: [540, 900], f: (t, p) => { const dp = easeOut(seg(p, 0, .7)); let s = room(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".25"/>`; s += bust({ x: 540, y: 1250, s: 2.6, ...CAIO, eyes: 'closed', mouth: 'flat', breath: t }); s += g(helmet(.3 + .7 * dp, '').replace(/#5fd0ff/g, GOLD).replace(/#0e2733/g, '#2a1e05'), `translate(540,${lerp(560, 860, dp)}) scale(2.0)`); s += hand(170, lerp(980, 1120, dp), 1.5, 25, { sleeve: CAIO.top }) + hand(910, lerp(980, 1120, dp), 1.5, -25, { sleeve: CAIO.top }); return s + vignette(true); } },
+  // 08 O visor acende: sincronizando
+  { k: 'o visor acende', z: [1.0, 1.05], f: (t, p) => { const lp = easeOut(seg(p, 0, .3)); let s = `<rect width="${W}" height="${H}" fill="#000"/><rect x="${540 - 540 * lp}" y="958" width="${1080 * lp}" height="4" fill="#fff" filter="url(#glow)"/><ellipse cx="540" cy="960" rx="${200 * lp}" ry="20" fill="#fff" opacity=".5" filter="url(#b18)"/>`; if (p > .35) { s += `<circle cx="540" cy="560" r="90" fill="none" stroke="#333" stroke-width="14"/><circle cx="540" cy="560" r="90" fill="none" stroke="${GOLD}" stroke-width="14" stroke-dasharray="${seg(p, .35, 1) * 565} 600" transform="rotate(-90,540,560)"/>`; s += txt(540, 760, 'SINCRONIZANDO' + '.'.repeat(1 + Math.floor(t * 3) % 3), 54, '#e9fbff', { ls: 6, op: seg(p, .35, .5) }); } return s; } },
+  // 09 lê como você pensa
+  { k: 'o jogo lê', z: [1.0, 1.08], c: [600, 860], f: (t, p) => { let s = brainViz(t).replace(/#f08ccd/g, GOLD).replace(/#f3a6d6/g, GOLD); const sy = 500 + ((t * 300) % 700); s += `<rect x="150" y="${sy}" width="880" height="8" fill="${GOLD}" opacity=".8" filter="url(#glow)"/>`; s += g(`<rect x="-240" y="-46" width="480" height="92" rx="16" fill="#05090c" opacity=".85" stroke="${GOLD}" stroke-width="3"/>` + txt(0, 18, `PERFIL: ${Math.floor(seg(p, 0, .9) * 100)}%`, 50, GOLD, { ls: 3 }), 'translate(540,260)'); return s + vignette(); } },
+  // 10 Mago Guerreiro Paladino
+  { k: 'mago guerreiro', z: [1.0, 1.0], f: (t, p) => { let s = gameMeadow(t) + `<rect width="${W}" height="${H}" fill="#fff" opacity=".2" filter="url(#b10)"/>`; const cards = [['MAGO', '#3a2a6a', ICON_MAGE], ['GUERREIRO', '#5a2a22', ICON_WAR], ['PALADINO', '#6a5a2a', ICON_PAL]]; const idx = Math.min(2, Math.floor(p * 3)); const lp = (p * 3) % 1; cards.forEach((c, i) => { const off = (i - idx - easeOut(lp) * 0) * 520; s += classCard(540 + off, 820, i === idx ? 1.05 : .8, c[0], c[1], c[2], { tilt: (i - idx) * 6, shine: i === idx ? lp : null }); }); return s + gameFG(t) + vignette(); } },
+  // 11 Caçador
+  { k: 'caio recebe', z: [1.0, 1.08], f: (t, p) => { let s = gameMeadow(t) + `<rect width="${W}" height="${H}" fill="#fff" opacity=".2"/>`; const rev = easeOut(seg(p, .35, .55)); s += g(classCard(0, 0, 1, rev > .5 ? 'CAÇADOR' : '???', rev > .5 ? '#2a4a22' : '#333', rev > .5 ? ICON_HUN : txt(0, 40, '?', 260, '#fff')), `translate(540,820) scale(${Math.abs(Math.cos(rev * Math.PI)) * 1.15 + .001},1.15)`); if (rev > .5) s += `<circle cx="540" cy="820" r="${200 + 300 * seg(p, .55, .8)}" fill="none" stroke="${GOLD}" stroke-width="10" opacity="${1 - seg(p, .55, .8)}"/>`; return s + gameFG(t) + vignette(); } },
+  // 12 Começa sem nada
+  { k: 'começa sem', z: [1.0, 1.08], c: [540, 1100], f: (t, p) => gameMeadow(t) + fullBody({ x: 540, y: 1680, s: 1.6, top: '#8a7a62', legs: '#5a5040', armL: 6, armR: -6, head: { eyes: 'dot', mouth: 'flat', brows: 'neutral', blink: (t % 2.6) < .12 } }) + g(`<rect x="-230" y="-50" width="460" height="100" rx="16" fill="#0b1a12" opacity=".8"/>` + txt(0, 18, 'NÍVEL 1 · CAÇADOR', 44, '#d8ffe0', { ls: 2 }), 'translate(540,260)') + gameFG(t) + vignette() },
+  // 13 vara de madeira
+  { k: 'só uma vara', z: [1.0, 1.1], c: [540, 900], f: (t, p) => `<g filter="url(#b10)">${gameMeadow(t)}</g>` + g(`<rect x="-30" y="-700" width="60" height="1100" rx="24" fill="#9a6a3a"/><path d="M-30,-400 l-40,-40" stroke="#7a4a2a" stroke-width="16" stroke-linecap="round"/>`, 'translate(560,1000) rotate(25)') + hand(500, 1300, 1.8, 20, { fist: true, sleeve: '#8a7a62' }) + vignette() },
+  // 14 Primeiro monstro gosma
+  { k: 'primeiro monstro', z: [1.0, 1.1], c: [540, 1300], f: (t, p) => gameMeadow(t) + slime(540, 1550, 1.7, t, { hp: 1, jump: Math.max(0, Math.sin(t * 4)) * .2 }) + gameFG(t) + vignette() },
+  // 15 desvia, bate
+  { k: 'ele desvia', z: [1.05, 1.05], c: [540, 1200], f: (t, p) => { const ph = p * 3; const dodge = Math.sin(Math.min(1, ph % 1) * Math.PI); const hit = Math.floor(ph) === 1; let s = gameMeadow(t, { seed: 4 }); s += slime(720, 1640, 1.2, t, { hp: lerp(1, .35, seg(p, .3, .7)), jump: Math.floor(ph) !== 1 ? dodge * .8 : 0 }); s += fullBody({ x: hit ? 480 : 340 - dodge * 80, y: 1700, s: 1.1, top: '#8a7a62', legs: '#5a5040', armR: hit ? -110 + 90 * (ph % 1) : -30, armL: 20, item: STICK, head: { eyes: hit ? 'dot' : 'wide', mouth: hit ? 'open' : 'flat', brows: 'serious' } }, t); if (hit && ph % 1 > .4) s += `<circle cx="700" cy="1500" r="${80 + 140 * (ph % 1)}" fill="#fff" opacity="${(1 - ph % 1) * .8}"/>` + popup(780, 1300, '-12', 1 - (ph % 1) * .5, 80, '#ff5d5d'); return s + gameFG(t) + vignette(); } },
+  // 16 Gosma estoura +0,80
+  { k: 'a gosma estoura', z: [1.0, 1.08], c: [540, 1300], f: (t, p) => { let s = gameMeadow(t); const bp = seg(p, 0, .2); if (bp < 1) s += slime(540, 1600, 1.6 * (1 + bp * .4), t).replace('<g transform', `<g opacity="${1 - bp}" transform`); const r = rng(16); for (let i = 0; i < 30; i++) { const a = r() * 6.28, d = easeOut(seg(p, .05, .6)) * (100 + r() * 400); s += `<circle cx="${540 + Math.cos(a) * d}" cy="${1450 + Math.sin(a) * d}" r="${10 + r() * 20}" fill="#7be08a" opacity="${1 - seg(p, .3, .8)}"/>`; } s += popup(540, lerp(1300, 1000, easeOut(seg(p, .15, .6))), '+R$ 0,80', seg(p, .15, .3), 130); return s + gameFG(t) + vignette(); } },
+  // 17 Adaga de ferro
+  { k: 'e deixa cair', z: [1.0, 1.08], c: [540, 900], f: (t, p) => `<g filter="url(#b10)">${gameMeadow(t)}</g>` + g(`<rect x="-26" y="-60" width="52" height="170" rx="14" fill="#4a3424"/><rect x="-110" y="100" width="220" height="40" rx="14" fill="#9aa3ac"/><path d="M-44,140 L44,140 L0,760Z" fill="#e6edf2"/><path d="M0,140 L44,140 L0,760Z" fill="#c4cdd4"/><circle cy="-70" r="30" fill="#9aa3ac"/>`, `translate(560,${lerp(500, 760, easeOut(seg(p, 0, .4)))}) rotate(${180 + 20})`) + hand(540, lerp(1700, 1450, easeOut(seg(p, 0, .4))), 1.7, 10, { fist: true, sleeve: '#8a7a62' }) + g(`<rect x="-260" y="-56" width="520" height="112" rx="18" fill="#0b1a12" opacity=".85" stroke="#9aa3ac" stroke-width="4"/>` + txt(0, 20, 'ADAGA DE FERRO', 50, '#e9fbff', { ls: 3 }), 'translate(540,260)', `opacity="${seg(p, .3, .5)}"`) + vignette() },
+  // 18 30 dias depois R$9.400
+  { k: 'trinta dias', z: [1.0, 1.06], f: (t, p) => { const v = Math.floor(lerp(0, 9400, easeOut(seg(p, .1, .85)))); return room(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".45"/>` + phone(540, 860, 2.4, 0, `<rect x="-106" y="-212" width="212" height="424" rx="26" fill="#0f1a14"/>` + txt(0, -110, 'SALDO', 22, '#8fd8b0', { ls: 3 }) + txt(0, -60, `R$ ${v.toLocaleString('pt-BR')},00`, 34, '#ffffff', { w: 900 }) + `<path d="M-80,120 L-40,80 L0,96 L40,30 L80,-10" stroke="#5fe08a" stroke-width="6" fill="none"/>`) + g(`<rect x="-230" y="-50" width="460" height="100" rx="16" fill="#0b1a12" opacity=".85"/>` + txt(0, 20, '30 DIAS DEPOIS', 50, '#ffffff', { ls: 3 }), 'translate(540,230)') + vignette(); } },
+  // 19 Dívida paga
+  { k: 'a dívida está', z: [1.0, 1.06], f: (t, p) => `<rect width="${W}" height="${H}" fill="#3a3330"/><ellipse cx="540" cy="900" rx="500" ry="700" fill="#6a5a50" opacity=".5" filter="url(#b60)"/>` + g(bill(0, 0, 1, seg(p, .1, .35)), `translate(${540 + (p > .1 && p < .38 ? Math.sin(t * 80) * 4 : 0)},700) scale(1.15)`) + vignette() },
+  // 20 Mas ele não para
+  { k: 'mas ele não', z: [1.0, 1.1], c: [540, 1200], f: (t, p) => { let s = gameMeadow(t, { seed: 7 }); for (let i = 0; i < 4; i++) s += slime(160 + i * 260, 1720 - (i % 2) * 80, .7, t + i); s += fullBody({ x: 540, y: 1500, s: 1.3, top: '#4a6a3a', legs: '#3a3a2e', armR: -100 + 40 * Math.sin(t * 8), item: DAGGER, head: { eyes: 'dot', mouth: 'flat', brows: 'serious' } }, t); s += popup(300, 900 - (t * 200) % 200, '+R$ 0,80', .9, 70) + popup(800, 1000 - (t * 160) % 200, '+R$ 2,10', .9, 70); s += g(`<rect x="-200" y="-50" width="400" height="100" rx="16" fill="#0b1a12" opacity=".8"/>` + txt(0, 20, `NÍVEL ${Math.floor(lerp(23, 38, p))}`, 56, GOLD, { ls: 3 }), 'translate(540,230)'); return s + gameFG(t) + vignette(); } },
+  // 21 Dia 31, lobo cinzento nível 40
+  { k: 'no dia trinta', z: [1.08, 1.0], c: [540, 1300], f: (t, p) => gameMeadow(t, { dusk: true }) + wolf(620, 1640, 1.2, t, { tag: 'LOBO CINZENTO · NV 40', tagSize: 38, hp: 1 }) + g(`<rect x="-160" y="-50" width="320" height="100" rx="16" fill="#0b0d10" opacity=".8"/>` + txt(0, 20, 'DIA 31', 60, '#ffffff', { ls: 4 }), 'translate(540,230)') + gameFG(t, true) + vignette(true) },
+  // 22 Lobo não ataca
+  { k: 'o lobo não', z: [1.0, 1.1], c: [540, 1300], f: (t, p) => gameMeadow(t, { dusk: true }) + wolf(620, 1640, 1.25, t, {}) + fullBody({ x: 150, y: 1900, s: 1.4, top: '#4a6a3a', legs: '#3a3a2e', armR: -60, item: DAGGER, head: { eyes: 'dot', mouth: 'flat', brows: 'serious' } }).replace('<g transform="translate(150,1900) scale(1.4) ', '<g filter="url(#b5)" transform="translate(150,1900) scale(1.4) ') + gameFG(t, true) + vignette(true) },
+  // 23 recua, abaixa a cabeça, escreve
+  { k: 'ele recua', z: [1.0, 1.12], c: [460, 1400], f: (t, p) => { let s = gameMeadow(t, { dusk: true }); s += wolf(lerp(620, 700, easeOut(seg(p, 0, .3))), 1640, 1.25, t, { bow: easeOut(seg(p, .2, .5)) }); const wp = seg(p, .55, 1); s += `<path d="M260,1700 q${40 * wp},${-30 * wp} ${80 * wp},0" stroke="#2a2018" stroke-width="10" fill="none" opacity=".7"/>`; return s + gameFG(t, true) + vignette(true); } },
+  // 24 "Me deixa perder"
+  { k: 'me deixa perder', z: [1.0, 1.1], c: [540, 1000], f: (t, p) => { let s = `<defs>${radGrad('dirt', [[0, '#7a5e40'], [1, '#3e2e20']])}</defs><rect width="${W}" height="${H}" fill="url(#dirt)"/>`; const r = rng(24); for (let i = 0; i < 80; i++) s += `<circle cx="${r() * W}" cy="${r() * H}" r="${2 + r() * 8}" fill="#2e2216" opacity=".5"/>`; const words = 'ME DEIXA PERDER'; const n = Math.ceil(seg(p, 0, .7) * words.length); s += txt(540, 820, words.slice(0, n), 130, '#2a1c10', { w: 900, ls: 4, extra: 'stroke="#9a7a5a" stroke-width="4" paint-order="stroke"' }); s += g(`<ellipse cx="0" cy="0" rx="90" ry="70" fill="#6f7680"/><circle cx="-50" cy="-60" r="26" fill="#6f7680"/><circle cx="0" cy="-74" r="26" fill="#6f7680"/><circle cx="50" cy="-60" r="26" fill="#6f7680"/>`, `translate(${lerp(140, 980, seg(p, 0, .7))},${960 + Math.sin(t * 10) * 10}) scale(1.3)`, `opacity="${1 - seg(p, .7, .8)}"`); return s + vignette(true); } },
+  // 25 Caio levanta a adaga
+  { k: 'caio levanta', z: [1.0, 1.1], c: [540, 1200], f: (t, p) => `<g filter="url(#b5)">${gameMeadow(t, { dusk: true })}${wolf(620, 1640, 1.25, t, { bow: 1 })}</g>` + g(hand(0, 0, 1, 0, { fist: true, sleeve: '#4a6a3a' }) + g(`<rect x="-26" y="-60" width="52" height="170" rx="14" fill="#4a3424"/><rect x="-110" y="-110" width="220" height="40" rx="14" fill="#9aa3ac"/><path d="M-44,-110 L44,-110 L0,-700Z" fill="#e6edf2"/>`, 'translate(0,-40)'), `translate(${560},${lerp(1900, 1350, easeOut(seg(p, 0, .6)))}) rotate(-8) scale(1.4)`) + vignette(true) },
+  // 26 nome do jogador aparece
+  { k: 'e em cima', z: [1.0, 1.15], c: [540, 900], f: (t, p) => { const gl = p > .3 ? Math.floor(t * 20) % 2 : 0; const names = ['xX_lob0_Xx', 'D4RK-W0LF', 'operador#88120']; const nm = p < .75 ? names[Math.floor(t * 8) % 3] : 'carregando...'; return gameMeadow(t, { dusk: true }) + wolf(620, 1640, 1.25, t, { bow: 1, tag: nm, tagCol: '#e9fbff', tagSize: 44, hp: .9 }) + `<rect width="${W}" height="${H}" fill="#fff" opacity="${gl * .05}"/>` + vignette(true); } },
+  // 27 É o nome da mãe dele
+  { k: 'é o nome', z: [1.0, 1.2], c: [540, 820], f: (t, p) => { if (p > .9) return `<rect width="${W}" height="${H}" fill="#000"/>`; let s = gameMeadow(t, { dusk: true }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".45"/>` + wolf(620, 1640, 1.25, t, { bow: 1 }); s += g(`<rect x="-340" y="-90" width="680" height="180" rx="22" fill="#0b0d10" opacity=".9" stroke="#ff5d5d" stroke-width="6"/>` + txt(0, -14, 'JOGADOR', 34, '#9aa6ae', { ls: 6 }) + txt(0, 56, 'ROSA ALMEIDA', 80, '#ff5d5d', { w: 900, ls: 3 }), 'translate(540,820)', `filter="url(#glow)" opacity="${seg(p, 0, .15)}"`); return s + gameFG(t, true) + vignette(true); } },
+  // 28 Segue pra parte 2
+  { k: 'segue pra', z: [1.0, 1.06], f: (t, p) => `<rect width="${W}" height="${H}" fill="#050505"/>` + bust({ x: 540, y: 1150, s: 2.4, ...HUNTER, eyes: 'wide', mouth: 'small', brows: 'up' }).replace('<g transform', '<g opacity=".85" transform') + `<rect width="${W}" height="${H}" fill="#ff2a2a" opacity=".08"/>` + txt(540, 400, 'PARTE 2', 140, GOLD, { w: 900, ls: 8, op: seg(p, .2, .5), extra: 'stroke="#000" stroke-width="14" paint-order="stroke"' }) + vignette(true) },
+];
+
+// =====================================================================
+// V2 — desenho melhorado (sobrepõe as versões anteriores)
+// =====================================================================
+const SKIN_DEFS = `<linearGradient id="sk2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0a271"/><stop offset="1" stop-color="#c27b4c"/></linearGradient>
+<linearGradient id="hoodG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a5262"/><stop offset="1" stop-color="#262b35"/></linearGradient>
+<linearGradient id="hunterG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f7a44"/><stop offset="1" stop-color="#2f4a2a"/></linearGradient>
+<radialGradient id="slimeG" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#b8fff0"/><stop offset=".55" stop-color="#4fd8c4"/><stop offset="1" stop-color="#1f8f9a"/></radialGradient>
+<radialGradient id="slimeIn" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#e8fffa" stop-opacity=".9"/><stop offset="1" stop-color="#7fe8d8" stop-opacity="0"/></radialGradient>
+<linearGradient id="wolfG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d6570"/><stop offset=".6" stop-color="#8a929c"/><stop offset="1" stop-color="#b8bec5"/></linearGradient>`;
+
+function hoodCol(o) { return o.hairCol === '#3f6a3a' ? 'url(#hunterG)' : 'url(#hoodG)'; }
+function headG(o) {
+  let s = `<defs>${SKIN_DEFS}</defs>`;
+  const hood = o.hair === 'hood';
+  if (hood) s += `<path d="M-112,30 C-122,-120 -50,-150 0,-150 C50,-150 122,-120 112,30 C110,96 76,124 0,124 C-76,124 -110,96 -112,30Z" fill="${hoodCol(o)}"/>`;
+  if (o.hair === 'marina') s += hairBack('marina', o.hairCol);
+  s += `<ellipse cx="-62" cy="6" rx="13" ry="19" fill="#b8734a"/><ellipse cx="62" cy="6" rx="13" ry="19" fill="#b8734a"/><ellipse cx="-62" cy="6" rx="6" ry="10" fill="#9a5c3a"/><ellipse cx="62" cy="6" rx="6" ry="10" fill="#9a5c3a"/>`;
+  s += `<path d="M-62,-40 C-62,-88 62,-88 62,-40 L60,26 C56,66 32,82 0,82 C-32,82 -56,66 -60,26Z" fill="url(#sk2)"/>`;
+  s += `<path d="M30,-70 C58,-50 62,0 58,30 C54,62 32,80 4,82 C34,60 44,20 30,-70Z" fill="#a8653e" opacity=".22"/>`;
+  s += `<ellipse cx="-30" cy="30" rx="14" ry="8" fill="#e8806a" opacity=".18"/><ellipse cx="30" cy="30" rx="14" ry="8" fill="#e8806a" opacity=".18"/>`;
+  s += `<path d="M2,8 q6,14 -4,18" stroke="#a8653e" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>`;
+  if (o.hair === 'short') s += `<path d="M-66,-20 C-72,-92 -20,-104 6,-102 C50,-100 74,-80 66,-20 C60,-48 40,-60 20,-58 C10,-70 -14,-68 -24,-56 C-44,-58 -60,-44 -66,-20Z" fill="${o.hairCol || '#1f1a17'}"/><path d="M-40,-86 C-10,-98 30,-96 50,-80" stroke="#4a403a" stroke-width="5" fill="none" opacity=".6"/>`;
+  else if (!hood) s += hairFront(o.hair, o.hairCol);
+  if (hood) s += `<path d="M-100,40 C-104,-96 -40,-122 0,-122 C40,-122 104,-96 100,40 C92,-50 60,-80 0,-80 C-60,-80 -92,-50 -100,40Z" fill="${hoodCol(o)}"/><path d="M-96,20 C-90,-60 -50,-86 0,-86 C50,-86 90,-60 96,20" stroke="#000" stroke-width="10" fill="none" opacity=".12"/>`;
+  s += face2(o);
+  if (o.headband) s += `<path d="M-66,-40 C-40,-72 40,-72 66,-40" stroke="#eef6fb" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+  return s;
+}
+function face2(o) {
+  const lx = o.look || 0; let s = '';
+  const ey = -6;
+  if (o.eyes === 'closed') s += `<path d="M${-34 + lx},${ey} q11,9 22,0 M${12 + lx},${ey} q11,9 22,0" stroke="#2a1d17" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  else if (o.blink) s += `<path d="M${-32 + lx},${ey} h18 M${14 + lx},${ey} h18" stroke="#2a1d17" stroke-width="5" stroke-linecap="round"/>`;
+  else { const r = o.eyes === 'wide' ? 9 : 7.5; s += `<ellipse cx="${-23 + lx}" cy="${ey}" rx="${r}" ry="${r * 1.1}" fill="#1e1612"/><ellipse cx="${23 + lx}" cy="${ey}" rx="${r}" ry="${r * 1.1}" fill="#1e1612"/><circle cx="${-20 + lx}" cy="${ey - 3}" r="2.4" fill="#fff"/><circle cx="${26 + lx}" cy="${ey - 3}" r="2.4" fill="#fff"/>`; }
+  const b = o.brows || 'neutral', bc = '#2a1d17';
+  const br = { neutral: [-2, 2], sad: [12, -12], serious: [-14, 14], angry: [-18, 18], up: [-6, 6] }[b] || [0, 0];
+  const by = b === 'up' ? -36 : -28;
+  s += `<rect x="${-40 + lx}" y="${by - 4}" width="28" height="9" rx="4.5" fill="${bc}" transform="rotate(${br[0]},${-26 + lx},${by})"/><rect x="${12 + lx}" y="${by - 4}" width="28" height="9" rx="4.5" fill="${bc}" transform="rotate(${br[1]},${26 + lx},${by})"/>`;
+  const m = o.mouth || 'flat', mc = '#4a2418';
+  if (m === 'flat') s += `<path d="M${-12 + lx},40 h24" stroke="${mc}" stroke-width="5" stroke-linecap="round"/>`;
+  else if (m === 'smile') s += `<path d="M${-16 + lx},36 q16,14 32,0" stroke="${mc}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  else if (m === 'sad') s += `<path d="M${-14 + lx},44 q14,-10 28,0" stroke="${mc}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  else if (m === 'o') s += `<ellipse cx="${lx}" cy="42" rx="8" ry="10" fill="${mc}"/>`;
+  else if (m === 'small') s += `<path d="M${-7 + lx},40 h14" stroke="${mc}" stroke-width="5" stroke-linecap="round"/>`;
+  else if (m === 'open') s += `<path d="M${-13 + lx},34 q13,18 26,0 z" fill="${mc}"/>`;
+  return s;
+}
+function bust(o) {
+  let s = '';
+  const hood = o.hair === 'hood';
+  const top = hood ? hoodCol(o) : (o.top || '#3b4150');
+  s += `<path d="M-180,470 C-182,270 -150,180 -66,158 L66,158 C150,180 182,270 180,470 Z" fill="${top}"/>`;
+  s += `<path d="M66,158 C150,180 182,270 180,470 L120,470 C130,320 120,220 66,158Z" fill="#000" opacity=".18"/>`;
+  s += `<rect x="-26" y="56" width="52" height="110" rx="22" fill="#b06e44"/>`;
+  if (o.outfit === 'hoodie' || hood) s += `<path d="M-70,152 C-60,210 60,210 70,152 L80,176 C50,236 -50,236 -80,176Z" fill="#000" opacity=".22"/><path d="M-20,200 L-26,300 M20,200 L26,300" stroke="#d8d2c8" stroke-width="5" stroke-linecap="round" opacity="${hood ? .7 : 0}"/>`;
+  if (o.outfit === 'suit') s += `<path d="M-40,156 L0,250 L40,156Z" fill="#eef0f2"/><path d="M-8,170 L8,170 L12,260 L0,280 L-12,260Z" fill="#23262c"/>`;
+  s += g(headG(o), 'translate(0,-10)');
+  const br = o.breath != null ? 1 + .012 * Math.sin(o.breath * 2.2) : 1;
+  return g(s, `translate(${o.x},${o.y}) scale(${(o.s || 1)},${(o.s || 1) * br})`);
+}
+function fullBody(o, t = 0) {
+  const top = o.top || '#6b4a32', legs = o.legs || '#3a3a2e';
+  const hunter = (o.head && o.head.hair) ? o.head.hair === 'hood' : true;
+  const step = o.walk ? Math.sin(t * 8) * 14 : 0, br = 1 + .01 * Math.sin(t * 2.4);
+  let b = `<ellipse cx="0" cy="4" rx="130" ry="22" fill="#000" opacity=".25" filter="url(#b5)"/>`;
+  for (const [lx, sg] of [[-34, 1], [34, -1]]) b += g(`<path d="M-26,0 L26,0 L22,280 L-22,280Z" fill="${legs}"/><path d="M8,0 L26,0 L22,280 L10,280Z" fill="#000" opacity=".15"/><path d="M-28,250 L30,250 L44,300 L-30,300Z" fill="#3a2a1e"/><rect x="-32" y="294" width="78" height="10" rx="4" fill="#24180f"/>`, `translate(${lx},-300) rotate(${sg * step},0,0)`);
+  b += g(`<path d="M-96,0 L-84,-250 C-60,-290 60,-290 84,-250 L96,0Z" fill="${top}"/><path d="M40,-280 C84,-260 92,-120 96,0 L56,0 C60,-120 56,-220 40,-280Z" fill="#000" opacity=".18"/><path d="M-96,0 L96,0 L100,40 L-100,40Z" fill="${top}"/><rect x="-100" y="-34" width="200" height="30" fill="#3a2a1e"/><rect x="-16" y="-38" width="32" height="38" rx="4" fill="#c9a24a"/><rect x="40" y="-30" width="44" height="54" rx="8" fill="#5a4030"/>` + (hunter ? `<path d="M-70,-270 C-40,-230 40,-230 70,-270 L80,-250 C40,-200 -40,-200 -80,-250Z" fill="#000" opacity=".25"/>` : ''), `translate(0,-270) scale(1,${br})`);
+  const aL = o.armL ?? 10, aR = o.armR ?? -10;
+  const arm = (item) => `<path d="M-24,0 L24,0 L18,220 L-18,220Z" fill="${top}"/><path d="M6,0 L24,0 L18,220 L8,220Z" fill="#000" opacity=".15"/><rect x="-20" y="200" width="40" height="40" rx="10" fill="#2a2420"/><circle cx="0" cy="250" r="26" fill="#2a2420"/>` + (item || '');
+  b += g(arm(), `translate(-98,-530) rotate(${aL})`);
+  b += g(arm(o.item), `translate(98,-530) rotate(${aR})`);
+  b += g(headG({ ...HUNTER, ...o.head }), 'translate(0,-640) scale(.95)');
+  return g(b, `translate(${o.x},${o.y}) scale(${o.s || 1}) ${o.flip ? 'scale(-1,1)' : ''}`);
+}
+function tree(x, y, s, col1, col2, blur) {
+  return g(`<path d="M-14,0 L14,0 L10,-150 L-10,-150Z" fill="#6b4a32"/><circle cx="0" cy="-200" r="90" fill="${col2}"/><circle cx="-60" cy="-160" r="62" fill="${col2}"/><circle cx="60" cy="-165" r="66" fill="${col2}"/><circle cx="-20" cy="-230" r="70" fill="${col1}"/><circle cx="-60" cy="-180" r="44" fill="${col1}"/><circle cx="30" cy="-250" r="40" fill="#b8e88a" opacity=".5"/>`, `translate(${x},${y}) scale(${s})`, blur ? `filter="url(#${blur})"` : '');
+}
+function blades(t, n, seed, y0, y1, hmin, hmax, wmax, c1, c2, blur, op = 1) {
+  const r = rng(seed); let s = '';
+  for (let i = 0; i < n; i++) {
+    const x = r() * (W + 200) - 100, y = y0 + r() * (y1 - y0), h = hmin + r() * (hmax - hmin), w = 6 + r() * wmax, lean = (r() - .5) * h * .5 + Math.sin(t * 1.5 + i * .7) * h * .06;
+    s += `<path d="M${x - w},${y} Q${x + lean * .4},${y - h * .55} ${x + lean},${y - h} Q${x + lean * .4 + w * .4},${y - h * .5} ${x + w},${y}Z" fill="${r() < .5 ? c1 : c2}"/>`;
+  }
+  return `<g ${blur ? `filter="url(#${blur})"` : ''} opacity="${op}">${s}</g>`;
+}
+function gameMeadow(t, opts = {}) {
+  const dusk = opts.dusk, cx = opts.camX || 0;
+  let s = `<defs>${SKIN_DEFS}${linGrad('gsky2', dusk ? [[0, '#2e2448'], [.45, '#a8566a'], [.7, '#f0a070'], [1, '#ffd6a0']] : [[0, '#7fb3dc'], [.55, '#bcdcf2'], [1, '#f2f8fc']])}${linGrad('mt1', dusk ? [[0, '#6a5a7a'], [1, '#8a6a7a']] : [[0, '#8fa6bf'], [1, '#c2d3e2']])}${linGrad('fld', dusk ? [[0, '#5a6a3a'], [1, '#22301c']] : [[0, '#a6dc6a'], [.4, '#6cc048'], [1, '#3e9a30']])}</defs>`;
+  s += `<rect width="${W}" height="${H}" fill="url(#gsky2)"/>`;
+  s += `<circle cx="${dusk ? 780 : 900}" cy="${dusk ? 820 : 160}" r="${dusk ? 140 : 110}" fill="${dusk ? '#ffe0a0' : '#fffbe8'}" filter="url(#glow2)" opacity=".95"/>`;
+  for (let i = 0; i < 5; i++) s += `<path d="M${dusk ? 780 : 900},${dusk ? 820 : 160} L${-200 + i * 260 + Math.sin(t * .3 + i) * 30},${H} L${-80 + i * 260 + Math.sin(t * .3 + i) * 30},${H}Z" fill="#fffbe8" opacity="${dusk ? .05 : .07}"/>`;
+  if (!dusk) { const r = rng(5); for (let i = 0; i < 4; i++) { const ccx = ((r() * W + t * 10) % (W + 400)) - 200, ccy = 260 + r() * 300; s += `<g opacity=".75" filter="url(#b5)"><ellipse cx="${ccx}" cy="${ccy}" rx="150" ry="40" fill="#fff"/><ellipse cx="${ccx - 60}" cy="${ccy - 24}" rx="80" ry="46" fill="#fff"/><ellipse cx="${ccx + 50}" cy="${ccy - 30}" rx="90" ry="52" fill="#fff"/></g>`; } }
+  // montanhas distantes
+  s += g(`<path d="M-200,1000 L60,640 L200,760 L420,470 L640,780 L820,560 L1060,820 L1300,1000Z" fill="url(#mt1)" opacity=".85"/>` +
+    `<path d="M420,470 L640,780 L560,700 L500,720 L470,640Z" fill="#000" opacity=".1"/><path d="M420,470 L480,560 L450,580 L430,550 L400,575 L380,540Z" fill="#f6fafd"/><path d="M820,560 L870,630 L850,640 L830,615 L800,640 L790,600Z" fill="#f6fafd"/><path d="M420,470 L480,560 L470,600 L440,520Z" fill="#c9d6e2"/>`, `translate(${cx * .1},0)`, 'filter="url(#b2)"');
+  s += `<rect y="800" width="${W}" height="260" fill="${dusk ? '#c08a7a' : '#e6f0f6'}" opacity=".45" filter="url(#b30)"/>`;
+  s += g(`<path d="M-200,1010 L120,840 L300,900 L520,820 L760,920 L1000,850 L1300,1010Z" fill="${dusk ? '#4a5a4a' : '#8fb39a'}" opacity=".8"/>`, `translate(${cx * .2},0)`, 'filter="url(#b5)"');
+  // campo
+  s += `<rect y="990" width="${W}" height="${H}" fill="url(#fld)"/>`;
+  s += g(`<path d="M-100,1060 C200,1040 300,1100 520,1090 C760,1080 900,1120 1200,1100 L1200,1125 C900,1145 760,1105 520,1115 C300,1125 200,1065 -100,1085Z" fill="${dusk ? '#6a7aa0' : '#9ad8f0'}" opacity=".85"/>`, `translate(${cx * .3},0)`, 'filter="url(#b2)"');
+  const rT = rng(9); let trees = '';
+  for (let i = 0; i < 8; i++) { const x = rT() * (W + 200) - 100, y = 1000 + rT() * 60; trees += tree(x, y, .45 + rT() * .3, dusk ? '#4a6a3a' : '#7cc850', dusk ? '#34502c' : '#4e9a36'); }
+  s += g(trees, `translate(${cx * .3},0)`, 'filter="url(#b5)"');
+  s += g(tree(opts.bigTreeX ?? 900, 1260, 1.5, dusk ? '#4a6a3a' : '#7cc850', dusk ? '#34502c' : '#4e9a36', 'b2'), `translate(${cx * .5},0)`);
+  s += blades(t, 160, 31, 1050, 1500, 30, 90, 4, dusk ? '#4a6a36' : '#7cc850', dusk ? '#3a5a2e' : '#5aae3c', 'b2', .9);
+  if (!dusk) { const r2 = rng(13); for (let i = 0; i < 30; i++) s += `<circle cx="${r2() * W}" cy="${1080 + r2() * 600}" r="${4 + r2() * 6}" fill="${['#fff', '#ffe46a', '#fff'][i % 3]}" opacity=".9"/>`; }
+  s += blades(t, 120, opts.seed || 3, 1500, 1980, 120, 320, 8, dusk ? '#3f5f33' : '#6cc04a', dusk ? '#33502a' : '#4ea838', '', 1);
+  return s;
+}
+function gameFG(t, dusk) {
+  const r = rng(77); let p = '';
+  for (let i = 0; i < 18; i++) p += `<circle cx="${(r() * W + t * 20 * (r() - .3)) % W}" cy="${(r() * H - t * 25 * r() + H) % H}" r="${2 + r() * 4}" fill="#fffbe0" opacity="${.3 + r() * .4}"/>`;
+  return p + blades(t, 14, 55, 2000, 2050, 500, 900, 30, dusk ? '#2f4a28' : '#5ab03a', dusk ? '#253c20' : '#469a2e', 'b18', .95);
+}
+function slime(x, y, s, t, opts = {}) {
+  const sq = 1 + .06 * Math.sin(t * 6), jump = opts.jump || 0;
+  let b = `<defs>${SKIN_DEFS}</defs><ellipse cx="0" cy="6" rx="140" ry="26" fill="#3fe0c8" opacity=".35" filter="url(#b10)"/><ellipse cx="0" cy="6" rx="110" ry="16" fill="#000" opacity=".18"/>`;
+  b += g(`<path d="M-120,0 C-130,-90 -70,-170 0,-170 C70,-170 130,-90 120,0 C80,10 -80,10 -120,0Z" fill="url(#slimeG)" opacity=".92"/><ellipse cx="0" cy="-40" rx="90" ry="40" fill="url(#slimeIn)"/><path d="M-80,-120 C-60,-150 -20,-160 10,-156" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round" opacity=".75"/><circle cx="64" cy="-110" r="10" fill="#fff" opacity=".7"/>` +
+    [[-60, -60, 6], [50, -40, 5], [20, -130, 4], [-30, -20, 4]].map(([bx, by, br]) => `<circle cx="${bx}" cy="${by + Math.sin(t * 2 + bx) * 4}" r="${br}" fill="none" stroke="#e8fffa" stroke-width="2" opacity=".8"/>`).join('') +
+    `<ellipse cx="-30" cy="-78" rx="12" ry="15" fill="#10262a"/><ellipse cx="30" cy="-78" rx="12" ry="15" fill="#10262a"/><circle cx="-26" cy="-84" r="4" fill="#fff"/><circle cx="34" cy="-84" r="4" fill="#fff"/><path d="M-10,-48 q10,8 20,0" stroke="#10262a" stroke-width="5" fill="none" stroke-linecap="round"/>`, `translate(0,${-jump * 160}) scale(${1 / sq},${sq})`);
+  if (opts.hp != null) b += g(`<rect x="-80" y="-14" width="160" height="28" rx="14" fill="#0b1a12" opacity=".6"/><rect x="-70" y="-6" width="${140 * opts.hp}" height="12" rx="6" fill="#5fe08a"/>` + txt(0, -26, `${Math.round(20 * opts.hp)}/20`, 26, '#ffffff', { extra: 'stroke="#000" stroke-width="5" paint-order="stroke"' }), 'translate(0,-230)');
+  return g(b, `translate(${x},${y}) scale(${s})`);
+}
+function wolf(x, y, s, t, opts = {}) {
+  const bow = opts.bow || 0, br = 1 + .015 * Math.sin(t * 2);
+  let w = `<defs>${SKIN_DEFS}</defs><ellipse cx="0" cy="10" rx="280" ry="30" fill="#000" opacity=".3" filter="url(#b5)"/>`;
+  w += `<path d="M190,-200 C270,-210 320,-250 350,-${300 + 10 * Math.sin(t * 3)} C360,-250 320,-180 200,-160Z" fill="#6f7782"/>`;
+  for (const [lx, d] of [[-150, 1], [110, 1]]) w += `<path d="M${lx - 22},-150 L${lx + 22},-150 L${lx + 16},0 L${lx - 16},0Z" fill="#545c66"/>`;
+  w += `<path d="M-230,-200 C-230,-290 -100,-320 40,-300 C170,-290 240,-250 230,-180 C220,-120 130,-110 20,-110 C-120,-110 -230,-120 -230,-200Z" fill="url(#wolfG)" transform="scale(1,${br})" style="transform-origin:0 -200px"/>`;
+  w += `<path d="M-200,-250 l20,-30 l10,26 l18,-34 l12,30 l20,-30 l8,30" fill="#5d6570"/>`;
+  for (const [lx, d] of [[-120, 0], [150, 0]]) w += `<path d="M${lx - 24},-150 L${lx + 24},-150 L${lx + 18},0 L${lx - 18},0Z" fill="#7e8691"/><ellipse cx="${lx}" cy="0" rx="26" ry="10" fill="#4a5058"/>`;
+  w += g(`<path d="M-50,-60 L-36,-170 L10,-80Z" fill="#5d6570"/><path d="M-40,-80 L-34,-140 L0,-90Z" fill="#c9a0a0" opacity=".6"/><path d="M20,-70 L60,-170 L84,-60Z" fill="#5d6570"/><path d="M-110,-40 C-110,-110 90,-120 110,-30 C120,40 60,90 0,90 C-60,90 -110,40 -110,-40Z" fill="url(#wolfG)"/><path d="M-100,10 L-240,40 C-250,70 -230,90 -200,88 L-60,80Z" fill="#9aa2ac"/><path d="M-200,88 L-80,84 L-120,100Z" fill="#7e8691"/><ellipse cx="-236" cy="52" rx="20" ry="16" fill="#1a1c20"/><path d="M-70,90 C-40,120 20,120 40,90" fill="#c8ced4"/><ellipse cx="-36" cy="-16" rx="13" ry="11" fill="${opts.eye || '#ffd24a'}" filter="url(#glow)"/><circle cx="-38" cy="-16" r="5" fill="#111"/><path d="M-60,-38 l40,8" stroke="#3a3f45" stroke-width="7" stroke-linecap="round"/>`, `translate(-200,${-250 + bow * 150}) rotate(${-bow * 25})`);
+  if (opts.tag) w += g(`<rect x="-280" y="-60" width="560" height="120" rx="18" fill="#0b0d10" opacity=".75" stroke="${opts.tagCol || '#ff5d5d'}" stroke-width="4"/>` + txt(0, -10, opts.tag, opts.tagSize || 40, opts.tagCol || '#ff5d5d', { ls: 2 }) + `<rect x="-210" y="16" width="420" height="16" rx="8" fill="#33373c"/><rect x="-210" y="16" width="${420 * (opts.hp ?? 1)}" height="16" rx="8" fill="#ff5d5d"/>`, 'translate(-20,-580)');
+  return g(w, `translate(${x},${y}) scale(${s})`);
+}
+function room(t) {
+  let s = `<defs>${SKIN_DEFS}${linGrad('rm2', [[0, '#1a222c'], [1, '#2a333e']])}${radGrad('bulb', [[0, '#ffe6a8', .55], [1, '#ffe6a8', 0]])}</defs><rect width="${W}" height="${H}" fill="url(#rm2)"/>`;
+  s += `<path d="M0,0 L220,260 L220,1500 L0,1900Z" fill="#141a22"/><path d="M${W},0 L860,260 L860,1500 L${W},1900Z" fill="#18202a"/><path d="M220,1500 L860,1500 L${W},1900 L0,1900Z" fill="#11161c"/>`;
+  s += `<rect x="600" y="420" width="220" height="300" fill="#2c3846"/><rect x="616" y="436" width="188" height="268" fill="#5a7a9a" opacity=".35"/>`;
+  s += `<g filter="url(#b5)"><rect x="250" y="520" width="260" height="560" fill="#202630"/>`;
+  for (let i = 0; i < 4; i++) for (let k = 0; k < 5; k++) s += `<rect x="${266 + k * 48}" y="${540 + i * 130}" width="38" height="100" fill="${['#8a3a2a', '#2a5a8a', '#2a7a4a', '#8a7a2a', '#5a3a8a'][(i + k) % 5]}" opacity=".8"/>`;
+  s += `</g>`;
+  const sw = Math.sin(t * 1.2) * 3;
+  s += `<path d="M540,0 L${540 + sw},300" stroke="#0a0c10" stroke-width="4"/><circle cx="${540 + sw}" cy="320" r="26" fill="#fff2c4" filter="url(#glow2)"/><ellipse cx="540" cy="900" rx="520" ry="900" fill="url(#bulb)"/>`;
+  return s;
+}
