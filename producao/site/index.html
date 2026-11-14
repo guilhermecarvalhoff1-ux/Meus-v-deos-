@@ -12,7 +12,7 @@ svg{display:block}
 </style></head><body>
 <svg id="v" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
 <script src="lib.js"></script>
-<script>document.write('<script src="'+(new URLSearchParams(location.search).get("p")==="2"?"scenes2.js":"scenes.js")+'"><\/script>')</script>
+<script>document.write('<script src="'+((p=>p&&p!=="1"?"scenes"+p+".js":"scenes.js")(new URLSearchParams(location.search).get("p")))+'"><\/script>')</script>
 <script>
 const CFG = (typeof PART !== "undefined") ? PART : { words: "words.json", end: 138.0, abTime: 127.9, merges: [], hl: [] };
 const END = CFG.end;

@@ -13,7 +13,7 @@ function serve() {
 }
 (async () => {
   const [mode, out, a, b, fpsArg] = process.argv.slice(2);
-  const PQ = process.env.PART === '2' ? '?p=2' : '';
+  const PQ = process.env.PART ? '?p=' + process.env.PART : '';
   fs.mkdirSync(out, { recursive: true });
   const srv = await serve();
   const browser = await chromium.launch();
