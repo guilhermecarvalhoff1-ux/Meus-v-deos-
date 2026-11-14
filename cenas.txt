@@ -1,0 +1,99 @@
+LETHE — PARTE 1 — LISTA DE CENAS
+Estilo: igual ao vídeo de referência. Desenho 2D chapado com leve profundidade 3D, personagens simples (olhos de ponto, boca em traço, mãos grandes), fundo desfocado, vertical 9:16.
+Legenda: grande, em caixa alta, centralizada, com a palavra-chave em amarelo (entre colchetes abaixo).
+Paleta: azul-petróleo e cinza frio nas cenas da Lethe e da cidade; tons quentes e dessaturados nas memórias; verde-musgo e lama nas cenas do rio.
+
+PERSONAGENS FIXOS
+- Marina: uns 25 anos, cabelo castanho curto até o queixo, casaco cinza-escuro de gola alta.
+- Theo: 6 anos, capa de chuva azul e botas de borracha AMARELAS. O amarelo é o único elemento saturado nas cenas de memória.
+- Homem de terno: uns 50 anos, grisalho, terno grafite, relógio dourado, olhos vermelhos.
+- Lethe: logo em forma de gota com uma onda cortando no meio; tudo branco, vidro e luz azul fria.
+
+01. "O pior dia da sua vida vale quarenta e dois mil reais."
+    Tela preta. Uma etiqueta de preço branca cai devagar e gira: "R$ 42.000". [42 MIL]
+02. "E alguém está pagando por ele agora."
+    Close numa mão com relógio dourado passando um cartão preto numa maquininha de vidro. Luz azul. [PAGANDO]
+03. "A Lethe abriu em 2031 com uma promessa simples."
+    Cidade futurista à noite, com chuva. Um prédio branco enorme exibe um outdoor com o logo da gota: "LETHE — ESQUEÇA. DE GRAÇA." Data no canto: 2031. [LETHE]
+04. "Você escolhe uma lembrança ruim."
+    Ponto de vista em primeira pessoa: um tablet mostra uma grade de memórias em miniatura (bolhas com cenas). Um dedo toca numa bolha escura. [ESCOLHE]
+05. "Deita na cadeira."
+    Sala branca e circular. Uma cadeira reclinável com um capacete branco e um visor azul (o mesmo design de capacete do vídeo de referência). [CADEIRA]
+06. "Vinte minutos depois, ela sumiu."
+    Um timer digital no visor vai de 00:00 a 20:00 em corte rápido. A bolha de memória se desfaz em partículas. [SUMIU]
+07. "De graça."
+    Recibo impresso saindo de uma fenda: "TOTAL: R$ 0,00". [DE GRAÇA]
+08. "Dois milhões e setecentas mil pessoas já apagaram."
+    Plano aéreo: fila enorme de pessoas pequenas dando a volta no quarteirão da Lethe. Contador no topo subindo até 2.700.000. [2,7 MILHÕES]
+09. "Ninguém perguntou para onde as memórias iam."
+    Cano de vidro saindo da cadeira e descendo pelo chão, levando bolhas luminosas para o escuro. [PRA ONDE]
+10. "Elas vão para um catálogo."
+    Câmera desce até um subsolo: prateleiras infinitas de cápsulas de vidro com memórias brilhando. Interface flutuante escrito "CATÁLOGO". [CATÁLOGO]
+11. "Medo custa nove mil reais."
+    Card de interface (estilo do card "PALADINO" do vídeo de referência) com a ilustração de uma pessoa correndo num corredor escuro. "MEDO — R$ 9.000". [MEDO]
+12. "Paixão, vinte e cinco mil."
+    Card vermelho-rosado: um casal sob a chuva. "PAIXÃO — R$ 25.000". [PAIXÃO]
+13. "Luto é o mais caro: quarenta e dois mil."
+    Card preto com borda dourada: uma silhueta ajoelhada diante de um caixão pequeno. "LUTO — R$ 42.000". Selo de "MAIS VENDIDO". [LUTO]
+14. "Quem compra é gente rica, que já tem tudo… menos o que sentir."
+    Cobertura de luxo. Um homem de roupão, com o capacete Lethe na cabeça, deitado numa poltrona. O rosto dele, inexpressivo, ganha uma lágrima. [SENTIR]
+15. "E isso nem parece tão distante."
+    Transição: a imagem se desmancha em papel antigo. Tela de laboratório desbotada, com o tom de documentário. [DISTANTE]
+16. "Em 2009, na Universidade de Amsterdã, cientistas ensinaram pessoas a ter medo de fotos de aranha."
+    Laboratório simples. Um voluntário com eletrodos nos dedos olha para um monitor com a foto de uma aranha. Texto: "AMSTERDÃ, 2009". [ARANHA]
+17. "No dia seguinte, deram a elas um remédio comum de pressão, o propranolol, enquanto elas relembravam o medo."
+    Close na mão segurando um comprimido branco e um copo d'água. Um frasco com o rótulo "PROPRANOLOL". [PROPRANOLOL]
+18. "Mais um dia depois, o susto tinha praticamente desaparecido."
+    Mesma pessoa diante da aranha, agora calma. Um gráfico de reação de susto cai quase a zero. [DESAPARECIDO]
+19. "A lembrança continuava lá."
+    Visualização do cérebro (igual à cena "HIPOCAMPO / MEMÓRIA" do vídeo de referência) com uma bolha mostrando a aranha, intacta. [LEMBRANÇA]
+20. "O que foi embora foi a dor."
+    Uma névoa vermelha sai da bolha e se dissipa. A bolha fica cinza e calma. [DOR]
+21. "A Lethe só deu o passo seguinte: ela leva tudo."
+    Volta para o subsolo azul da Lethe: um braço robótico arranca a bolha inteira do cérebro. [TUDO]
+22. "Marina apagou o dia catorze de março."
+    Marina sentada na cadeira da Lethe, ainda sem o capacete, encarando a câmera. Na tela ao lado: "14/03 — APAGAR?" e o dedo dela no "SIM". [14 DE MARÇO]
+23. "O dia em que o irmão dela, Theo, de seis anos, se afogou no rio."
+    Memória em tons dessaturados: margem de rio com lama e capim alto. Na água, só um par de botas amarelas boiando. Não mostra o corpo. [THEO]
+24. "Ela saiu da clínica leve."
+    Marina saindo pela porta de vidro da Lethe, com a luz do dia batendo no rosto. [LEVE]
+25. "Vazia."
+    Close no rosto de Marina: expressão neutra, olhos sem brilho. [VAZIA]
+26. "Livre."
+    Marina de costas, andando sozinha numa calçada movimentada, com a câmera se afastando. [LIVRE]
+27. "Sete meses depois, num café, um homem de terno chora sozinho na mesa ao lado."
+    Texto "7 MESES DEPOIS". Café aconchegante com janela e chuva. Marina com uma xícara em primeiro plano, desfocada. Ao fundo, em foco, o homem de terno com o capacete Lethe portátil (uma tiara fina) e lágrimas escorrendo. [7 MESES]
+28. "Ele sussurra: 'As botas amarelas… ele ainda estava de botas amarelas.'"
+    Close na boca do homem. No reflexo do visor dele, por um instante, aparecem botas amarelas. [BOTAS AMARELAS]
+29. "Marina gela."
+    A xícara para no ar, a meio caminho da boca. O café treme. [GELA]
+30. "Ela não lembra daquele dia."
+    Visualização do cérebro de Marina: um buraco preto e liso onde deveria estar a memória. [NÃO LEMBRA]
+31. "Mas lembra das botas."
+    Flash quente: uma caixa de presente aberta com botas amarelas novas dentro. [BOTAS]
+32. "Foi ela quem deu."
+    Flash: mãos de Marina amarrando a bota no pé pequeno de Theo. Só aparecem as mãos e as botas. [ELA]
+33. "Ela senta na frente dele."
+    Plano lateral da mesa: Marina puxa a cadeira e senta. O homem tira a tiara, assustado. [FRENTE]
+34. "Ele mostra o recibo: memória número 48.213. Luto infantil. Quarenta e dois mil reais."
+    Close num recibo digital holográfico: "LETHE — MEMÓRIA Nº 48.213 — LUTO INFANTIL — R$ 42.000 — DOADORA: M.A." [48.213]
+35. "Então ele olha pra ela e diz:"
+    Close no rosto do homem: olhos vermelhos, mas sérios, encarando Marina. [OLHA]
+36. "'Na lembrança tem um celular na sua mão. Você ficou quarenta segundos sem olhar pro rio.'"
+    Memória em primeira pessoa (ponto de vista de Marina): uma mão segurando um celular com mensagens na tela. Ao fundo, desfocado, o rio e um ponto amarelo. Um timer no canto conta 00:40. [40 SEGUNDOS]
+37. "Ninguém nunca contou isso pra Marina."
+    Marina congelada na mesa, com o café ao redor desfocado e a cor da cena se apagando. [NINGUÉM]
+38. "Porque a única pessoa que sabia… era ela."
+    Close extremo nos olhos de Marina. No reflexo da pupila, as botas amarelas. Corte seco para preto. [ERA ELA]
+39. "O homem coloca um cartão na mesa."
+    Mão com relógio dourado deslizando um cartão preto com o logo da gota sobre a mesa. [CARTÃO]
+40. "De um lado, o endereço da Lethe, que devolve qualquer memória."
+    O cartão gira: endereço e o texto "DEVOLUÇÃO DE MEMÓRIAS". Brilho azul. [DEVOLVE]
+41. "Do outro, um código de acesso ao arquivo onde estão dois milhões e setecentas mil lembranças."
+    O cartão gira de novo: um QR code. A imagem dá um zoom e mergulha no subsolo das prateleiras infinitas. [ARQUIVO]
+42. "Incluindo a dela."
+    Uma cápsula entre milhares, com uma luz amarela fraca dentro. Etiqueta: "48.213". [A DELA]
+43. "Comenta A se ela deve pegar a memória de volta e encarar o que fez…"
+    Tela dividida, lado esquerdo: Marina deitada na cadeira, com o capacete descendo. Letra "A" enorme. [A]
+44. "ou B se ela deve invadir a Lethe e destruir o arquivo inteiro, com a lembrança dela junto."
+    Lado direito: Marina de capuz no corredor do arquivo, com um isqueiro aceso diante das prateleiras. Letra "B" enorme. Termina nas duas metades lado a lado. [B]
