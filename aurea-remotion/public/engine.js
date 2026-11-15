@@ -85,11 +85,24 @@ function render(t) {
   out += captionSVG(t);
   return out;
 }
+// Abre um trecho sem fala (ex.: luta estendida) antes da frase CFG.gap.key, deslocando as palavras seguintes
+function applyGap(words) {
+  if (!CFG.gap) return;
+  const ws = words.filter(w => w.type === 'word' && !w.text.startsWith('['));
+  const key = CFG.gap.key.split(' ');
+  for (let i = 0; i < ws.length; i++) if (key.every((k, j) => ws[i + j] && norm(ws[i + j].text) === k)) {
+    const t0 = ws[i].start;
+    CFG.gapStart = t0 - 0.15;
+    for (const w of words) if (w.start >= t0 - 0.01) { w.start += CFG.gap.dur; w.end += CFG.gap.dur; }
+    return;
+  }
+  console.error('NAO ACHEI O GAP', CFG.gap.key);
+}
 function resolveStarts(words) {
   const ws = words.filter(w => w.type === 'word' && !w.text.startsWith('['));
   let from = 0;
   for (const sc of SCENES) {
-    if (sc.k == null) { if (sc.at != null) sc.s = sc.at; continue; }
+    if (sc.k == null) { if (sc.at != null) sc.s = sc.at; if (sc.gap != null && CFG.gapStart != null) sc.s = CFG.gapStart + sc.gap; continue; }
     const key = sc.k.split(' ');
     let found = -1;
     for (let i = from; i < ws.length; i++) if (key.every((k, j) => ws[i + j] && norm(ws[i + j].text) === k)) { found = i; break; }
@@ -98,7 +111,7 @@ function resolveStarts(words) {
   }
 }
 window.AUREA = {
-  init(words) { resolveStarts(words); buildCaptions(words); },
+  init(words) { applyGap(words); resolveStarts(words); buildCaptions(words); },
   frame(t) { return render(t); },
   end: END,
 };
