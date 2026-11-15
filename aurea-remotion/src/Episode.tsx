@@ -48,6 +48,7 @@ const loadEngine = async (ep: string) => {
   document.head.appendChild(style);
   await loadScript(staticFile("lib.js"));
   await loadScript(staticFile(`${ep}/scenes.js`));
+  await loadScript(staticFile("upgrade.js"));
   await loadScript(staticFile("engine.js"));
   const words = await (await fetch(staticFile(`${ep}/words.json`))).json();
   window.AUREA!.init(words.words);

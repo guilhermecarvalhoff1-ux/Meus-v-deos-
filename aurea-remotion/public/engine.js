@@ -77,7 +77,7 @@ function render(t) {
   const [cx, cy] = sc.c || [540, 960];
   let body = sc.f(lt, p, d);
   // câmera
-  let out = `<defs>${DEFS}</defs><g transform="translate(${cx},${cy}) scale(${z}) translate(${-cx},${-cy})">${body}</g>`;
+  let out = `<defs>${DEFS}<filter id="post" x="0" y="0" width="1080" height="1920" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feComponentTransfer in="SourceGraphic" result="g"><feFuncR type="table" tableValues="0.03 0.27 0.56 0.83 1"/><feFuncG type="table" tableValues="0.02 0.25 0.53 0.80 0.98"/><feFuncB type="table" tableValues="0.05 0.25 0.49 0.75 0.93"/></feComponentTransfer><feColorMatrix in="g" type="saturate" values="0.9" result="g2"/><feComponentTransfer in="g2" result="hi"><feFuncR type="linear" slope="3.2" intercept="-2.35"/><feFuncG type="linear" slope="3.2" intercept="-2.35"/><feFuncB type="linear" slope="3.2" intercept="-2.35"/></feComponentTransfer><feGaussianBlur in="hi" stdDeviation="26" result="bl"/><feComposite in="g2" in2="bl" operator="arithmetic" k1="0" k2="1" k3="0.3" k4="0"/></filter></defs><g filter="url(#post)"><g transform="translate(${cx},${cy}) scale(${z}) translate(${-cx},${-cy})">${body}</g></g>`;
   // fade de entrada curto em algumas cenas
   const fadeIn = clamp(lt / 0.12);
   if (fadeIn < 1) out += `<rect width="${W}" height="${H}" fill="#000" opacity="${(1 - fadeIn) * .5}"/>`;
