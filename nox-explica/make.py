@@ -33,7 +33,7 @@ SCENES = [
     dict(min=8.5, hl=[('ENTRE DOIS NASCERES', WHITE), ('DO SOL: 117 DIAS', GOLD)],
          caps=[('SÓ NÃO MISTURA AS COISAS,', 0), ('QUE AÍ VIRA *BAGUNÇA*:', 0), ('DE UM NASCER DO SOL', 0), ('AO PRÓXIMO,', 0),
                ('SÃO UNS *117* DIAS.', 0), ('É *OUTRA* CONTA.', 0)]),
-    dict(min=6.0, hl=None, end_hold=1.4,
+    dict(min=6.0, hl=None, end_hold=0.6,
          caps=[('*NOX* ACHOU', 0), ('ESSE CALENDÁRIO', 0), ('UMA *BAGUNÇA* DA PORRA.', 0), ('MAS PELO MENOS', .5),
                ('A EXPLICAÇÃO', 0), ('TÁ *EM DIA*.', 0), ('ACHOU MAIS ALGUMA MERDA', .45), ('SEM SENTIDO POR AÍ?', 0),
                ('MANDA NOS *COMENTÁRIOS*', 0), ('QUE *NOX* EXPLICA.', 0)]),

@@ -2,7 +2,7 @@
 e falas_tempos.json com os tempos de cada legenda (a partir dos tempos de cada palavra)."""
 import asyncio, json, os, re, subprocess, wave, numpy as np, edge_tts
 VOICE, RATE, PITCH = "en-US-AndrewMultilingualNeural", "+0%", "-2Hz"
-PAUSA_RETICENCIAS, PAUSA_PARAGRAFO, SR = 0.65, 0.35, 44100
+PAUSA_RETICENCIAS, PAUSA_PARAGRAFO, SR = 0.5, 0.25, 44100
 txt = open("NOX_EXPLICA_01_narracao.txt").read().strip()
 # trechos: parágrafos, e dentro deles cortes nos "..."
 pieces = []
