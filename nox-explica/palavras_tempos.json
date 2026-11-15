@@ -1,0 +1,592 @@
+[
+ {
+  "text": "Esse",
+  "start": 0.062,
+  "end": 0.312
+ },
+ {
+  "text": "planeta",
+  "start": 0.312,
+  "end": 0.75
+ },
+ {
+  "text": "termina",
+  "start": 0.75,
+  "end": 1.238
+ },
+ {
+  "text": "o",
+  "start": 1.25,
+  "end": 1.35
+ },
+ {
+  "text": "ano",
+  "start": 1.35,
+  "end": 1.663
+ },
+ {
+  "text": "antes",
+  "start": 1.725,
+  "end": 2.075
+ },
+ {
+  "text": "de",
+  "start": 2.075,
+  "end": 2.175
+ },
+ {
+  "text": "dar",
+  "start": 2.188,
+  "end": 2.4
+ },
+ {
+  "text": "uma",
+  "start": 2.4,
+  "end": 2.538
+ },
+ {
+  "text": "volta",
+  "start": 2.55,
+  "end": 3.1
+ },
+ {
+  "text": "em",
+  "start": 3.112,
+  "end": 3.212
+ },
+ {
+  "text": "torno",
+  "start": 3.212,
+  "end": 3.587
+ },
+ {
+  "text": "de",
+  "start": 3.587,
+  "end": 3.688
+ },
+ {
+  "text": "si",
+  "start": 3.7,
+  "end": 3.888
+ },
+ {
+  "text": "mesmo",
+  "start": 3.888,
+  "end": 4.35
+ },
+ {
+  "text": "Que",
+  "start": 4.737,
+  "end": 4.838
+ },
+ {
+  "text": "porra",
+  "start": 4.85,
+  "end": 5.15
+ },
+ {
+  "text": "de",
+  "start": 5.15,
+  "end": 5.25
+ },
+ {
+  "text": "calendário",
+  "start": 5.25,
+  "end": 5.9
+ },
+ {
+  "text": "é",
+  "start": 6.025,
+  "end": 6.125
+ },
+ {
+  "text": "esse",
+  "start": 6.125,
+  "end": 6.487
+ },
+ {
+  "text": "É",
+  "start": 7.037,
+  "end": 7.149
+ },
+ {
+  "text": "Vênus",
+  "start": 7.162,
+  "end": 7.712
+ },
+ {
+  "text": "cara",
+  "start": 7.949,
+  "end": 8.324
+ },
+ {
+  "text": "Pra",
+  "start": 8.737,
+  "end": 8.862
+ },
+ {
+  "text": "dar",
+  "start": 8.874,
+  "end": 9.112
+ },
+ {
+  "text": "uma",
+  "start": 9.124,
+  "end": 9.274
+ },
+ {
+  "text": "volta",
+  "start": 9.287,
+  "end": 9.712
+ },
+ {
+  "text": "no",
+  "start": 9.724,
+  "end": 9.824
+ },
+ {
+  "text": "Sol",
+  "start": 9.837,
+  "end": 10.237
+ },
+ {
+  "text": "ele",
+  "start": 10.687,
+  "end": 10.849
+ },
+ {
+  "text": "leva",
+  "start": 10.862,
+  "end": 11.324
+ },
+ {
+  "text": "uns",
+  "start": 11.524,
+  "end": 11.724
+ },
+ {
+  "text": "225 dias",
+  "start": 11.724,
+  "end": 13.812
+ },
+ {
+  "text": "terrestres",
+  "start": 13.824,
+  "end": 14.599
+ },
+ {
+  "text": "Até",
+  "start": 14.974,
+  "end": 15.237
+ },
+ {
+  "text": "aí",
+  "start": 15.237,
+  "end": 15.424
+ },
+ {
+  "text": "tranquilo",
+  "start": 15.712,
+  "end": 16.324
+ },
+ {
+  "text": "Agora",
+  "start": 16.854,
+  "end": 17.304
+ },
+ {
+  "text": "pra",
+  "start": 17.654,
+  "end": 17.817
+ },
+ {
+  "text": "girar",
+  "start": 17.817,
+  "end": 18.192
+ },
+ {
+  "text": "em",
+  "start": 18.192,
+  "end": 18.304
+ },
+ {
+  "text": "torno",
+  "start": 18.304,
+  "end": 18.654
+ },
+ {
+  "text": "de",
+  "start": 18.654,
+  "end": 18.754
+ },
+ {
+  "text": "si",
+  "start": 18.754,
+  "end": 19.004
+ },
+ {
+  "text": "243",
+  "start": 19.855,
+  "end": 21.18
+ },
+ {
+  "text": "Duzentos",
+  "start": 21.205,
+  "end": 21.68
+ },
+ {
+  "text": "e",
+  "start": 21.68,
+  "end": 21.767
+ },
+ {
+  "text": "quarenta",
+  "start": 21.767,
+  "end": 22.105
+ },
+ {
+  "text": "e",
+  "start": 22.105,
+  "end": 22.142
+ },
+ {
+  "text": "três",
+  "start": 22.155,
+  "end": 22.555
+ },
+ {
+  "text": "caralho",
+  "start": 22.942,
+  "end": 23.43
+ },
+ {
+  "text": "O",
+  "start": 23.805,
+  "end": 23.942
+ },
+ {
+  "text": "ano",
+  "start": 23.955,
+  "end": 24.205
+ },
+ {
+  "text": "acaba",
+  "start": 24.205,
+  "end": 24.855
+ },
+ {
+  "text": "e",
+  "start": 24.867,
+  "end": 24.93
+ },
+ {
+  "text": "o",
+  "start": 24.942,
+  "end": 24.992
+ },
+ {
+  "text": "desgraçado",
+  "start": 25.005,
+  "end": 25.93
+ },
+ {
+  "text": "ainda",
+  "start": 25.942,
+  "end": 26.242
+ },
+ {
+  "text": "tá",
+  "start": 26.242,
+  "end": 26.405
+ },
+ {
+  "text": "terminando",
+  "start": 26.405,
+  "end": 26.942
+ },
+ {
+  "text": "o",
+  "start": 26.942,
+  "end": 26.992
+ },
+ {
+  "text": "giro",
+  "start": 26.992,
+  "end": 27.38
+ },
+ {
+  "text": "Sem",
+  "start": 27.78,
+  "end": 28.017
+ },
+ {
+  "text": "pressa",
+  "start": 28.03,
+  "end": 28.455
+ },
+ {
+  "text": "nenhuma",
+  "start": 28.467,
+  "end": 28.955
+ },
+ {
+  "text": "Só",
+  "start": 29.484,
+  "end": 29.697
+ },
+ {
+  "text": "não",
+  "start": 29.697,
+  "end": 29.897
+ },
+ {
+  "text": "mistura",
+  "start": 29.897,
+  "end": 30.309
+ },
+ {
+  "text": "as",
+  "start": 30.309,
+  "end": 30.409
+ },
+ {
+  "text": "coisas",
+  "start": 30.409,
+  "end": 30.947
+ },
+ {
+  "text": "que",
+  "start": 31.259,
+  "end": 31.384
+ },
+ {
+  "text": "aí",
+  "start": 31.397,
+  "end": 31.747
+ },
+ {
+  "text": "vira",
+  "start": 31.747,
+  "end": 32.059
+ },
+ {
+  "text": "bagunça",
+  "start": 32.072,
+  "end": 32.622
+ },
+ {
+  "text": "de",
+  "start": 33.109,
+  "end": 33.234
+ },
+ {
+  "text": "um",
+  "start": 33.234,
+  "end": 33.284
+ },
+ {
+  "text": "nascer",
+  "start": 33.284,
+  "end": 33.672
+ },
+ {
+  "text": "do",
+  "start": 33.672,
+  "end": 33.797
+ },
+ {
+  "text": "Sol",
+  "start": 33.797,
+  "end": 34.109
+ },
+ {
+  "text": "ao",
+  "start": 34.109,
+  "end": 34.172
+ },
+ {
+  "text": "próximo",
+  "start": 34.184,
+  "end": 34.697
+ },
+ {
+  "text": "são",
+  "start": 35.072,
+  "end": 35.259
+ },
+ {
+  "text": "uns",
+  "start": 35.259,
+  "end": 35.397
+ },
+ {
+  "text": "117 dias",
+  "start": 35.397,
+  "end": 36.909
+ },
+ {
+  "text": "É",
+  "start": 37.309,
+  "end": 37.409
+ },
+ {
+  "text": "outra",
+  "start": 37.409,
+  "end": 37.747
+ },
+ {
+  "text": "conta",
+  "start": 37.747,
+  "end": 38.147
+ },
+ {
+  "text": "Nox",
+  "start": 38.69,
+  "end": 38.965
+ },
+ {
+  "text": "achou",
+  "start": 38.965,
+  "end": 39.44
+ },
+ {
+  "text": "esse",
+  "start": 39.452,
+  "end": 39.64
+ },
+ {
+  "text": "calendário",
+  "start": 39.652,
+  "end": 40.34
+ },
+ {
+  "text": "uma",
+  "start": 40.34,
+  "end": 40.515
+ },
+ {
+  "text": "bagunça",
+  "start": 40.527,
+  "end": 41.14
+ },
+ {
+  "text": "da",
+  "start": 41.14,
+  "end": 41.24
+ },
+ {
+  "text": "porra",
+  "start": 41.24,
+  "end": 41.627
+ },
+ {
+  "text": "Mas",
+  "start": 42.506,
+  "end": 42.643
+ },
+ {
+  "text": "pelo",
+  "start": 42.643,
+  "end": 42.856
+ },
+ {
+  "text": "menos",
+  "start": 42.856,
+  "end": 43.143
+ },
+ {
+  "text": "a",
+  "start": 43.156,
+  "end": 43.281
+ },
+ {
+  "text": "explicação",
+  "start": 43.293,
+  "end": 44.031
+ },
+ {
+  "text": "tá",
+  "start": 44.043,
+  "end": 44.206
+ },
+ {
+  "text": "em",
+  "start": 44.206,
+  "end": 44.281
+ },
+ {
+  "text": "dia",
+  "start": 44.281,
+  "end": 44.643
+ },
+ {
+  "text": "Achou",
+  "start": 45.484,
+  "end": 45.859
+ },
+ {
+  "text": "mais",
+  "start": 45.859,
+  "end": 46.171
+ },
+ {
+  "text": "alguma",
+  "start": 46.171,
+  "end": 46.646
+ },
+ {
+  "text": "merda",
+  "start": 46.646,
+  "end": 47.096
+ },
+ {
+  "text": "sem",
+  "start": 47.109,
+  "end": 47.396
+ },
+ {
+  "text": "sentido",
+  "start": 47.396,
+  "end": 47.909
+ },
+ {
+  "text": "por",
+  "start": 47.909,
+  "end": 48.071
+ },
+ {
+  "text": "aí",
+  "start": 48.084,
+  "end": 48.309
+ },
+ {
+  "text": "Manda",
+  "start": 48.684,
+  "end": 48.946
+ },
+ {
+  "text": "nos",
+  "start": 48.946,
+  "end": 49.084
+ },
+ {
+  "text": "comentários",
+  "start": 49.096,
+  "end": 49.784
+ },
+ {
+  "text": "que",
+  "start": 49.784,
+  "end": 49.896
+ },
+ {
+  "text": "Nox",
+  "start": 49.896,
+  "end": 50.246
+ },
+ {
+  "text": "explica",
+  "start": 50.246,
+  "end": 50.946
+ }
+]
