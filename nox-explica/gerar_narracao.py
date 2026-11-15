@@ -1,9 +1,13 @@
 """Gera narracao.wav (44.1 kHz) com a voz escolhida, respeitando as pausas '...',
 e falas_tempos.json com os tempos de cada legenda (a partir dos tempos de cada palavra)."""
-import asyncio, json, os, re, subprocess, wave, numpy as np, edge_tts
+import asyncio, json, os, re, subprocess, sys, wave, numpy as np, edge_tts
 VOICE, RATE, PITCH = "en-US-AndrewMultilingualNeural", "+0%", "-2Hz"
 PAUSA_RETICENCIAS, PAUSA_PARAGRAFO, SR = 0.5, 0.25, 44100
-txt = open("NOX_EXPLICA_01_narracao.txt").read().strip()
+# uso: python gerar_narracao.py [texto.txt] [saida.wav] [palavras.json]
+ARQ = sys.argv[1] if len(sys.argv) > 1 else "NOX_EXPLICA_01_narracao.txt"
+OUT_WAV = sys.argv[2] if len(sys.argv) > 2 else "narracao.wav"
+OUT_WORDS = sys.argv[3] if len(sys.argv) > 3 else "palavras_tempos.json"
+txt = open(ARQ).read().strip()
 # trechos: parágrafos, e dentro deles cortes nos "..."
 pieces = []
 for pi, par in enumerate([p.strip() for p in txt.split("\n") if p.strip()]):
@@ -34,7 +38,7 @@ for i, (text, pause) in enumerate(pieces):
     words += [(x, t + s, t + e) for x, s, e in w]
     audio.append(a); audio.append(np.zeros(int(pause * SR), np.float32)); t += len(a) / SR + pause
 v = np.concatenate(audio[:-1])
-with wave.open("narracao.wav", "wb") as f:
+with wave.open(OUT_WAV, "wb") as f:
     f.setnchannels(1); f.setsampwidth(2); f.setframerate(SR); f.writeframes((np.clip(v, -1, 1) * 32767).astype(np.int16).tobytes())
-json.dump([{"text": x, "start": round(s, 3), "end": round(e, 3)} for x, s, e in words], open("palavras_tempos.json", "w"), ensure_ascii=False, indent=1)
+json.dump([{"text": x, "start": round(s, 3), "end": round(e, 3)} for x, s, e in words], open(OUT_WORDS, "w"), ensure_ascii=False, indent=1)
 print(len(pieces), "trechos,", len(words), "palavras,", round(len(v) / SR, 2), "s")
