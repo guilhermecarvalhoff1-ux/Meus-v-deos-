@@ -249,7 +249,9 @@ def scene2(img, t, u):
     x0, x1, ty = 420, 880, 1210
     pts = [(2002, x0), (2006, (x0 + x1) / 2), (2023, x1)]
     lab = {2002: 'O CRIME', 2006: '39 ANOS', 2023: 'FORA DA CADEIA'}
-    reach = clamp((t - .3) / (dur * .85))
+    cs = caps_of(1); T0 = SCENES[1]['t0']
+    t2006 = cs[8][0] - T0; t2023 = cs[10][0] - T0   # "PEGOU 39 ANOS" e "DESDE 2023"
+    reach = .5 * ease((t - (t2006 - .6)) / .6) + .5 * ease((t - (t2023 - .6)) / .6)
     d.line([(x0, ty), (x1, ty)], fill=(255, 255, 255, 90), width=6)
     d.line([(x0, ty), (lerp(x0, x1, reach), ty)], fill=GOLD + (255,), width=10)
     for k, (yr, x) in enumerate(pts):
