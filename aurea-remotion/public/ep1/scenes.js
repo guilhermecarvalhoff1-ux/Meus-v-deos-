@@ -525,3 +525,149 @@ function abSide(t, side) {
   const r = rng(77); for (let i = 0; i < 8; i++) B += coin(380 + r() * 320, 1500 - ((t * 300 + i * 120) % 600), .6, t * 200);
   return B + txt(540, 640, 'B', 380, '#ffc928', { w: 900, extra: 'stroke="#000" stroke-width="16" paint-order="stroke"' });
 }
+
+// =====================================================================
+// DRAGÃO DE PEDRA v2 + LUTA MELHORADA
+// =====================================================================
+const DRAGON_DEFS = `
+<linearGradient id="rk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9aa0a8"/><stop offset=".55" stop-color="#6d737c"/><stop offset="1" stop-color="#454a52"/></linearGradient>
+<linearGradient id="rk2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7e848d"/><stop offset="1" stop-color="#3f444b"/></linearGradient>
+<linearGradient id="wingG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a9098" stop-opacity=".95"/><stop offset="1" stop-color="#4c5159" stop-opacity=".95"/></linearGradient>
+<radialGradient id="lavaG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff2b0"/><stop offset=".4" stop-color="#ffb02e"/><stop offset="1" stop-color="#ff4a10" stop-opacity="0"/></radialGradient>
+<linearGradient id="fireG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff4c0"/><stop offset=".3" stop-color="#ffc23a"/><stop offset=".7" stop-color="#ff6a1a"/><stop offset="1" stop-color="#ff2a0a" stop-opacity="0"/></linearGradient>`;
+function rockPoly(pts, fill = 'url(#rk1)', edge = '#2e3238') {
+  return `<path d="M${pts.map(p => p.join(',')).join(' L')}Z" fill="${fill}" stroke="${edge}" stroke-width="5" stroke-linejoin="round"/>`;
+}
+function lava(d, t, k = 1) {
+  const pulse = .6 + .4 * Math.sin(t * 4 + k);
+  return `<path d="${d}" stroke="#ff7a1a" stroke-width="12" fill="none" stroke-linecap="round" opacity="${pulse * .9}" filter="url(#glow)"/><path d="${d}" stroke="#ffe08a" stroke-width="4" fill="none" stroke-linecap="round" opacity="${pulse}"/>`;
+}
+// dragão com pés em (0,0). opts: roar 0..1 (boca aberta), fire 0..1 (bafo), fall 0..1, dead, wing (batida)
+function stoneDragon(x, y, s, t, opts = {}) {
+  const roar = opts.roar || 0, fall = opts.fall || 0, dead = opts.dead || fall > .85;
+  const wing = opts.wing != null ? opts.wing : Math.sin(t * 2.2) * 14;
+  const br = 1 + .02 * Math.sin(t * 2);
+  const eye = dead ? '#3a3a3a' : '#ffb02e';
+  let d = `<defs>${DRAGON_DEFS}</defs>`;
+  d += `<ellipse cx="0" cy="12" rx="${460 + fall * 120}" ry="50" fill="#000" opacity=".35" filter="url(#b10)"/>`;
+  // asas (atrás)
+  const wingL = g(`<path d="M0,0 L-520,-380 L-440,-120 L-560,-160 L-400,40 L-500,60 L-260,120Z" fill="url(#wingG)" stroke="#2e3238" stroke-width="6" stroke-linejoin="round"/><path d="M0,0 L-520,-380 M0,0 L-560,-160 M0,0 L-500,60" stroke="#3a3f46" stroke-width="16" stroke-linecap="round"/>`, `translate(-120,-420) rotate(${-wing - fall * 30})`);
+  const wingR = g(`<path d="M0,0 L520,-380 L440,-120 L560,-160 L400,40 L500,60 L260,120Z" fill="url(#wingG)" stroke="#2e3238" stroke-width="6" stroke-linejoin="round" opacity=".9"/><path d="M0,0 L520,-380 M0,0 L560,-160 M0,0 L500,60" stroke="#3a3f46" stroke-width="16" stroke-linecap="round"/>`, `translate(140,-430) rotate(${wing + fall * 30})`);
+  let body = wingL + wingR;
+  // cauda com espinhos
+  body += `<path d="M200,-120 C380,-100 480,-40 560,-120 C600,-160 640,-150 660,-110" stroke="#5a5f67" stroke-width="70" fill="none" stroke-linecap="round"/>` + [0, 1, 2].map(i => rockPoly([[300 + i * 110, -170 + i * 10], [330 + i * 110, -240 + i * 10], [360 + i * 110, -160 + i * 10]], '#4c5159')).join('');
+  // pernas traseiras e dianteiras com garras
+  for (const [lx, sc] of [[150, 1], [-170, 1.05]]) body += g(rockPoly([[-60, -220], [60, -220], [70, -60], [40, 0], [-50, 0], [-70, -60]], 'url(#rk2)') + rockPoly([[-70, -10], [-90, 20], [-40, 10]], '#d8d2c0') + rockPoly([[-20, -6], [-20, 26], [10, 4]], '#d8d2c0') + rockPoly([[30, -6], [40, 24], [60, 0]], '#d8d2c0'), `translate(${lx},0) scale(${sc})`);
+  // corpo (blocos)
+  body += rockPoly([[-300, -160], [-260, -380], [-80, -470], [160, -450], [320, -330], [330, -150], [160, -90], [-150, -90]]);
+  body += rockPoly([[-260, -380], [-80, -470], [-40, -330], [-200, -280]], '#a3a9b1');
+  body += rockPoly([[-80, -470], [160, -450], [100, -320], [-40, -330]], '#8c929a');
+  body += rockPoly([[-200, -280], [-40, -330], [100, -320], [160, -170], [-160, -150]], '#5f646c');
+  body += [[-200, -470], [-110, -500], [-10, -505], [90, -490]].map(([px, py]) => rockPoly([[px - 30, py + 40], [px, py - 40], [px + 30, py + 40]], '#4a4f57')).join('');
+  body += lava('M-180,-250 L-120,-210 L-60,-240 L0,-190', t, 1) + lava('M60,-380 L110,-330 L170,-350', t, 2) + lava('M-60,-140 L0,-170 L60,-130', t, 3);
+  // pescoço + cabeça
+  const hx = -330, hy = -560 + fall * 400;
+  body += `<path d="M-180,-380 C-260,-450 -290,-520 ${hx + 40},${hy + 40}" stroke="#6a7078" stroke-width="120" fill="none" stroke-linecap="round"/>` + [0, 1, 2, 3].map(i => { const u = i / 4; return rockPoly([[-190 - u * 140 - 30, -420 - u * 150], [-190 - u * 140, -480 - u * 150], [-190 - u * 140 + 30, -420 - u * 150]], '#4a4f57'); }).join('');
+  const jaw = roar * 28;
+  let head = rockPoly([[60, -70], [-60, -110], [-200, -60], [-250, -10], [-200, 10], [40, 20], [90, -20]], 'url(#rk1)');
+  head += g(rockPoly([[40, 20], [-200, 10], [-230, 40], [-180, 70], [20, 60]], '#5a5f67') + [0, 1, 2, 3].map(i => rockPoly([[-180 + i * 45, 14], [-170 + i * 45, -8], [-160 + i * 45, 14]], '#e8e2d0')).join(''), `rotate(${jaw},40,20)`);
+  if (roar > .1) head += `<path d="M-200,12 L40,20 L20,${20 + roar * 60} L-180,${12 + roar * 70}Z" fill="url(#lavaG)" opacity="${roar}"/>`;
+  head += [0, 1, 2, 3].map(i => rockPoly([[-170 + i * 45, 10], [-160 + i * 45, 32], [-150 + i * 45, 10]], '#e8e2d0')).join('');
+  head += rockPoly([[0, -80], [80, -200], [120, -190], [50, -70]], '#3f444b') + rockPoly([[-50, -100], [10, -220], [40, -210], [-20, -95]], '#3f444b');
+  head += `<ellipse cx="-90" cy="-60" rx="26" ry="14" fill="${eye}" ${dead ? '' : 'filter="url(#glow2)"'}/><ellipse cx="-90" cy="-60" rx="8" ry="12" fill="#2a1200" opacity="${dead ? 0 : .8}"/>`;
+  head += `<circle cx="-235" cy="-20" r="8" fill="#2a1a10"/>`;
+  if (opts.fire > 0) { const f = opts.fire, fl = Math.sin(t * 30) * 20; head += g(`<path d="M0,0 C200,-60 600,-120 ${900 + fl},-60 C${950 + fl},40 600,140 0,40Z" fill="url(#fireG)" opacity="${f}" filter="url(#glow)"/><path d="M0,10 C200,-20 450,-40 650,0 C450,60 200,60 0,30Z" fill="#fff6c8" opacity="${f * .8}"/>`, `translate(-240,30) scale(-1,1) rotate(${-10 + roar * 5})`); }
+  body += g(head, `translate(${hx},${hy}) rotate(${-roar * 12 + fall * 40})`);
+  d += g(body, `rotate(${fall * 10}) scale(1,${br * (1 - fall * .3)})`);
+  // brasas flutuando
+  if (!dead) { const r = rng(404); for (let i = 0; i < 14; i++) { const ph = (t * .35 + r()) % 1; d += `<circle cx="${(r() - .5) * 700}" cy="${-200 - ph * 600}" r="${3 + r() * 5}" fill="#ffb02e" opacity="${(1 - ph) * .9}" filter="url(#glow)"/>`; } }
+  // desmoronando: pedras soltas
+  if (fall > 0) { const r = rng(77); for (let i = 0; i < 16; i++) { const px = (r() - .5) * 700, py = -100 - r() * 400, fy = fall * fall * (400 + r() * 300); d += rockPoly([[px - 30, py + fy], [px, py - 30 + fy], [px + 34, py + 6 + fy], [px + 10, py + 30 + fy]], '#6d737c'); } }
+  return g(d, `translate(${x},${y}) scale(${s})`);
+}
+function slashArc(cx, cy, r, a0, a1, p, col = '#ffffff') {
+  if (p <= 0 || p >= 1) return '';
+  const pa = a0 + (a1 - a0) * Math.min(1, p * 1.6), rad = a => a * Math.PI / 180;
+  const x0 = cx + r * Math.cos(rad(a0)), y0 = cy + r * Math.sin(rad(a0)), x1 = cx + r * Math.cos(rad(pa)), y1 = cy + r * Math.sin(rad(pa));
+  return `<path d="M${x0},${y0} A${r},${r} 0 0 ${a1 > a0 ? 1 : 0} ${x1},${y1}" stroke="${col}" stroke-width="${26 * (1 - p)}" fill="none" stroke-linecap="round" opacity="${1 - p}" filter="url(#glow)"/>`;
+}
+function sparks(cx, cy, p, seed, col = '#fff4c8') {
+  if (p <= 0 || p >= 1) return '';
+  const r = rng(seed); let s = `<circle cx="${cx}" cy="${cy}" r="${40 + 120 * p}" fill="#fff" opacity="${(1 - p) * .7}" filter="url(#b10)"/>`;
+  for (let i = 0; i < 14; i++) { const a = r() * 6.28, d = p * (80 + r() * 220); s += `<path d="M${cx + Math.cos(a) * d * .6},${cy + Math.sin(a) * d * .6} L${cx + Math.cos(a) * d},${cy + Math.sin(a) * d}" stroke="${col}" stroke-width="6" stroke-linecap="round" opacity="${1 - p}"/>`; }
+  return s;
+}
+function knight(x, y, s, t, opts = {}) { return guildMember(x, y, s, t, opts.col || '#22252b', opts); }
+const _setF = (pred, f) => { const sc = SCENES.find(pred); if (sc) sc.f = f; };
+
+// "Faz quarenta minutos..." — dragão ruge e guilda ataca
+_setF(s => s.k === 'faz quarenta', (t, p) => {
+  const sh = Math.sin(t * 50) * 6 * (Math.sin(t * 2) > .6 ? 1 : 0);
+  let s = gameMeadow(t, { dusk: true, seed: 12 });
+  s += g(stoneDragon(0, 0, .95, t, { roar: Math.max(0, Math.sin(t * 2)) }), `translate(${740 + sh},${1440 + sh})`);
+  [[170, '#22252b'], [330, '#2a2018'], [770, '#121418'], [930, '#22252b']].forEach(([x, c], i) => { const j = Math.max(0, Math.sin(t * 3 + i)) * 120; s += knight(x, 1820 - j, .6, t + i, { col: c, flip: x > 540, armR: -140 + 120 * Math.sin(t * 6 + i) }); s += slashArc(x + (x > 540 ? -60 : 60), 1500 - j, 90, -60, 80, ((t * 1.5 + i * .3) % 1)); });
+  s += g(`<rect x="-160" y="-50" width="320" height="100" rx="16" fill="#0b0d10" opacity=".85"/>` + txt(0, 20, `${40 + Math.floor(t)}:${String(Math.floor((t * 60) % 60)).padStart(2, '0')}`, 60, '#ff7a6a', { w: 900 }), 'translate(540,240)');
+  return s + gameFG(t, true) + vignette();
+});
+// L0 rugido em close
+_setF(s => s.gap === 0, (t, p) => {
+  const sh = Math.sin(t * 70) * 14 * (1 - p);
+  let s = gameMeadow(t, { dusk: true, seed: 12 }) + `<rect width="${W}" height="${H}" fill="#2a0a00" opacity=".3"/>`;
+  s += g(stoneDragon(0, 0, 1.9, t, { roar: Math.min(1, p * 3), wing: 25 }), `translate(${980 + sh},${2150 + sh})`);
+  for (let i = 0; i < 3; i++) { const rr = ((p * 1.8 + i / 3) % 1); s += `<circle cx="300" cy="900" r="${80 + rr * 800}" fill="none" stroke="#ffb27a" stroke-width="${16 * (1 - rr)}" opacity="${1 - rr}"/>`; }
+  return s + vignette(true);
+});
+// L1 guilda ataca: saltos, golpes, faíscas, dano
+_setF(s => s.gap === 1, (t, p) => {
+  let s = gameMeadow(t, { dusk: true, seed: 12 });
+  s += g(stoneDragon(0, 0, .9, t, { roar: .3 }), `translate(${740 + (p > .5 && p < .6 ? 12 : 0)},1420)`);
+  const jumps = [[200, 0], [420, .25], [700, .5], [900, .15]];
+  jumps.forEach(([x, o], i) => { const ph = (p * 1.4 + o) % 1, j = Math.sin(ph * Math.PI) * 420; s += knight(x, 1820 - j, .6, t + i, { col: ['#22252b', '#2a2018', '#121418', '#22252b'][i], flip: x > 540, armR: -170 + 160 * ph }); s += slashArc(x, 1600 - j, 120, -120, 40, ph); s += sparks(x + (x > 540 ? -80 : 80), 1300 - j * .5, (ph - .5) * 2, 30 + i); });
+  s += popup(420, lerp(1150, 1000, p), '-1.240', 1 - p * .6, 90, '#ff5d5d') + popup(760, lerp(1050, 900, p), '-980', Math.max(0, 1 - Math.abs(p - .6) * 3), 80, '#ffd24a');
+  s += bossBar(lerp(.18, .12, ease(p)), t);
+  return s + gameFG(t, true) + vignette();
+});
+// L2 cauda varre, cavaleiro arremessado
+_setF(s => s.gap === 2, (t, p) => {
+  let s = gameMeadow(t, { dusk: true, seed: 12 });
+  s += g(stoneDragon(0, 0, .95, t), `translate(760,1420) rotate(${Math.sin(p * Math.PI) * -8})`);
+  s += `<path d="M1000,1500 Q700,${1700 - 200 * p} 300,1600" stroke="#fff" stroke-width="20" fill="none" opacity="${Math.sin(p * Math.PI) * .7}" stroke-dasharray="80 40"/>`;
+  const fly = easeOut(seg(p, .2, .9));
+  s += g(knight(0, 0, .6, t, { col: '#2a2018', eyes: 'wide', mouth: 'o', brows: 'up' }), `translate(${lerp(760, 1200, fly)},${lerp(1820, 1100, fly) + fly * fly * 380}) rotate(${fly * 200})`);
+  s += sparks(780, 1650, seg(p, .15, .6), 55) + popup(820, lerp(1300, 1080, fly), '-2.430', seg(p, .15, .3) * (1 - seg(p, .85, 1)), 120, '#ff5d5d');
+  s += bossBar(.12, t);
+  return `<g transform="translate(${Math.sin(t * 60) * 8 * Math.sin(p * Math.PI)},0)">${s}</g>` + gameFG(t, true) + vignette();
+});
+// L4 5% -> 3% com dragão ofegante
+_setF(s => s.gap === 4, (t, p) => {
+  let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 12 })}${stoneDragon(720, 1450, 1.0, t, { roar: .2 })}</g><rect width="${W}" height="${H}" fill="#000" opacity=".35"/>`;
+  s += bossBar(p < .5 ? .05 : .03, t, true);
+  s += txt(540, 820, `${p < .5 ? 5 : 3}%`, 280, '#ff3a3a', { w: 900, extra: `stroke="#000" stroke-width="16" paint-order="stroke" filter="url(#glow)" opacity="${.6 + .4 * Math.abs(Math.sin(t * 10))}"` });
+  return s + vignette(true);
+});
+// L5 dragão cospe fogo, líder atravessa as chamas em câmera lenta
+_setF(s => s.gap === 5, (t, p) => {
+  const tt = t * .25;
+  let s = gameMeadow(tt, { dusk: true, seed: 12 }) + `<rect width="${W}" height="${H}" fill="#2a0a00" opacity=".3"/>`;
+  s += stoneDragon(820, 1500, .85, tt, { roar: 1, fire: .9 });
+  s += fullBody({ x: lerp(220, 420, p), y: lerp(1720, 1380, easeOut(p)), s: 1.1, top: '#121418', legs: '#1a1c22', armR: -175, armL: -150, item: `<g transform="translate(0,250) rotate(180)"><path d="M-22,54 L22,54 L12,560 L0,600 L-12,560Z" fill="#fff8d8" filter="url(#glow2)"/><rect x="-50" y="36" width="100" height="20" rx="6" fill="#c9a24a"/></g>`, head: { hair: 'marina', hairCol: '#14110f', eyes: 'dot', brows: 'angry', mouth: 'open' } }, tt);
+  const r = rng(26); for (let i = 0; i < 40; i++) s += `<circle cx="${r() * W}" cy="${(r() * H - t * 20 + H) % H}" r="${3 + r() * 6}" fill="${r() < .5 ? '#ffb02e' : '#fff4c8'}" opacity=".8" filter="url(#glow)"/>`;
+  return s + gameFG(tt, true) + vignette(true);
+});
+// L6 golpe final no pescoço + 1% + mão do Caio + clarão
+_setF(s => s.gap === 6, (t, p) => {
+  if (p > .9) return `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  let s = `<g filter="url(#b2)">${gameMeadow(t, { dusk: true, seed: 12 })}${stoneDragon(700, 1350, .8, t, { roar: .6 })}</g>`;
+  s += slashArc(300, 820, 380, -30, 120, seg(p, 0, .5), '#fff8d8') + sparks(330, 900, seg(p, .2, .6), 99, '#ffe08a');
+  s += bushes(t, 1780, true) + hand(560, lerp(2100, 1680, easeOut(seg(p, .3, .85))), 1.8, 0, { glove: true, sleeve: '#2f5f6a' });
+  s += bossBar(.01, t, true) + `<rect width="${W}" height="${H}" fill="#fff" opacity="${seg(p, .75, .9)}"/>`;
+  return s + vignette(true);
+});
+// "O dragão cai" — desmorona
+_setF(s => s.k === 'o dragão cai', (t, p) => {
+  const fp = easeIn(seg(p, 0, .7));
+  let s = gameMeadow(t, { dusk: true, seed: 12 });
+  s += g(stoneDragon(0, 0, 1.0, t, { fall: fp, dead: fp > .8 }), `translate(${720 + (p > .5 && p < .75 ? Math.sin(t * 70) * 12 : 0)},1450)`);
+  if (p > .5) { const dp = seg(p, .5, 1), r = rng(18); for (let i = 0; i < 26; i++) s += `<circle cx="${540 + (r() - .5) * 1100 * dp}" cy="${1450 - r() * 380 * dp}" r="${50 + r() * 80}" fill="#b8a890" opacity="${(1 - dp) * .65}" filter="url(#b10)"/>`; }
+  return s + gameFG(t, true) + vignette();
+});
