@@ -33,6 +33,13 @@ Para cada cena, escolha o ângulo que melhor conta aquele momento, sem esperar i
 | Explicar um fato ou número | Cenário limpo tipo laboratório/infográfico, número como objeto 3D, comparações de escala (×15, ×170, régua, balança) |
 | Emoção do personagem | Close no rosto com leve zoom-in |
 
+## Voz das histórias (Áurea, Lethe, O Último Homem)
+- **Voz oficial (escolhida pelo usuário, não perguntar de novo):** edge-tts `pt-BR-AntonioNeural`, rate `+15%`, pitch `+0Hz` (sem alterar o tom: com pitch grave a voz soa com efeito).
+- Para a leitura ficar fluida, no texto enviado à voz junte frases muito curtas com vírgulas (ex.: "Classe: Ladrão, nível doze, nenhuma arma decente."); as legendas continuam com o roteiro original.
+- Gerar com `aurea-remotion/scripts/edge_narr.py` (salva o MP3 e o tempo de cada palavra) e sincronizar com `aurea-remotion/scripts/narracao.py <audio> --words <palavras.json>` (abre a pausa da luta e ajusta a duração).
+- Se a rede bloquear, liberar `speech.platform.bing.com` no ambiente; se vier "No audio was received", tentar de novo.
+- Os vídeos do canal Nox Explica usam outra voz (ver `nox-explica/CLAUDE.md`).
+
 ## Ritmo de edição
 - Corte a cada 2–3 segundos. No clímax, cortes rápidos de ~0,5 s.
 - Toda cena tem algum movimento de câmera (zoom lento, pan, órbita ou parallax). Nada parado.
