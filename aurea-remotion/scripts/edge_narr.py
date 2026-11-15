@@ -2,7 +2,7 @@ import asyncio, json, os, sys, edge_tts
 text_file, out_mp3, out_words = sys.argv[1:4]
 text = open(text_file).read().replace('\n', ' ')
 async def main():
-    c = edge_tts.Communicate(text, "pt-BR-AntonioNeural", rate="-5%", pitch="-8Hz", proxy=os.environ.get("HTTPS_PROXY"), boundary="WordBoundary")
+    c = edge_tts.Communicate(text, "pt-BR-AntonioNeural", rate="+0%", pitch="+0Hz", proxy=os.environ.get("HTTPS_PROXY"), boundary="WordBoundary")
     words = []
     with open(out_mp3, "wb") as f:
         async for ch in c.stream():
