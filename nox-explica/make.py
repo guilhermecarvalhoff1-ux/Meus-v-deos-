@@ -223,36 +223,54 @@ def orbit_pt(a, cx=W / 2, cy=930, rx=330, ry=150):
 def scene2(img, t, u):
     img.alpha_composite(background('plain'))
     d = ImageDraw.Draw(img)
-    cx, cy, rx, ry = W / 2 + 60, 930, 330, 150
-    # órbita (tracejada) com seta
-    pts = [orbit_pt(a, cx, cy, rx, ry) for a in np.linspace(0, 2 * math.pi, 120)]
-    for i in range(0, 119, 3):
-        d.line([pts[i], pts[i + 1]], fill=(255, 220, 150, 170), width=5)
-    sa = -0.6
-    ax, ay = orbit_pt(sa, cx, cy, rx, ry)
-    arrow_head(d, ax, ay, math.atan2(ry * math.cos(sa), -rx * math.sin(sa)) + math.pi, 26, (255, 220, 150, 230))
-    a = -math.pi / 2 - t * 0.55   # sentido anti-horário (visto do norte)
+    cx, cy, rx, ry = W / 2 + 70, 900, 400, 185
+    dur = SCENES[1]['t1'] - SCENES[1]['t0']
+    prog = clamp((t - .4) / max(1, dur - 1.0))           # 0..1 = uma volta completa no Sol
+    a0 = -math.pi / 2
+    a = a0 - prog * 2 * math.pi                          # sentido anti-horário (visto do norte)
+    # órbita tracejada + trecho já percorrido em dourado
+    pts = [orbit_pt(x, cx, cy, rx, ry) for x in np.linspace(0, 2 * math.pi, 160)]
+    for k in range(0, 159, 3):
+        d.line([pts[k], pts[k + 1]], fill=(255, 220, 150, 120), width=5)
+    trail = [orbit_pt(x, cx, cy, rx, ry) for x in np.linspace(a0, a, max(2, int(160 * prog)))]
+    if len(trail) > 1: d.line(trail, fill=GOLD + (230,), width=9, joint='curve')
     vx, vy = orbit_pt(a, cx, cy, rx, ry)
-    if math.sin(a) < 0: venus(img, vx, vy, 46)  # atrás do Sol
-    sun(img, cx, cy, 78)
-    if math.sin(a) >= 0: venus(img, vx, vy, 46)
+    if math.sin(a) < 0: venus(img, vx, vy, 52)
+    sun(img, cx, cy, 92)
+    if math.sin(a) >= 0: venus(img, vx, vy, 52)
+    # contador de dias acompanhando Vênus
+    days = int(round(225 * prog))
+    draw_text_line(img, vx, vy - 120 if vy < cy else vy + 70, [(f'DIA {days}', GOLD if days >= 225 else WHITE)], 46, 1.0, 5)
     paste_nox(img, 220, 1205, .6, 1.0, 'point' if t > .6 else 'none', -3 * ease(t / 3))
     headline(img, SCENES[1]['hl'], 1.2, t)
 
+def bar(img, x0, y, w, frac, label, col, done_txt=None):
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([x0, y, x0 + w, y + 46], radius=23, fill=(255, 255, 255, 40))
+    if frac > 0: d.rounded_rectangle([x0, y, x0 + max(46, w * frac), y + 46], radius=23, fill=col + (255,))
+    draw_text_line(img, x0 + w / 2, y - 62, [(label, WHITE)], 40, 1.0, 5)
+    if done_txt: draw_text_line(img, x0 + w / 2, y + 60, [(done_txt, GOLD)], 38, 1.0, 5)
+
 def scene3(img, t, u):
     img.alpha_composite(background('plain'))
-    vx, vy, r = W / 2 + 120, 860, 250
+    vx, vy, r = W / 2 + 120, 800, 230
     d = ImageDraw.Draw(img)
-    # eixo
-    d.line([(vx, vy - r - 90), (vx, vy + r + 90)], fill=(255, 240, 220, 140), width=5)
+    d.line([(vx, vy - r - 80), (vx, vy + r + 80)], fill=(255, 240, 220, 140), width=5)
     rot = t * 0.9
     venus(img, vx, vy, r, rot=rot)
     d = ImageDraw.Draw(img)
-    # seta de rotação em volta do equador
-    pts = [(vx + math.cos(a) * (r + 40), vy + math.sin(a) * 36) for a in np.linspace(.15, math.pi - .15, 40)]
+    pts = [(vx + math.cos(a) * (r + 40), vy + math.sin(a) * 34) for a in np.linspace(.15, math.pi - .15, 40)]
     d.line(pts, fill=(255, 220, 150, 220), width=7)
     arrow_head(d, pts[-1][0], pts[-1][1], math.pi * .92, 24, (255, 220, 150, 240))
-    lt = [c for c in CAPS if c[3] == 2][-1][0] - SCENES[2]['t0']  # "sem pressa nenhuma"
+    # comparação: o ano (225) termina antes do giro (243)
+    dur = SCENES[2]['t1'] - SCENES[2]['t0']
+    k = clamp((t - 1.0) / max(1, dur * .55))
+    dias = 243 * k
+    ano = min(1, dias / 225); giro = dias / 243
+    bx, bw = 450, 560
+    bar(img, bx, 1235, bw, ano, 'ANO · 225 DIAS', GOLD, 'O ANO ACABOU!' if ano >= 1 else None)
+    bar(img, bx, 1470, bw, giro, f'GIRO · {int(dias)}/243', (235, 235, 245), None)
+    lt = [c for c in CAPS if c[3] == 2][-1][0] - SCENES[2]['t0']
     if t < lt - .3:
         paste_nox(img, 220, 1205, .6, 1.0, 'point', 0, 10)
     else:
@@ -261,38 +279,55 @@ def scene3(img, t, u):
 
 def scene4(img, t, u):
     img.alpha_composite(background('plain'))
-    d = ImageDraw.Draw(img)
-    # janela do "céu de Vênus": horizonte, Sol nasce, atravessa, se põe, noite, nasce de novo
-    x0, x1, hy = 150, 930, 940
-    cyc = clamp((t - 1.0) / ((SCENES[3]['t1'] - SCENES[3]['t0']) - 1.6))   # 0..1 = um ciclo entre dois nasceres
-    # céu: claro de dia, escuro à noite
-    day = 1 if cyc < .5 else 0
-    sky_a = (math.sin(cyc * 2 * math.pi) if cyc < .5 else 0)
-    box = Image.new('RGBA', (x1 - x0, 460), (0, 0, 0, 0)); bd = ImageDraw.Draw(box)
-    c1 = (int(lerp(30, 220, sky_a)), int(lerp(26, 150, sky_a)), int(lerp(60, 80, sky_a)), 255)
-    bd.rounded_rectangle([0, 0, x1 - x0, 460], radius=36, fill=c1)
-    img.alpha_composite(box, (x0, hy - 420))
-    d = ImageDraw.Draw(img)
-    # Sol percorrendo o arco do céu durante a metade "dia"
+    x0, x1, hy = 150, 930, 980
+    BW, BH = x1 - x0, 520
+    cyc = clamp((t - 1.0) / ((SCENES[3]['t1'] - SCENES[3]['t0']) - 1.6))
+    # cor do céu: amanhecer -> dia -> entardecer -> noite -> amanhecer
+    keys = [(0, (255, 150, 90)), (.12, (240, 190, 120)), (.25, (230, 200, 140)), (.42, (240, 130, 80)), (.52, (40, 30, 70)), (.9, (18, 16, 40)), (1, (255, 150, 90))]
+    for (a, ca), (b, cb) in zip(keys, keys[1:]):
+        if a <= cyc <= b:
+            f = (cyc - a) / (b - a); col = tuple(int(lerp(ca[i], cb[i], f)) for i in range(3)); break
+    sky = Image.new('RGBA', (BW, BH), (0, 0, 0, 0))
+    grad = np.zeros((BH, BW, 4), np.uint8)
+    top = np.array(col) * .55; bot = np.array(col)
+    for yy in range(BH):
+        grad[yy, :, :3] = (top * (1 - yy / BH) + bot * (yy / BH)).astype(np.uint8)
+    grad[..., 3] = 255
+    sky = Image.fromarray(grad, 'RGBA')
+    mask = Image.new('L', (BW, BH), 0); ImageDraw.Draw(mask).rounded_rectangle([0, 0, BW, BH], radius=36, fill=255)
+    sd = ImageDraw.Draw(sky)
+    night = clamp((cyc - .5) / .08) * (1 - clamp((cyc - .92) / .08))
+    if night > 0:
+        rr = random.Random(9)
+        for _ in range(60):
+            sx, sy = rr.uniform(10, BW - 10), rr.uniform(10, BH * .7); ss = rr.uniform(1.5, 3.5)
+            sd.ellipse([sx - ss, sy - ss, sx + ss, sy + ss], fill=(255, 245, 220, int(200 * night)))
+    # rastro do Sol no céu
     if cyc < .5:
         p = cyc / .5
-        sx = lerp(x0 + 70, x1 - 70, p); sy = hy - 20 - math.sin(p * math.pi) * 300
-        sun(img, sx, sy, 44)
-    elif cyc >= .995:
-        sun(img, x0 + 70, hy - 20, 44)
+        tr = [(lerp(70, BW - 70, q), BH - 60 - math.sin(q * math.pi) * 320) for q in np.linspace(0, p, 40)]
+        if len(tr) > 1: sd.line(tr, fill=(255, 230, 160, 110), width=6)
+    # morros no horizonte
+    sd.polygon([(0, BH - 70), (120, BH - 150), (250, BH - 95), (420, BH - 180), (600, BH - 100), (BW, BH - 160), (BW, BH), (0, BH)], fill=(110, 74, 50, 255))
+    img.paste(sky, (x0, hy - BH + 40), mask)
+    if cyc < .5:
+        p = cyc / .5
+        sun(img, x0 + lerp(70, BW - 70, p), hy + 40 - 60 - math.sin(p * math.pi) * 320, 46)
+    elif cyc >= .985:
+        sun(img, x0 + 70, hy - 20, 46)
     d = ImageDraw.Draw(img)
-    # solo de Vênus
-    d.rounded_rectangle([x0, hy - 30, x1, hy + 40], radius=20, fill=(150, 104, 58, 255))
-    d.rectangle([x0, hy - 30, x1, hy - 4], fill=(176, 124, 70, 255))
-    # linha do tempo: 0 → 117 dias
-    ty = hy + 110
+    d.rounded_rectangle([x0, hy - 10, x1, hy + 50], radius=20, fill=(150, 104, 58, 255))
+    # linha do tempo 0 -> 117 dias, com rótulos
+    ty = hy + 130
     d.line([(x0 + 20, ty), (x1 - 20, ty)], fill=(255, 255, 255, 120), width=6)
     px = lerp(x0 + 20, x1 - 20, cyc)
     d.line([(x0 + 20, ty), (px, ty)], fill=GOLD + (255,), width=10)
     for xx in (x0 + 20, x1 - 20):
         d.ellipse([xx - 14, ty - 14, xx + 14, ty + 14], fill=GOLD + (255,))
+    draw_text_line(img, x0 + 70, ty + 34, [('NASCE', WHITE)], 32, 1.0, 4)
+    draw_text_line(img, x1 - 130, ty + 34, [('NASCE DE NOVO', WHITE)], 32, 1.0, 4)
     days = int(round(117 * cyc))
-    draw_text_line(img, px, ty + 30, [(f'{days} DIAS', WHITE)], 44, 1.0, 5)
+    draw_text_line(img, px, ty - 80, [(f'{days} DIAS', GOLD if days >= 117 else WHITE)], 46, 1.0, 5)
     raise_t = ease((t - .4) / .6)
     paste_nox(img, 210, lerp(1235, 1205, raise_t), .6, 1.0, 'raise' if t > .4 else 'none', 0)
     headline(img, SCENES[3]['hl'], 1.0, t)
