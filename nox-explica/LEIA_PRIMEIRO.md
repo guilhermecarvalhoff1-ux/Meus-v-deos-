@@ -5,7 +5,7 @@ O texto aprovado é `NOX_EXPLICA_01_narracao.txt` (versão largada, com palavrõ
 
 ## Passo a passo
 1. Instale: `pip install edge-tts pillow numpy scipy faster-whisper` e tenha `ffmpeg`.
-2. Gere amostras curtas da primeira frase com `pt-BR-AntonioNeural`, `en-US-AndrewMultilingualNeural` e `en-US-BrianMultilingualNeural` (rate +0%, pitch -2Hz). Mostre ao usuário e espere ele escolher.
+2. A voz já foi escolhida: `en-US-AndrewMultilingualNeural` (rate +0%, pitch -2Hz). Não precisa gerar amostras; use `python gerar_narracao.py`.
 3. Gere a narração completa com a voz escolhida, sem acelerar. Respeite as pausas dos "...". Salve como `narracao.wav` (44.1 kHz) nesta pasta.
 4. Transcreva `narracao.wav` com timestamps por palavra e monte `falas_tempos.json`: uma lista `[{"start":s,"end":s,"text":"..."}]` com UMA entrada por legenda, na mesma ordem e com o mesmo texto das legendas definidas em `SCENES` no `make.py` (ignore os `*`, que só marcam palavra dourada).
    - Se a transcrição tiver erro de palavra, use o texto do roteiro e só os tempos do áudio.

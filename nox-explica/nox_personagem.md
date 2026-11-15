@@ -25,3 +25,4 @@ Largado, debochado, curioso, observador, levemente impaciente, humor seco. Xinga
 - Português brasileiro informal ("tá", "pra", "uns"), frases curtas.
 - Sempre terceira pessoa ao falar de si: "Nox achou", "Nox vai explicar".
 - Voz única, firme e casual, levemente rouca. Sem voz monstruosa ou sussurro.
+- Voz definida: edge-tts `en-US-AndrewMultilingualNeural` (rate +0%, pitch -2Hz). Sempre a mesma em todos os vídeos.

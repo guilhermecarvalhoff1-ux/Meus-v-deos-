@@ -26,6 +26,7 @@ Vídeos curtos de curiosidades com o apresentador fixo **Nox**. Leia este arquiv
 - Não cobrir os olhos do Nox nem os diagramas.
 
 ## Áudio
+- **Voz oficial do Nox (escolhida pelo usuário, não perguntar de novo):** edge-tts `en-US-AndrewMultilingualNeural`, rate `+0%` (nunca acelerar), pitch `-2Hz`. Pausa de 0,5 s em cada "..." e 0,25 s entre parágrafos. Gerar com `python gerar_narracao.py` (salva `narracao.wav` 44,1 kHz e `palavras_tempos.json`) e montar as legendas com `python montar_tempos.py`. Se a rede bloquear, liberar `speech.platform.bing.com`; se vier "No audio was received", tentar de novo.
 - Narração sempre em primeiro plano; legendas sincronizadas palavra por palavra (transcreva o áudio com timestamps).
 - Música instrumental discreta, sem letra, sem clima de terror; abaixa quando a voz fala.
 - Efeito sonoro só em troca de cena ou número, nunca em cima de palavra importante.
