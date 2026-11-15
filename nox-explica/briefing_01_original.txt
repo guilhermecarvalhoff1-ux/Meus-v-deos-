@@ -1,0 +1,272 @@
+PROJETO: NOX EXPLICA — PRIMEIRO VÍDEO
+
+Crie um vídeo curto de curiosidades usando o personagem da imagem anexada como apresentador fixo.
+
+Siga as instruções e o roteiro abaixo. Não acrescente informações nem altere as falas.
+
+1. FORMATO E DURAÇÃO
+
+— Vídeo vertical: proporção 9:16.
+— Resolução desejada: 1080 × 1920.
+— Duração desejada: entre 35 e 50 segundos.
+— Limite absoluto: 60 segundos, contando pausas e encerramento.
+— Narração em português brasileiro.
+— Ritmo natural, sem acelerar artificialmente a voz.
+— Começar diretamente pelo gancho.
+— Sem apresentação do canal, vinheta longa ou créditos.
+— Não prolongar o vídeo para preencher tempo.
+
+2. APARÊNCIA DO NOX
+
+A imagem anexada é a referência visual principal.
+
+Preservar em TODAS as cenas:
+— Capuz e manto azul-marinho muito escuro.
+— Rosto completamente preto, sem feições humanas.
+— Dois olhos dourados, luminosos e angulares.
+— Ausência de boca e nariz.
+— Mesmo formato de capuz, proporções e cores.
+— Estilo de ilustração digital estilizada, com sombreamento suave.
+
+Não transformar Nox em humano, animal, robô ou monstro.
+Não adicionar dentes, chifres, armas, cabelo ou acessórios.
+Não criar boca nem fazer sincronização labial.
+Não mudar o desenho do personagem entre as cenas.
+
+O círculo dourado da referência pode aparecer atrás dele na abertura e no encerramento.
+
+Se a animação deformar o personagem, usar poses estáticas com pequenos movimentos de câmera. Preservar a aparência é mais importante que criar movimentos complexos.
+
+3. PERSONALIDADE
+
+Nox tem aparência misteriosa, mas um jeito largado, debochado e informal.
+
+Ele fala como alguém contando uma descoberta absurda para um amigo, não como professor formal, narrador de documentário ou robô.
+
+É curioso, observador, levemente impaciente e tem humor seco.
+Sabe explicar sem ficar tentando parecer inteligente.
+Não é um vilão e não transforma tudo em terror ou conspiração.
+
+Largado na atitude, preciso na informação.
+
+4. JEITO DE FALAR E VOZ
+
+— Português brasileiro informal.
+— Usar naturalmente “tá”, “pra”, “uns” e outras expressões presentes no roteiro.
+— Frases curtas, pausas espontâneas e mudanças naturais de entonação.
+— Voz firme e casual, sem solenidade.
+— Pode ter uma leve rouquidão, sem caricatura.
+— Não usar voz monstruosa ou sussurro constante.
+— Não interpretar como propaganda.
+— Não falar de forma lenta e artificial para parecer misterioso.
+— Usar a mesma voz durante todo o vídeo.
+— Narrar apenas os trechos marcados como FALA.
+
+O personagem não tem boca. A interpretação visual deve acontecer pelos olhos, inclinação da cabeça e gestos.
+
+5. PALAVRÕES E HUMOR
+
+Nox pode xingar pontualmente, de maneira espontânea.
+
+Neste vídeo:
+— Usar apenas o palavrão que já está no roteiro.
+— Falar o palavrão normalmente, sem gritar e sem efeito de censura.
+— Não acrescentar outros xingamentos.
+— O deboche deve ser dirigido à situação, não ao espectador.
+— Não usar ofensas discriminatórias nem ataques a pessoas ou grupos.
+
+Não transformar cada frase em uma piada.
+A informação continua sendo o centro do vídeo.
+
+6. TERCEIRA PESSOA — REGRA OBRIGATÓRIA
+
+Sempre que Nox se referir a si mesmo, usar o próprio nome.
+
+CORRETO:
+“Nox achou estranho.”
+“Nox vai explicar.”
+“Nox também precisou conferir.”
+
+ERRADO:
+“Eu achei estranho.”
+“Vou explicar.”
+“Na minha opinião.”
+“Vem comigo.”
+
+Ele pode se dirigir ao espectador usando “você”.
+Não repetir “Nox” em todas as frases: usar o nome apenas quando houver autorreferência.
+
+7. TEMA E PRECISÃO
+
+Tema:
+Vênus completa uma volta ao Sol antes de terminar uma rotação em torno de si.
+
+Preservar os conceitos:
+— Órbita: movimento ao redor do Sol.
+— Rotação: giro em torno do próprio eixo.
+— Intervalo entre nasceres do Sol: período diferente dos dois anteriores.
+
+Dados do roteiro, todos em dias terrestres:
+— Volta ao Sol: aproximadamente 225 dias.
+— Rotação: aproximadamente 243 dias.
+— Entre dois nasceres consecutivos do Sol: aproximadamente 117 dias.
+
+Não trocar esses números.
+Não afirmar que o Sol nasce a cada 243 dias.
+Não dizer simplesmente “um dia dura mais que um ano” sem explicar a distinção.
+Não acrescentar outros fatos sobre Vênus.
+
+8. ROTEIRO COMPLETO
+
+Os tempos são aproximados. Ajustar a duração das cenas à interpretação natural, sem ultrapassar 60 segundos.
+
+CENA 1 — GANCHO
+
+VISUAL:
+Nox de frente, círculo dourado ao fundo.
+Ele inclina a cabeça e estreita os olhos, desconfiado.
+Na pergunta final, levantar discretamente uma mão, como quem não está entendendo a situação.
+
+FALA:
+“Esse planeta termina o ano antes de acabar uma volta em torno de si. Que porra de calendário é esse?”
+
+INTERPRETAÇÃO:
+Começar intrigado.
+A pergunta final deve soar como surpresa debochada, não como grito.
+
+TEXTO DE DESTAQUE:
+“O ANO ACABA ANTES DO GIRO”
+
+
+CENA 2 — REVELAÇÃO
+
+VISUAL:
+Nox deslocado para um lado da tela.
+Ao lado dele, mostrar um esquema simples de Vênus orbitando o Sol.
+Uma seta indica a trajetória ao redor do Sol.
+Nox aponta para o esquema.
+
+FALA:
+“É Vênus. Uma volta no Sol leva uns 225 dias terrestres.”
+
+TEXTO DE DESTAQUE:
+“VOLTA AO SOL: 225 DIAS”
+
+
+CENA 3 — O GIRO LENTO
+
+VISUAL:
+Mostrar Vênus girando lentamente em torno do próprio eixo.
+Usar uma marca ilustrativa na superfície para deixar o movimento perceptível.
+Nox acompanha o giro, depois olha para o espectador com expressão de impaciência.
+
+FALA:
+“Agora, pra girar em torno de si? 243. O ano acaba e o planeta ainda tá terminando o giro. Sem pressa nenhuma.”
+
+INTERPRETAÇÃO:
+Pequena pausa antes de “243”.
+“Sem pressa nenhuma” deve soar como comentário seco e espontâneo.
+
+TEXTO DE DESTAQUE:
+“ROTAÇÃO: 243 DIAS”
+
+
+CENA 4 — NÃO CONFUNDIR
+
+VISUAL:
+Nox ergue uma mão, interrompendo a comparação.
+Mostrar uma representação simplificada da passagem entre um nascer do Sol e o seguinte.
+Não representar isso como uma rotação completa do planeta.
+
+FALA:
+“Só não mistura as coisas: de um nascer do Sol ao próximo, são uns 117 dias. É outra conta.”
+
+INTERPRETAÇÃO:
+Tom de ressalva rápida, sem voltar ao estilo de aula formal.
+
+TEXTO DE DESTAQUE:
+“ENTRE DOIS NASCERES DO SOL: 117 DIAS”
+
+
+CENA 5 — FECHAMENTO
+
+VISUAL:
+Nox cruza os braços ou inclina levemente a cabeça.
+Círculo dourado ao fundo.
+Olhos com expressão irônica.
+Aproximação discreta da câmera.
+
+FALA:
+“Nox achou o calendário uma bagunça. Mas pelo menos a explicação tá em dia.”
+
+INTERPRETAÇÃO:
+Humor seco, sem risada artificial.
+Pequena pausa entre as duas frases.
+
+TEXTO FINAL:
+“NOX EXPLICA”
+
+Encerrar logo após a fala.
+Não acrescentar pedido para curtir, seguir ou comentar.
+
+9. ESTILO VISUAL E EDIÇÃO
+
+— Fundo escuro com detalhes dourados.
+— Preservar contraste entre o personagem e o fundo.
+— Manter o mesmo estilo de ilustração em todas as cenas.
+— Movimentos simples e suaves.
+— Cortes acompanhando as mudanças de assunto.
+— Não usar transições chamativas entre todas as cenas.
+— Não deixar a tela visualmente parada durante toda a explicação.
+— Não adicionar personagens extras.
+— Diagramas ilustrativos podem estar fora de escala.
+— Diferenciar claramente órbita e rotação.
+— Não mostrar Vênus orbitando a Terra.
+— Se a direção de rotação for representada, respeitar a rotação retrógrada de Vênus.
+
+10. LEGENDAS
+
+— Legendas sincronizadas com as falas.
+— Português correto, mantendo a informalidade do roteiro.
+— Preservar “tá”, “pra” e o palavrão.
+— Fonte simples, grossa e legível.
+— Texto branco; números e palavras-chave podem aparecer em dourado.
+— No máximo duas linhas de legenda por vez.
+— Não cobrir os olhos do Nox nem os diagramas.
+— Manter os textos afastados das bordas superior, inferior e direita.
+— Não sobrepor legendas e textos de destaque.
+— Sem palavras aleatórias ou erros de escrita.
+
+Se não conseguir gerar textos corretos, entregar o vídeo sem textos e fornecer a transcrição separada. Não inserir legendas ilegíveis.
+
+11. ÁUDIO
+
+— Narração sempre em primeiro plano.
+— Música instrumental discreta, sem letra.
+— Não usar trilha de terror exagerada.
+— Efeitos sonoros apenas para pontuar mudanças e números.
+— Não colocar efeito sonoro sobre uma palavra importante.
+— Não usar risadas de plateia.
+— Não cortar o início ou o fim das falas.
+
+12. REVISÃO OBRIGATÓRIA
+
+Antes de entregar, conferir:
+
+[ ] Duração total de no máximo 60 segundos.
+[ ] Mesmo Nox da imagem em todas as cenas.
+[ ] Personagem sem boca, nariz ou rosto humano.
+[ ] Voz consistente, informal e natural.
+[ ] Toda autorreferência na terceira pessoa.
+[ ] Apenas o palavrão previsto no roteiro.
+[ ] Números 225, 243 e 117 nos conceitos corretos.
+[ ] Órbita e rotação visualmente distintas.
+[ ] Legendas corretas e sincronizadas.
+[ ] Música abaixo da narração.
+[ ] Nenhuma fala extra ou encerramento prolongado.
+
+Se a ferramenta só gerar clipes curtos:
+Produzir as cinco cenas separadamente, mantendo personagem, voz e estilo consistentes. Identificar a ordem das cenas para montagem. Não omitir trechos do roteiro.
+
+Se não conseguir produzir algum elemento:
+Informar a limitação e entregar os demais elementos corretamente. Não substituir silenciosamente o personagem, a voz ou os dados.
