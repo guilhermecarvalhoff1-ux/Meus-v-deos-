@@ -343,7 +343,7 @@ function hand(x, y, s, rot = 0, opts = {}) {
 // =====================================================================
 const THIEF = { hair: 'hood', hairCol: '#2f5f6a', top: '#2f5f6a', outfit: 'hoodie', mask: true };
 const REAL_CAIO = { hair: 'short', hairCol: '#1f1a17', top: '#c99a2e', outfit: 'hoodie' };
-const PART = { words: 'words5.json', end: 97.9, abTime: 92.3, gap: { key: 'o dragão cai', dur: 7 },
+const PART = { words: 'words5.json', end: 102.4, abTime: 92.3, gap: { key: 'o dragão cai', dur: 7 },
   merges: [
     [['mais','três','mil','e','duzentos','reais'], '+R$ 3.200'],
     [['três','mil','e','duzentos','reais'], 'R$ 3.200'],
@@ -671,3 +671,36 @@ _setF(s => s.k === 'o dragão cai', (t, p) => {
   if (p > .5) { const dp = seg(p, .5, 1), r = rng(18); for (let i = 0; i < 26; i++) s += `<circle cx="${540 + (r() - .5) * 1100 * dp}" cy="${1450 - r() * 380 * dp}" r="${50 + r() * 80}" fill="#b8a890" opacity="${(1 - dp) * .65}" filter="url(#b10)"/>`; }
   return s + gameFG(t, true) + vignette();
 });
+
+// =====================================================================
+// CORREÇÃO: olhos vermelhos do clone dentro do rosto (sem posição fixa)
+// =====================================================================
+const _face2Mask = face2;
+face2 = function (o) {
+  let s = _face2Mask(o);
+  if (o.redEyes) {
+    s = s.replace(/fill="#1e1612"/g, 'fill="#ff3a3a" filter="url(#glow)"').replace(/<circle cx="[^"]*" cy="[^"]*" r="2.4" fill="#fff"\/>/g, '')
+         .replace(/stroke="#2a1d17" stroke-width="5" fill="none" stroke-linecap="round"\/>/, 'stroke="#ff3a3a" stroke-width="6" fill="none" stroke-linecap="round" filter="url(#glow)"/>');
+  }
+  return s;
+};
+// cena: agachado no mato (olhos vermelhos acendem)
+_setF(s => s.k === 'agachado no', (t, p) => { let s = `<g filter="url(#b5)">${gameMeadow(t, { dusk: true, seed: 3 })}</g>` + `<rect width="${W}" height="${H}" fill="#000" opacity=".35"/>` + bushes(t, 1300, true); s += g(headG({ ...THIEF, eyes: 'dot', brows: 'serious', redEyes: p > .5 }), `translate(540,${lerp(1500, 1260, easeOut(seg(p, .1, .6)))}) scale(1.7)`); s += bushes(t + 3, 1650, true); return s + vignette(true); });
+// cena: "E ele também está sorrindo" (olhos fechados em arco, vermelhos)
+_setF(s => s.k === 'e ele também', (t, p) => { let s = `<rect width="${W}" height="${H}" fill="#050506"/>` + bushes(t, 1500, true); s += bust({ x: 540, y: 1050, s: 2.8, ...THIEF, eyes: p > .3 ? 'closed' : 'dot', brows: 'up', redEyes: true }); return s + vignette(true); });
+// novo final A/B
+function abSide(t, side) {
+  if (side === 'A') {
+    let A = gameMeadow(t, { dusk: true, seed: 4 }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".35"/>`;
+    A += crownEmblem(540, 1180, .9 + .05 * Math.sin(t * 3)).replace('<g transform', '<g opacity=".55" transform');
+    A += fullBody({ x: 330, y: 1760, s: 1.0, top: '#2f5f6a', legs: '#1f2a2e', item: KNIFE, armR: -15, head: { ...THIEF, eyes: 'dot', brows: 'serious', look: 10 } }, t);
+    A += fullBody({ x: 760, y: 1760, s: 1.0, top: '#2f5f6a', legs: '#1f2a2e', armR: -75 - 5 * Math.sin(t * 2), flip: true, head: { ...THIEF, eyes: 'closed', brows: 'up', redEyes: true } }, t + .5);
+    A += txt(540, 680, 'A', 360, '#ffffff', { w: 900, extra: 'stroke="#000" stroke-width="16" paint-order="stroke"' });
+    return A + g(`<rect x="-250" y="-40" width="500" height="80" rx="14" fill="#0b0d10" opacity=".85" stroke="#c9a24a" stroke-width="3"/>` + txt(0, 14, 'ROUBAR A COROA NEGRA', 36, '#c9a24a', { ls: 2 }), 'translate(540,880)');
+  }
+  let B = room(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".2"/>`;
+  B += bust({ x: 540, y: 1250, s: 1.9, ...REAL_CAIO, eyes: 'dot', brows: 'angry', breath: t });
+  B += g(helmet(.2, '').replace(/#5fd0ff/g, '#ffc928').replace(/#0e2733/g, '#2a1e05'), `translate(${lerp(540, 860, easeOut(Math.min(1, t * .6)))},${lerp(980, 820, easeOut(Math.min(1, t * .6)))}) scale(1.1)`);
+  B += phone(330, 1560, 1.25, -8, `<rect x="-106" y="-212" width="212" height="424" rx="26" fill="#cfe3d6"/><path d="M-106,-100 L106,-40 M-106,60 L106,10 M-20,-212 L10,212" stroke="#fff" stroke-width="14"/><path d="M40,-30 c0,-30 50,-30 50,0 c0,25 -25,45 -25,60 c0,-15 -25,-35 -25,-60z" fill="#ff3a3a"/><rect x="-96" y="120" width="192" height="70" rx="12" fill="#0b0d10" opacity=".9"/>` + txt(0, 148, 'USANDO SEU NOME', 20, '#ff5d5d') + txt(0, 176, '2,3 km', 24, '#ffffff', { w: 900 }));
+  return B + txt(540, 680, 'B', 360, '#ffc928', { w: 900, extra: 'stroke="#000" stroke-width="16" paint-order="stroke"' });
+}
