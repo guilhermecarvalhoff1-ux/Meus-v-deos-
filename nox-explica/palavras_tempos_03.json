@@ -276,23 +276,23 @@
  },
  {
   "text": "Depois",
-  "start": 23.756,
-  "end": 24.294
+  "start": 23.744,
+  "end": 24.281
  },
  {
   "text": "disso",
   "start": 24.294,
-  "end": 24.744
+  "end": 24.719
  },
  {
   "text": "Três",
-  "start": 25.131,
-  "end": 25.369
+  "start": 25.119,
+  "end": 25.356
  },
  {
   "text": "filmes",
-  "start": 25.381,
-  "end": 25.894
+  "start": 25.356,
+  "end": 25.906
  },
  {
   "text": "uma",
@@ -307,441 +307,371 @@
  {
   "text": "com",
   "start": 26.794,
-  "end": 26.956
+  "end": 26.944
  },
  {
   "text": "atriz",
-  "start": 26.969,
-  "end": 27.306
+  "start": 26.956,
+  "end": 27.281
  },
  {
   "text": "famosa",
-  "start": 27.306,
-  "end": 27.856
+  "start": 27.281,
+  "end": 27.819
  },
  {
   "text": "e",
-  "start": 27.869,
-  "end": 27.906
+  "start": 27.819,
+  "end": 27.856
  },
  {
   "text": "em 2026",
   "start": 28.331,
-  "end": 29.544
+  "end": 29.531
  },
  {
   "text": "um",
-  "start": 29.969,
-  "end": 30.019
+  "start": 29.944,
+  "end": 29.994
  },
  {
   "text": "documentário",
-  "start": 30.019,
-  "end": 30.756
+  "start": 29.994,
+  "end": 30.731
  },
  {
   "text": "com",
-  "start": 30.756,
-  "end": 30.906
+  "start": 30.744,
+  "end": 30.894
  },
  {
   "text": "a",
-  "start": 30.906,
+  "start": 30.894,
   "end": 30.931
  },
  {
   "text": "versão",
   "start": 30.931,
-  "end": 31.344
+  "end": 31.331
  },
  {
   "text": "dela",
-  "start": 31.344,
-  "end": 31.694
+  "start": 31.331,
+  "end": 31.644
  },
  {
   "text": "E",
-  "start": 32.081,
-  "end": 32.131
+  "start": 32.019,
+  "end": 32.081
  },
  {
   "text": "a",
-  "start": 32.131,
-  "end": 32.206
+  "start": 32.081,
+  "end": 32.156
  },
  {
   "text": "cada",
-  "start": 32.219,
-  "end": 32.556
+  "start": 32.156,
+  "end": 32.506
  },
  {
   "text": "notícia",
-  "start": 32.556,
-  "end": 33.044
- },
- {
-  "text": "nova",
-  "start": 33.044,
-  "end": 33.406
+  "start": 32.519,
+  "end": 33.131
  },
  {
   "text": "o",
-  "start": 33.756,
-  "end": 33.794
+  "start": 33.494,
+  "end": 33.544
  },
  {
   "text": "nome",
-  "start": 33.794,
-  "end": 34.031
+  "start": 33.544,
+  "end": 33.819
  },
  {
   "text": "volta",
-  "start": 34.031,
-  "end": 34.419
+  "start": 33.831,
+  "end": 34.256
  },
  {
   "text": "a",
-  "start": 34.431,
-  "end": 34.456
+  "start": 34.256,
+  "end": 34.281
  },
  {
   "text": "bombar",
-  "start": 34.456,
-  "end": 34.981
- },
- {
-  "text": "nas",
-  "start": 34.981,
-  "end": 35.144
- },
- {
-  "text": "buscas",
-  "start": 35.156,
-  "end": 35.769
+  "start": 34.294,
+  "end": 34.819
  },
  {
   "text": "Só",
-  "start": 36.199,
-  "end": 36.386
+  "start": 35.279,
+  "end": 35.479
  },
  {
   "text": "não",
-  "start": 36.386,
-  "end": 36.549
+  "start": 35.479,
+  "end": 35.666
  },
  {
   "text": "mistura",
-  "start": 36.549,
-  "end": 36.936
+  "start": 35.666,
+  "end": 36.091
  },
  {
   "text": "as",
-  "start": 36.949,
-  "end": 37.049
+  "start": 36.104,
+  "end": 36.204
  },
  {
   "text": "coisas",
-  "start": 37.061,
-  "end": 37.599
+  "start": 36.216,
+  "end": 36.754
  },
  {
   "text": "contar",
-  "start": 37.849,
-  "end": 38.236
+  "start": 37.004,
+  "end": 37.429
  },
  {
   "text": "o",
-  "start": 38.249,
-  "end": 38.311
+  "start": 37.441,
+  "end": 37.491
  },
  {
   "text": "caso",
-  "start": 38.311,
-  "end": 38.724
- },
- {
-  "text": "mostrar",
-  "start": 39.211,
-  "end": 39.674
- },
- {
-  "text": "a",
-  "start": 39.686,
-  "end": 39.724
- },
- {
-  "text": "investigação",
-  "start": 39.736,
-  "end": 40.499
+  "start": 37.504,
+  "end": 37.916
  },
  {
   "text": "ouvir",
-  "start": 40.949,
-  "end": 41.299
+  "start": 38.366,
+  "end": 38.741
  },
  {
   "text": "quem",
-  "start": 41.311,
-  "end": 41.511
+  "start": 38.741,
+  "end": 38.879
  },
  {
-  "text": "estudou",
-  "start": 41.524,
-  "end": 41.986
+  "text": "investigou",
+  "start": 38.891,
+  "end": 39.466
  },
  {
   "text": "Beleza",
-  "start": 42.374,
-  "end": 42.886
- },
- {
-  "text": "isso",
-  "start": 43.199,
-  "end": 43.449
+  "start": 39.854,
+  "end": 40.379
  },
  {
   "text": "é",
-  "start": 43.461,
-  "end": 43.524
+  "start": 40.816,
+  "end": 40.879
  },
  {
   "text": "jornalismo",
-  "start": 43.524,
-  "end": 44.336
+  "start": 40.879,
+  "end": 41.754
  },
  {
   "text": "Agora",
-  "start": 44.711,
-  "end": 45.074
+  "start": 42.116,
+  "end": 42.441
  },
  {
   "text": "botar",
-  "start": 45.074,
-  "end": 45.461
+  "start": 42.454,
+  "end": 42.854
  },
  {
   "text": "a",
-  "start": 45.461,
-  "end": 45.511
- },
- {
-  "text": "condenada",
-  "start": 45.511,
-  "end": 46.061
- },
- {
-  "text": "no",
-  "start": 46.074,
-  "end": 46.174
- },
- {
-  "text": "centro",
-  "start": 46.186,
-  "end": 46.661
- },
- {
-  "text": "com",
-  "start": 47.074,
-  "end": 47.261
- },
- {
-  "text": "trilha",
-  "start": 47.261,
-  "end": 47.574
- },
- {
-  "text": "bonita",
-  "start": 47.574,
-  "end": 48.236
- },
- {
-  "text": "e",
-  "start": 48.249,
-  "end": 48.361
- },
- {
-  "text": "a",
-  "start": 48.361,
-  "end": 48.411
+  "start": 42.854,
+  "end": 42.904
  },
  {
   "text": "versão",
-  "start": 48.424,
-  "end": 48.886
+  "start": 42.904,
+  "end": 43.391
  },
  {
   "text": "dela",
-  "start": 48.899,
-  "end": 49.224
+  "start": 43.391,
+  "end": 43.766
  },
  {
-  "text": "como",
-  "start": 49.236,
-  "end": 49.461
+  "text": "de",
+  "start": 43.766,
+  "end": 43.866
  },
  {
   "text": "estrela",
-  "start": 49.461,
-  "end": 49.986
+  "start": 43.866,
+  "end": 44.391
+ },
+ {
+  "text": "com",
+  "start": 44.804,
+  "end": 45.004
+ },
+ {
+  "text": "trilha",
+  "start": 45.016,
+  "end": 45.341
+ },
+ {
+  "text": "bonita",
+  "start": 45.354,
+  "end": 45.841
  },
  {
   "text": "Aí",
-  "start": 50.374,
-  "end": 50.699
+  "start": 46.229,
+  "end": 46.554
  },
  {
   "text": "vira",
-  "start": 50.699,
-  "end": 51.024
+  "start": 46.566,
+  "end": 46.904
  },
  {
   "text": "vitrine",
-  "start": 51.036,
-  "end": 51.599
+  "start": 46.904,
+  "end": 47.454
  },
  {
   "text": "caralho",
-  "start": 51.936,
-  "end": 52.424
+  "start": 47.816,
+  "end": 48.329
  },
  {
   "text": "Nox",
-  "start": 52.851,
-  "end": 53.126
+  "start": 48.745,
+  "end": 48.983
  },
  {
   "text": "acha",
-  "start": 53.126,
-  "end": 53.564
+  "start": 48.995,
+  "end": 49.433
  },
  {
   "text": "que",
-  "start": 53.564,
-  "end": 53.664
+  "start": 49.433,
+  "end": 49.545
  },
  {
   "text": "quem",
-  "start": 53.676,
-  "end": 53.851
+  "start": 49.545,
+  "end": 49.72
  },
  {
   "text": "manda",
-  "start": 53.864,
-  "end": 54.126
+  "start": 49.72,
+  "end": 49.983
  },
  {
   "text": "nessa",
-  "start": 54.126,
-  "end": 54.401
+  "start": 49.983,
+  "end": 50.258
  },
  {
   "text": "merda",
-  "start": 54.401,
-  "end": 55.039
+  "start": 50.27,
+  "end": 50.808
  },
  {
   "text": "é",
-  "start": 55.039,
-  "end": 55.226
+  "start": 50.82,
+  "end": 50.92
  },
  {
   "text": "o",
-  "start": 55.226,
-  "end": 55.276
+  "start": 50.92,
+  "end": 50.97
  },
  {
   "text": "clique",
-  "start": 55.276,
-  "end": 55.701
+  "start": 50.983,
+  "end": 51.395
  },
  {
-  "text": "enquanto",
-  "start": 56.201,
-  "end": 56.589
- },
- {
-  "text": "der",
-  "start": 56.589,
-  "end": 56.789
+  "text": "deu",
+  "start": 51.695,
+  "end": 51.858
  },
  {
   "text": "audiência",
-  "start": 56.789,
-  "end": 57.364
+  "start": 51.858,
+  "end": 52.458
  },
  {
-  "text": "vai",
-  "start": 57.801,
-  "end": 57.926
- },
- {
-  "text": "ter",
-  "start": 57.939,
-  "end": 58.126
+  "text": "vem",
+  "start": 52.87,
+  "end": 53.033
  },
  {
   "text": "mais",
-  "start": 58.139,
-  "end": 58.639
+  "start": 53.033,
+  "end": 53.458
  },
  {
   "text": "Tem",
-  "start": 59.306,
-  "end": 59.481
+  "start": 54.148,
+  "end": 54.323
  },
  {
   "text": "outro",
-  "start": 59.481,
-  "end": 59.869
+  "start": 54.323,
+  "end": 54.71
  },
  {
   "text": "caso",
-  "start": 59.869,
-  "end": 60.344
+  "start": 54.71,
+  "end": 55.185
  },
  {
   "text": "que",
-  "start": 60.356,
-  "end": 60.456
+  "start": 55.198,
+  "end": 55.298
  },
  {
   "text": "virou",
-  "start": 60.456,
-  "end": 60.881
+  "start": 55.298,
+  "end": 55.723
  },
  {
   "text": "espetáculo",
-  "start": 60.881,
-  "end": 61.631
+  "start": 55.723,
+  "end": 56.473
  },
  {
   "text": "Manda",
-  "start": 62.019,
-  "end": 62.269
+  "start": 56.86,
+  "end": 57.11
  },
  {
   "text": "nos",
-  "start": 62.269,
-  "end": 62.406
+  "start": 57.11,
+  "end": 57.248
  },
  {
   "text": "comentários",
-  "start": 62.419,
-  "end": 63.081
+  "start": 57.26,
+  "end": 57.923
  },
  {
   "text": "que",
-  "start": 63.094,
-  "end": 63.219
+  "start": 57.935,
+  "end": 58.06
  },
  {
   "text": "Nox",
-  "start": 63.219,
-  "end": 63.544
+  "start": 58.06,
+  "end": 58.385
  },
  {
   "text": "explica",
-  "start": 63.544,
-  "end": 64.256
+  "start": 58.385,
+  "end": 59.098
  }
 ]
