@@ -34,7 +34,13 @@ E = [  # (cena, atraso, som, volume)
  ('caio olha', .1, 'whoosh', .6), ('agachado no', 0, 'coracao', .8), ('agachado no', .9, 'coracao', .8),
  ('o mesmo nome', .1, 'glitch', .7), ('e ele também', 0, 'riser', .5), ('comenta a', 0, 'impacto', .8), ('ou b se', 0, 'whoosh', .7),
 ]
-for k, d, n, gnn in E: put(n, d, gnn, k)
+GAPSTEP = float(sys.argv[5]) if len(sys.argv) > 5 else 2.0
+for k, d, n, gnn in E:
+    if k.startswith('gap') and GAPSTEP != 2.0:
+        k = f"gap{int(k[3:]) // 2}"; d = d * GAPSTEP / 2.0
+    k = {'valor três': 'três mil e'}.get(k, k)
+    if k not in st: continue
+    put(n, d, gnn, k)
 # trilha: volume baixo, sobe na luta e cai depois do roubo
 tr = load('trilha'); reps = int(np.ceil(len(mix) / len(tr))); tr = np.tile(tr, reps)[:len(mix)]
 tt = np.arange(len(mix)) / SR
