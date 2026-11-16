@@ -5,3 +5,4 @@ nox_video_03.mp4
 caps_03.json
 test_03.jpg
 *.bak
+__pycache__/

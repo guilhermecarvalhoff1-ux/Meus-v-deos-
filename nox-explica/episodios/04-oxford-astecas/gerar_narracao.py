@@ -15,7 +15,7 @@ for pi, par in enumerate([p.strip() for p in txt.split("\n") if p.strip()]):
     for j, x in enumerate(parts):
         if x: pieces.append((x, PAUSA_RETICENCIAS if j < len(parts) - 1 else PAUSA_PARAGRAFO))
 async def tts(text, out):
-    for tent in range(4):
+    for tent in range(15):
         try:
             c = edge_tts.Communicate(text, VOICE, rate=RATE, pitch=PITCH, proxy=os.environ.get("HTTPS_PROXY"), boundary="WordBoundary")
             words = []
