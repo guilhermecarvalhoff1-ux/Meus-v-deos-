@@ -1,0 +1,35 @@
+PROMPTS — O CORSA DO AVÔ, EP1 "O POSTO" — gerar no app do Gemini (estilo DESENHO, nada realista)
+Teste de 10 s: planos 4–5 (o Corsa entra no posto à noite) e plano 9 (frentista de baixo para cima).
+
+PASSO 0 — anexe no Gemini, junto do prompt 1, as DUAS imagens de producao/ref_gemini/:
+  estilo_corsa_lucas.png (o Lucas como já está na série) e estilo_adaga.png (o acabamento que você quer).
+Faça tudo na MESMA conversa.
+
+------------------------------------------------------------
+1) FICHA DO LUCAS
+------------------------------------------------------------
+Cartoon drawing. Redraw the boy from the first attached image (Lucas) in the cartoon style of the second attached image. Keep it a simple flat 2D cartoon: round simple head, dot eyes, simple eyebrows, small mouth, clean outlines, flat colors with soft shading, no realistic details. He wears a navy blue hoodie, dark jeans and sneakers, short dark brown hair, tan skin. Make a character sheet: front, back and side, full body, plus 3 small faces (embarrassed, sad, determined). Plain light gray background. Not realistic, not a photo, not 3D.
+
+------------------------------------------------------------
+2) O CORSA
+------------------------------------------------------------
+Same cartoon style as before (flat 2D cartoon, clean outlines, flat colors, simple shapes, not realistic, not 3D). A cute old small silver hatchback car from the 90s, cartoon version, simple rounded shapes: dusty faded silver paint, a couple of dents, one headlight weaker than the other, bald tires, a slightly loose side mirror, a small wooden rosary hanging inside on the rear-view mirror. No logos, no text. Front three-quarter view seen from slightly below. Isolated on a plain white background.
+
+------------------------------------------------------------
+3) POSTO À NOITE (só o cenário), vertical 9:16
+------------------------------------------------------------
+Same cartoon style as before (flat 2D cartoon, simple shapes, clean outlines, flat colors with soft glow, not realistic, not 3D). Vertical 9:16 background: a small neighborhood gas station at night seen from above, like a drone shot: white glowing canopy over two simple fuel pumps, empty floor, a tall price sign with yellow border and no readable text, simple dark buildings with a few lit windows behind, dark blue night sky with a few stars, soft mist around the lights, orange street lamps. No people, no cars.
+
+------------------------------------------------------------
+4) FRENTISTA DE BAIXO PARA CIMA, vertical 9:16
+------------------------------------------------------------
+Same cartoon style as Lucas (flat 2D cartoon, round simple head, dot eyes, clean outlines, flat colors, not realistic, not 3D). A gas station attendant seen from a low angle looking up at him: tan skin, thick dark mustache, blue cap and blue work shirt, holding a fuel nozzle, trying not to laugh with puffed cheeks and squinting eyes. White canopy light above, dark blue night sky behind. Waist up. No text.
+
+SE AINDA SAIR REALISTA, responda no chat:
+"Too realistic. Make it a simple flat cartoon exactly like the first image I attached: round head, dot eyes, flat colors, simple shapes."
+SE O CENÁRIO VIER QUADRADO: "faça em formato vertical 9:16".
+
+DEPOIS (episódio inteiro): ficha do Avô (velho: cabelo e bigode grisalhos, camisa marrom;
+jovem nas lembranças: cabelo e bigode pretos, camisa creme), Lucas criança (camiseta amarela),
+os três caras do posto (Cara 1 loiro de camiseta preta; Cara 2 moletom vermelho e boné preto;
+Cara 3 careca de camiseta verde) e o carro tunado (rebaixado, rodas douradas, neon roxo embaixo).
