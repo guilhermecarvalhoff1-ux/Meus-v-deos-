@@ -806,13 +806,13 @@ const SCENES = [
     // avô (maior, ao fundo), sorrindo, olhando para o neto
     s += bust({ ...A, x: 760, y: 700, s: 1.45, eyes: 'dot', mouth: 'smile', brows: 'up', look: -16 });
     // Lucas criança no colo, olhando para a frente, rindo
-    s += bust({ ...KID, x: 520, y: 1070, s: 1.0, eyes: 'dot', mouth: 'open', brows: 'up', look: -18 });
+    s += bust({ ...KID, x: 560, y: 1040, s: 1.3, eyes: 'dot', mouth: 'smile', brows: 'up', look: -10, blink: blinkAt(t, 2.6) });
     // volante visto de lado + coluna até o painel
     s += `<path d="M300,1200 L-40,1420 L-40,1560 L330,1300Z" fill="#1c1a18"/><path d="M-40,1160 C120,1120 260,1180 300,1260 L-40,1700Z" fill="#2a2420"/>`;
     s += `<ellipse cx="300" cy="1180" rx="70" ry="270" fill="none" stroke="#141416" stroke-width="44" transform="rotate(-8,300,1180)"/>`;
     // bracinhos do Lucas até o aro e as DUAS mãozinhas no volante
-    const kh = [[270, 1000 + wob], [300, 1300 + wob]];
-    for (const [hx, hy] of kh) s += `<path d="M520,1240 Q420,${(1240 + hy) / 2} ${hx + 30},${hy}" stroke="${KID.top}" stroke-width="58" fill="none" stroke-linecap="round"/>`;
+    const kh = [[285, 1020 + wob], [305, 1290 + wob]];
+    for (const [hx, hy] of kh) s += `<path d="M${hy < 1100 ? 420 : 440},${hy < 1100 ? 1280 : 1380} Q360,${(1300 + hy) / 2} ${hx + 30},${hy}" stroke="${KID.top}" stroke-width="64" fill="none" stroke-linecap="round"/>`;
     for (const [hx, hy] of kh) s += `<circle cx="${hx}" cy="${hy}" r="34" fill="#d08c5c"/><path d="M${hx - 22},${hy - 10} h44 M${hx - 22},${hy + 4} h44" stroke="#b06e44" stroke-width="4" opacity=".6"/>`;
     // braço da frente do avô e as mãos dele logo perto das do Lucas
     s += `<path d="M700,1350 Q520,1460 350,${1440 + wob}" stroke="${A.top}" stroke-width="96" fill="none" stroke-linecap="round"/>`;
@@ -827,7 +827,8 @@ const SCENES = [
     [[700, 1200, CARA1], [820, 1220, MINA], [940, 1210, CARA3]].forEach(([x, y, o]) => past += bust({ ...o, top: '#a85a3a', x, y, s: .42, eyes: 'wide', mouth: 'o', brows: 'up', look: -18 }));
     for (let i = 0; i < 6; i++) { const k = (t * .6 + i / 6) % 1; past += txt(500 + Math.sin(i * 2) * 300, 1200 - k * 400, '✦', 50, '#fff8c0', { op: 1 - k }); }
     let now = posto(t) + corsa(540, 1500, .82, { dust: 1, mirror: false }) + fullBody({ x: 250, y: 1560, s: .75, top: LUCAS.top, legs: '#2a2a32', armL: 6, armR: -6, head: { ...LUCAS, eyes: 'dot', mouth: 'flat', brows: 'sad' } }, t);
-    return `<g opacity="${1 - mix}">${flash(past, 67)}</g><g opacity="${mix}">${now}${vignette()}</g>`;
+    const cam = `translate(540,900) scale(${lerp(2.3, 2.45, p)}) translate(-330,-1230)`;
+    return `<g opacity="${1 - mix}">${flash(g(past, cam), 67)}</g><g opacity="${mix}">${g(now, cam)}${vignette()}</g>`;
   } },
   // PLANO 19 — câmera lenta: pega o retrovisor do chão e encara a galera
   { at: 69.4, z: [1.0, 1.12], c: [540, 1100], f: (t, p) => {
