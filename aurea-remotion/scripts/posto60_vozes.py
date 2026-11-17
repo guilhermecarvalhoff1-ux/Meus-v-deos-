@@ -19,7 +19,7 @@ FALAS = [  # versão curta: (arquivo, recorte_ini, recorte_fim, posição, trech
  ('Narrac_a_o.wav', 5.60, 10.60, 34.25, [(5.76, 8.22, 'Ele podia / ter ido embora / rindo junto.'), (8.89, 10.48, 'Mas ele lembrou / do avô.')]),
  ('Avo.wav', 1.55, 3.6, 39.15, [(1.69, 2.55, '"Segura firme,'), (2.79, 3.55, 'que ele é teu."')]),
  ('Narrac_a_o.wav', 11.15, 15.90, 42.05, [(11.31, 12.62, 'Nesse mesmo posto,'), (12.95, 15.76, 'o Corsa já foi / o carro mais bonito / da rua.')]),
- ('Narrac_a_o.wav', 16.45, 27.23, 49.4, [(16.61, 16.89, 'A:'), (17.27, 20.19, 'vende essa lata / e pega um carro / que ninguém zoa.'), (20.69, 21.11, 'Ou B:'), (21.57, 22.61, 'fica com o Corsa'), (22.86, 25.75, 'e faz todo mundo / nesse posto / engolir a risada.'), (26.25, 26.95, 'Comenta aí.')], 1.06),
+ ('Narrac_a_o_2.wav', 0.15, 5.55, 52.85, [(.30, 2.10, 'A: ele vende / o carro do avô / e compra um melhor.'), (2.29, 2.63, 'Ou B:'), (3.04, 4.62, 'fica com o Corsa / e faz um projeto.'), (4.87, 5.28, 'Comenta aí!')]),
 ]
 TOTAL = 60
 COLA = {'"Ô,', 'A:', 'B:'}

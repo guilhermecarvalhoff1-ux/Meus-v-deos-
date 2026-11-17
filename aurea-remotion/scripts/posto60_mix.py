@@ -42,11 +42,11 @@ for t in (34.6, 35.5, 36.4, 37.3): put('coracao', t, .45)
 # 39–47 lembranças
 put('vento', 39.1, .3, dur=3, fo=1); put('fita_limpa', 39.1, .22, dur=3, fi=.5, fo=.6); put('riser', 44.0, .35)
 # 47–49 câmera lenta
-put(None, 47.0, .25, src=np.tile(slow, 2)[:int(2.4 * SR)], fi=.4, fo=.4)
-for t in (47.4, 48.6): put('coracao', t, .4)
+put(None, 47.0, .25, src=np.tile(slow, 2)[:int(5.8 * SR)], fi=.4, fo=.4)
+for t in (47.4, 48.6, 50.0, 51.4): put('coracao', t, .4)
 # 49–60 final A/B
-put('impacto', 49.45, .8); put('whoosh', 49.9, .5); put('impacto', 58.6, .7)
-put(None, 49.4, .3, src=np.tile(fast, 2)[:int(10.6 * SR)], fi=.3, fo=1.2)
+put('impacto', 52.85, .8); put('whoosh', 53.4, .5); put('impacto', 57.57, .7)
+put(None, 52.8, .3, src=np.tile(fast, 2)[:int(7.2 * SR)], fi=.3, fo=1.2)
 # vozes (quando houver): soma e abaixa o resto sob a fala
 if len(sys.argv) > 3:
     with wave.open(sys.argv[3]) as w: v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767

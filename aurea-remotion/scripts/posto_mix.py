@@ -47,13 +47,13 @@ put('vento', 54.4, .45, fo=1.2); put('fita_limpa', 54.4, .22, off=0, dur=10, fi=
 # 18 fusão passado -> presente
 put('riser', 66.4, .35)
 # 19 câmera lenta
-put(None, 69.4, .25, src=np.tile(slow, 3)[:int(9 * SR)], fi=1, fo=1)
-for t in (70.0, 71.4, 72.8, 74.0): put('coracao', t, .4)
+put(None, 69.4, .25, src=np.tile(slow, 3)[:int(12 * SR)], fi=1, fo=1)
+for t in (70.0, 71.4, 72.8, 74.2, 75.4): put('coracao', t, .4)
 # 20 digitando o anúncio
-for k in range(14): put('tecla', 74.5 + k * .17, .5)
+for k in range(14): put('tecla', 76.3 + k * .17, .5)
 # 21 final A/B
-put('impacto', 78.45, .8); put('whoosh', 78.9, .5); put('impacto', 88.35, .7)
-put(None, 78.4, .3, src=np.tile(fast, 3)[:int(11.6 * SR)], fi=.3, fo=1.5)
+put('impacto', 81.55, .8); put('whoosh', 82.2, .5); put('impacto', 86.37, .7)
+put(None, 81.5, .3, src=np.tile(fast, 3)[:int(8.5 * SR)], fi=.3, fo=1.5)
 # vozes (quando houver): soma e abaixa o resto sob a fala
 if len(sys.argv) > 3:
     with wave.open(sys.argv[3]) as w: v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767
