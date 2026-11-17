@@ -8,6 +8,7 @@ const FPS = 30;
 const EPISODES = [
   { id: "AureaEp1", ep: "ep1", seconds: 102.4, audio: true },
   { id: "AureaEp2", ep: "ep2", seconds: 104.6, audio: true },
+  { id: "Corsa18", ep: "corsa", seconds: 68.3, audio: true },
 ];
 
 export const RemotionRoot: React.FC = () => {
