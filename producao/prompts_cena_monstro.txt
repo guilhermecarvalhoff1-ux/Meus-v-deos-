@@ -1,0 +1,25 @@
+PROMPTS — CENA DO MONSTRO (300/300) — gerar no Gemini (ou ChatGPT)
+Ordem: 1 → 2 → 3 → 4. Gere tudo na MESMA conversa do Gemini.
+
+ESTILO (já incluído em cada prompt):
+2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fabric and paper grain texture, warm rim light, atmospheric fog, high detail, no text, no watermark.
+
+------------------------------------------------------------
+1) FICHA DO HERÓI
+------------------------------------------------------------
+Character design sheet of a young male rogue, 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fabric grain texture on the clothes. Dark charcoal-gray hood up, dark gray long-sleeve tunic with stitched seams, brown leather belt with small pouches, black fingerless gloves, dark pants, black boots. Simple cartoon face: tan skin, short dark hair under the hood, determined eyebrows. He holds a steel dagger with a small glowing blue gem on the pommel. Show three views side by side: front, back, and side profile, full body, same proportions in all views. Plain light gray background, no text, no watermark.
+
+------------------------------------------------------------
+2) CENÁRIO — FLORESTA (sem personagens)
+------------------------------------------------------------
+Vertical 9:16 background of a deep fantasy forest seen from a LOW camera angle looking UP: very tall dark tree trunks converging toward the top, thick canopy, beams of golden light breaking through the leaves, soft fog between the trees, a small clearing of moss and grass in the lower third, orange shelf mushrooms on the trunks, ferns and leaves in the foreground. 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle paper grain texture, depth of field with a blurry background. No characters, no creatures, no text, no watermark.
+
+------------------------------------------------------------
+3) MONSTRO (fundo liso para recortar)
+------------------------------------------------------------
+A huge forest beast seen from a LOW angle looking UP, so it looks gigantic and threatening. Hunched on four powerful legs, body covered in black shaggy fur with dark slate armor-like plates on the back and shoulders, two long curved ridged horns, four glowing yellow eyes, wide mouth with sharp white fangs, long pale claws digging into the ground. Strong warm rim light from above-left outlining the fur. 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fur and grain texture, high detail. Full body, centered, isolated on a plain flat solid white background, no shadow on the background, no text, no watermark.
+
+------------------------------------------------------------
+4) HERÓI DE COSTAS (sobre o ombro)
+------------------------------------------------------------
+The same rogue from the character sheet, seen from BEHIND, from the waist up, slightly from below, as an over-the-shoulder shot: hood up and clearly visible with fabric folds, shoulders tense, right hand lowered holding the dagger with the glowing blue gem. Same clothes, colors and proportions as the character sheet. 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fabric grain texture. Isolated on a plain flat solid white background, no text, no watermark.
