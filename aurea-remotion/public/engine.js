@@ -34,7 +34,7 @@ function buildCaptions(words) {
     }
     if (done) continue;
     const w = words[i];
-    toks.push({ t: w.text.replace(/"/g, ''), s: w.start, e: w.end, hl: false });
+    toks.push({ t: w.text.replace(/"/g, ''), s: w.start, e: w.end, hl: false, br: w.br });
     i++;
   }
   // regra especial: A e B no fim só destacam quando são as opções
@@ -42,6 +42,7 @@ function buildCaptions(words) {
   let cur = [];
   const flush = () => { if (cur.length) chunks.push(cur); cur = []; };
   for (const tk of toks) {
+    if (CFG.manualChunks) { if (tk.force) { flush(); chunks.push([tk]); continue; } cur.push(tk); if (tk.br) flush(); continue; }
     if (tk.force) { flush(); chunks.push([tk]); continue; }
     const len = cur.map(c => c.t).join(' ').length + tk.t.length;
     if (cur.length >= 3 || len > 17) flush();
@@ -49,7 +50,7 @@ function buildCaptions(words) {
     if (/[.,:…!?]$/.test(tk.t)) flush();
   }
   flush();
-  CHUNKS = chunks.map((c, i) => ({ s: c[0].s, e: Math.min(chunks[i + 1] ? chunks[i + 1][0].s : 1e9, c[c.length - 1].e + .8), toks: c }));
+  window.AUREA_CHUNKS = CHUNKS = chunks.map((c, i) => ({ s: c[0].s, e: Math.min(chunks[i + 1] ? chunks[i + 1][0].s : 1e9, c[c.length - 1].e + .8), toks: c }));
 }
 function captionSVG(t) {
   const c = CHUNKS.find(c => t >= c.s - 0.03 && t < c.e);
@@ -82,7 +83,7 @@ function render(t) {
   const fadeIn = clamp(lt / 0.12);
   if (fadeIn < 1) out += `<rect width="${W}" height="${H}" fill="#000" opacity="${(1 - fadeIn) * .5}"/>`;
   if (t > END - 0.5) out += `<rect width="${W}" height="${H}" fill="#000" opacity="${clamp((t - (END - .5)) / .5) * .0}"/>`;
-  out += captionSVG(t);
+  if (!(CFG.noCapsFrom != null && t >= CFG.noCapsFrom)) out += captionSVG(t);
   return out;
 }
 // Abre um trecho sem fala (ex.: luta estendida) antes da frase CFG.gap.key, deslocando as palavras seguintes

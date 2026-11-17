@@ -2,7 +2,7 @@
 Quando as vozes chegarem, passe o wav das vozes: a música abaixa sob a fala."""
 import wave, sys, numpy as np
 from scipy.signal import butter, lfilter
-S, out = sys.argv[1], sys.argv[2]; SR = 44100; TOTAL = 95
+S, out = sys.argv[1], sys.argv[2]; SR = 44100; TOTAL = 90
 def load(n):
     with wave.open(f'{S}/{n}.wav') as w: return np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767
 def lp(x, f): b, a = butter(2, f / (SR / 2)); return lfilter(b, a, x)
@@ -31,29 +31,29 @@ put(None, 18.0, .55, src=loop('grilo', 6), fi=.2, fo=1)
 put('magia', 24.1, .25); put('fita_limpa', 24.0, .2, off=4, dur=3, fi=.4, fo=.6)
 # 9–14 comédia: música animada
 tr = load('trilha'); idx = np.arange(0, len(tr) - 1, 1.12); fast = np.interp(idx, np.arange(len(tr)), tr)
-put(None, 27.0, .3, src=np.tile(fast, 4)[:int(25 * SR)], fi=.5, fo=.3)
-put('plec', 35.85, .9); put('impacto', 35.85, .25)
+put(None, 27.0, .3, src=np.tile(fast, 4)[:int(23.4 * SR)], fi=.5, fo=.3)
+put('plec', 35.75, 1.0); put('impacto', 35.75, .35); put('whoosh', 35.35, .3)
 for t in (40.2, 41.0, 41.8): put('impacto', t, .3)
-put('arranque_falha', 43.5, .8); put('arranque_falha', 46.7, .8)
-put('motor_pega', 48.5, .9); put('whoosh', 49.4, .6)
-for t in (50.1, 50.6, 51.1): put('tosse', t, .55)
-put('trombone', 50.3, .55)
+put('arranque_falha', 43.3, .8); put('arranque_falha', 45.7, .8)
+put('motor_pega', 47.2, .9); put('whoosh', 48.1, .6)
+for t in (48.7, 49.2, 49.7): put('tosse', t, .55)
+put('trombone', 48.9, .55)
 # 15 tudo abafado, coração
 slow = lp(np.interp(np.arange(0, len(tr) - 1, .85), np.arange(len(tr)), tr), 500)
-put(None, 52.0, .5, src=np.tile(slow, 3)[:int(4 * SR)], fi=.2, fo=.5)
-for t in (52.3, 53.2, 54.1, 55.0): put('coracao', t, .5)
+put(None, 50.4, .5, src=np.tile(slow, 3)[:int(4 * SR)], fi=.2, fo=.5)
+for t in (50.7, 51.6, 52.5, 53.4): put('coracao', t, .5)
 # 16–17 lembranças: vento e música dos anos 90 bem baixinha
-put('vento', 56.0, .45, fo=1.2); put('fita_limpa', 56.0, .22, off=0, dur=11, fi=1, fo=1.5)
+put('vento', 54.4, .45, fo=1.2); put('fita_limpa', 54.4, .22, off=0, dur=10, fi=1, fo=1.5)
 # 18 fusão passado -> presente
-put('riser', 69.0, .35)
+put('riser', 66.4, .35)
 # 19 câmera lenta
-put(None, 72.0, .25, src=np.tile(slow, 3)[:int(11 * SR)], fi=1, fo=1)
-for t in (72.6, 74.2, 75.8, 77.4): put('coracao', t, .4)
+put(None, 69.4, .25, src=np.tile(slow, 3)[:int(9 * SR)], fi=1, fo=1)
+for t in (70.0, 71.4, 72.8, 74.0): put('coracao', t, .4)
 # 20 digitando o anúncio
-for k in range(14): put('tecla', 78.3 + k * .17, .5)
+for k in range(14): put('tecla', 74.5 + k * .17, .5)
 # 21 final A/B
-put('impacto', 83.05, .8); put('whoosh', 83.5, .5)
-put(None, 83.0, .3, src=np.tile(fast, 3)[:int(12 * SR)], fi=.3, fo=1.5)
+put('impacto', 78.45, .8); put('whoosh', 78.9, .5); put('impacto', 88.35, .7)
+put(None, 78.4, .3, src=np.tile(fast, 3)[:int(11.6 * SR)], fi=.3, fo=1.5)
 # vozes (quando houver): soma e abaixa o resto sob a fala
 if len(sys.argv) > 3:
     with wave.open(sys.argv[3]) as w: v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767
