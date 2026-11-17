@@ -1,25 +1,32 @@
-PROMPTS — CENA DO MONSTRO (300/300) — gerar no Gemini (ou ChatGPT)
-Ordem: 1 → 2 → 3 → 4. Gere tudo na MESMA conversa do Gemini.
+PROMPTS — CENA DO MONSTRO (300/300) — gerar no app do Gemini
+Ordem: 1 → 2 → 3 → 4, todos na MESMA conversa.
 
-ESTILO (já incluído em cada prompt):
-2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fabric and paper grain texture, warm rim light, atmospheric fog, high detail, no text, no watermark.
+PASSO 0 — referência de estilo (o que mais evita sair realista)
+Anexe 1 ou 2 prints do estilo que você quer (ex.: a cena da adaga) e envie junto do primeiro prompt.
+Os personagens e cenários devem ser NOVOS; a imagem anexada serve só de referência de estilo.
+
+ESTILO (vai no começo de cada prompt):
+Flat 2D cartoon vector illustration in the exact art style of the attached image: simple geometric shapes, clean dark outlines, flat colors with soft gradient shading, subtle fabric/paper grain texture, cinematic lighting, soft depth of field. NOT realistic, NOT photographic, NOT 3D render, NOT painterly, NOT anime.
 
 ------------------------------------------------------------
 1) FICHA DO HERÓI
 ------------------------------------------------------------
-Character design sheet of a young male rogue, 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fabric grain texture on the clothes. Dark charcoal-gray hood up, dark gray long-sleeve tunic with stitched seams, brown leather belt with small pouches, black fingerless gloves, dark pants, black boots. Simple cartoon face: tan skin, short dark hair under the hood, determined eyebrows. He holds a steel dagger with a small glowing blue gem on the pommel. Show three views side by side: front, back, and side profile, full body, same proportions in all views. Plain light gray background, no text, no watermark.
+Flat 2D cartoon vector illustration in the exact art style of the attached image: simple geometric shapes, clean dark outlines, flat colors with soft gradient shading, subtle fabric grain texture. NOT realistic, NOT photographic, NOT 3D render, NOT painterly, NOT anime. Character design sheet of a NEW young male rogue: dark charcoal-gray hood up, dark gray long-sleeve tunic with stitched seams, brown leather belt with small pouches, black fingerless gloves, dark pants, black boots, simple cartoon face with tan skin and determined eyebrows, holding a steel dagger with a small glowing blue gem on the pommel. Three views side by side: front, back, side profile, full body, same proportions. Plain light gray background, no text.
 
 ------------------------------------------------------------
-2) CENÁRIO — FLORESTA (sem personagens)
+2) CENÁRIO — FLORESTA (sem personagens), vertical 9:16
 ------------------------------------------------------------
-Vertical 9:16 background of a deep fantasy forest seen from a LOW camera angle looking UP: very tall dark tree trunks converging toward the top, thick canopy, beams of golden light breaking through the leaves, soft fog between the trees, a small clearing of moss and grass in the lower third, orange shelf mushrooms on the trunks, ferns and leaves in the foreground. 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle paper grain texture, depth of field with a blurry background. No characters, no creatures, no text, no watermark.
+Same flat 2D cartoon vector style. NOT realistic, NOT photographic, NOT 3D. Vertical 9:16 background of a fantasy forest seen from a LOW camera angle looking UP: tall simple stylized tree trunks with vertical line texture converging toward the top, flat green leaf shapes in the canopy, soft beams of golden light, light fog between the trees, small grassy clearing in the lower third, orange shelf mushrooms on the trunks, blurred ferns in the foreground. No characters, no creatures, no text.
 
 ------------------------------------------------------------
 3) MONSTRO (fundo liso para recortar)
 ------------------------------------------------------------
-A huge forest beast seen from a LOW angle looking UP, so it looks gigantic and threatening. Hunched on four powerful legs, body covered in black shaggy fur with dark slate armor-like plates on the back and shoulders, two long curved ridged horns, four glowing yellow eyes, wide mouth with sharp white fangs, long pale claws digging into the ground. Strong warm rim light from above-left outlining the fur. 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fur and grain texture, high detail. Full body, centered, isolated on a plain flat solid white background, no shadow on the background, no text, no watermark.
+Same flat 2D cartoon vector style. NOT realistic, NOT photographic, NOT 3D. A NEW huge cartoon forest monster seen from a LOW angle looking UP so it looks gigantic: hunched on four thick legs, black body with spiky stylized fur tufts, dark slate armor plates on back and shoulders, two long curved ridged horns, four glowing yellow eyes, wide toothy grin with sharp white fangs, long pale claws. Warm rim light on the edges. Full body, centered, on a plain flat solid white background, no shadow on the background, no text.
 
 ------------------------------------------------------------
 4) HERÓI DE COSTAS (sobre o ombro)
 ------------------------------------------------------------
-The same rogue from the character sheet, seen from BEHIND, from the waist up, slightly from below, as an over-the-shoulder shot: hood up and clearly visible with fabric folds, shoulders tense, right hand lowered holding the dagger with the glowing blue gem. Same clothes, colors and proportions as the character sheet. 2D cartoon illustration, clean vector shapes with soft cinematic shading, subtle fabric grain texture. Isolated on a plain flat solid white background, no text, no watermark.
+Same flat 2D cartoon vector style. NOT realistic, NOT photographic, NOT 3D. The same rogue from the character sheet seen from BEHIND, waist up, slightly from below, over-the-shoulder shot: hood up with clear fabric folds (the back of the head must be the hood, not a blank circle), tense shoulders, right hand lowered holding the dagger with the glowing blue gem. Same clothes, colors and proportions as the sheet. Plain flat solid white background, no text.
+
+SE AINDA SAIR REALISTA, responda no chat:
+"Too realistic. Redo it as a flat 2D vector cartoon exactly like the style of the image I attached: simple shapes, outlines, flat colors."
