@@ -271,6 +271,7 @@ function japan(x, y, s) {
 // =====================================================================
 const KID = { hair: 'kid', hairCol: '#3a2416', top: '#e8b030', outfit: 'shirt' };
 const AVO_VELHO = { hair: 'grey', hairCol: '#9a9a9a', top: '#7a5a3a', outfit: 'shirt', must: '#c8c8c8' };
+const AVO_MEIO = { hair: 'short', hairCol: '#5a5550', top: '#4a5a6a', outfit: 'shirt', must: '#4a4440' };
 const AVO_JOVEM = { hair: 'short', hairCol: '#1a1410', top: '#e8e2d4', outfit: 'shirt', must: '#1a1410' };
 const FRENT = { hair: 'short', hairCol: '#2a1d17', top: '#1e5aa8', outfit: 'shirt', cap: '#1e5aa8' };
 const CARA1 = { hair: 'short', hairCol: '#c9a24a', top: '#1b1b1f', outfit: 'shirt' };
@@ -436,40 +437,49 @@ function lampSweep(t, per = 1.7, op = .5) {
 }
 function cabinClose(t, p, o = {}) {
   const id = uid('cc');
-  let s = `<defs>${linGrad(id + 'bg', [[0, '#141a2c'], [1, '#07080d']])}${radGrad(id + 'f', [[0, '#ffb060', .22], [1, '#000', 0]])}</defs>`;
+  const day = o.day;
+  let s = `<defs>${linGrad(id + 'bg', day ? [[0, '#7a6450'], [1, '#2e241c']] : [[0, '#141a2c'], [1, '#07080d']])}${radGrad(id + 'f', [[0, '#ffb060', day ? .3 : .22], [1, '#000', 0]])}</defs>`;
   // FUNDO: interior com textura + vidro traseiro com luzes da cidade passando
   s += `<rect width="${W}" height="${H}" fill="url(#${id}bg)"/>`;
-  s += `<path d="M110,250 L970,250 L1010,640 L70,640Z" fill="#0d1424"/>`;
+  s += `<path d="M110,250 L970,250 L1010,640 L70,640Z" fill="${day ? '#d8ecf4' : '#0d1424'}"/>`;
   s += `<g filter="url(#b10)">`;
-  for (let i = 0; i < 14; i++) { const x = ((i * 137 + t * 520) % 1300) - 110, y = 330 + (i * 53) % 260; s += `<circle cx="${x}" cy="${y}" r="${18 + (i % 4) * 10}" fill="${['#ffb050', '#ffe0a0', '#ff7040', '#a0c0ff'][i % 4]}" opacity=".55"/>`; }
+  if (day) for (let i = 0; i < 9; i++) { const x = ((i * 160 + t * 300) % 1400) - 160; s += `<rect x="${x - 8}" y="470" width="16" height="170" fill="#6a4a2a"/><circle cx="${x}" cy="${440 + (i % 3) * 20}" r="${70 + (i % 3) * 20}" fill="${i % 2 ? '#6ab04a' : '#4a9a3a'}"/>`; }
+  else for (let i = 0; i < 14; i++) { const x = ((i * 137 + t * 520) % 1300) - 110, y = 330 + (i * 53) % 260; s += `<circle cx="${x}" cy="${y}" r="${18 + (i % 4) * 10}" fill="${['#ffb050', '#ffe0a0', '#ff7040', '#a0c0ff'][i % 4]}" opacity=".55"/>`; }
   s += `</g><path d="M110,250 L970,250 L1010,640 L70,640Z" fill="none" stroke="#1c1f26" stroke-width="40"/>`;
   // bancos de trás com textura de tecido
-  s += `<rect x="40" y="640" width="1000" height="700" rx="60" fill="#1a1b21"/>`;
+  s += `<rect x="40" y="640" width="1000" height="700" rx="60" fill="${day ? '#4a3e34' : '#1a1b21'}"/>`;
   for (let i = 0; i < 26; i++) s += `<path d="M${60 + i * 38},660 V1320" stroke="#000" stroke-width="5" opacity=".25"/>`;
   s += `<rect x="40" y="640" width="1000" height="700" rx="60" fill="url(#${id}f)"/>`;
   // encosto/apoio de cabeça do motorista: costura e desgaste
-  s += seatBack(o.x, t);
-  s += dust(31, 46, 0, 300, W, 1300, t);
-  // MEIO: personagem grande
-  s += o.person || '';
+  s += seatBack(o.x, t, day);
+  s += dust(31, day ? 80 : 46, 0, 300, W, 1300, t);
+  // MEIO: personagens grandes
+  s += (o.passenger || '') + (o.person || '');
   // luz ambiente azul da noite + faixa laranja de poste passando no rosto
-  s += `<rect width="${W}" height="${H}" fill="#1a2a6a" opacity=".22" style="mix-blend-mode:multiply"/>`;
-  s += lampSweep(t, o.per || 1.7, .55);
+  if (day) s += sunLight(t);
+  else { s += `<rect width="${W}" height="${H}" fill="#1a2a6a" opacity=".22" style="mix-blend-mode:multiply"/>`; s += lampSweep(t, o.per || 1.7, .55); }
   // PRIMEIRO PLANO: retrovisor + terço, borda do para-brisa, painel e limpador desfocados
   s += g(`<rect x="-120" y="-50" width="240" height="96" rx="24" fill="#16181d"/><rect x="-104" y="-38" width="208" height="72" rx="16" fill="#2a3448"/><path d="M-90,-30 L-20,-30 L-70,30 L-100,30Z" fill="#fff" opacity=".15"/>`, `translate(${o.mx ?? 380},150)`, 'filter="url(#b5)"');
   if (o.terco !== false) s += g(terco(t, Math.sin(t * 2.6) * 16 + Math.sin(t * 6.1) * 3, 1.15), `translate(${o.mx ?? 380},196)`, 'filter="url(#b2)"');
   s += `<g filter="url(#b18)"><path d="M0,0 L120,0 L60,${H} L0,${H}Z" fill="#9aa1a8" opacity=".85"/><path d="M${W},0 L${W - 120},0 L${W - 60},${H} L${W},${H}Z" fill="#6a7078" opacity=".85"/></g>`;
-  s += dashboard(t, o.radio || {});
+  s += dashboard(t, o.radio || {}, day);
   // vidro: reflexo, sujeirinha e neblina leve
-  s += `<path d="M150,0 L420,0 L120,${H} L-40,${H}Z" fill="#fff" opacity=".05"/>` + glassReflections(t);
+  s += `<path d="M150,0 L420,0 L120,${H} L-40,${H}Z" fill="#fff" opacity="${day ? .1 : .05}"/>` + glassReflections(t, day);
   { const r = rng(91); for (let i = 0; i < 70; i++) s += `<circle cx="${r() * W}" cy="${r() * H}" r="${1 + r() * 2.5}" fill="#d8dce8" opacity="${.12 + r() * .18}"/>`; }
   s += `<rect width="${W}" height="${H}" fill="#9ab0d8" opacity=".05"/>`;
   return s;
 }
 
+// luz do sol entrando pela janela (dia): raios, manchas de luz passando
+function sunLight(t) {
+  let s = '<g style="mix-blend-mode:screen">';
+  for (let i = 0; i < 4; i++) s += `<path d="M${1150 + i * 40},${100 + i * 60} L${620 - i * 120},${1500 + i * 80} L${760 - i * 120},${1560 + i * 80}Z" fill="#ffd890" opacity="${.13 + .03 * Math.sin(t * 2 + i)}" filter="url(#b30)"/>`;
+  for (let i = 0; i < 7; i++) { const k = ((t * .5 + i / 7) % 1); s += `<ellipse cx="${lerp(1200, -150, k)}" cy="${700 + (i * 173) % 800}" rx="${70 + (i % 3) * 30}" ry="${40 + (i % 2) * 20}" fill="#ffe8b0" opacity=".14" filter="url(#b18)"/>`; }
+  return s + '</g>';
+}
 // banco com costuras, desgaste e um rasgadinho
-function seatBack(x, t) {
-  let s = `<rect x="${x - 230}" y="560" width="460" height="320" rx="100" fill="#24252c"/>`;
+function seatBack(x, t, day) {
+  let s = `<rect x="${x - 230}" y="560" width="460" height="320" rx="100" fill="${day ? '#5a4c40' : '#24252c'}"/>`;
   for (let i = 0; i < 10; i++) s += `<path d="M${x - 196 + i * 43},584 V856" stroke="#000" stroke-width="5" opacity=".22"/>`;
   s += `<rect x="${x - 212}" y="578" width="424" height="284" rx="86" fill="none" stroke="#5a5c66" stroke-width="3" stroke-dasharray="10 8" opacity=".7"/>`;
   s += `<path d="M${x - 200},720 H${x + 200}" stroke="#5a5c66" stroke-width="3" stroke-dasharray="10 8" opacity=".6"/>`;
@@ -478,9 +488,9 @@ function seatBack(x, t) {
   return s;
 }
 // painel em primeiro plano: textura, rachaduras e o rádio de fita
-function dashboard(t, r) {
+function dashboard(t, r, day) {
   const id = uid('db');
-  let s = `<defs>${linGrad(id, [[0, '#2e3038'], [.25, '#1e2026'], [1, '#0c0d10']])}<filter id="${id}n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".35"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/></filter></defs>`;
+  let s = `<defs>${linGrad(id, day ? [[0, '#5a5048'], [.25, '#3a332c'], [1, '#1a1612']] : [[0, '#2e3038'], [.25, '#1e2026'], [1, '#0c0d10']])}<filter id="${id}n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".35"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/></filter></defs>`;
   const d = `M-40,1700 C200,1672 880,1672 ${W + 40},1700 L${W + 40},${H + 40} L-40,${H + 40}Z`;
   s += `<path d="${d}" fill="url(#${id})"/><path d="${d}" fill="#fff" filter="url(#${id}n)" opacity=".5"/>`;
   s += `<path d="M-40,1700 C200,1672 880,1672 ${W + 40},1700" stroke="#4a4c56" stroke-width="5" fill="none" opacity=".7"/>`;
@@ -499,16 +509,16 @@ function dashboard(t, r) {
   return s;
 }
 // reflexos das luzes da rua no para-brisa
-function glassReflections(t) {
+function glassReflections(t, day) {
   let s = '<g style="mix-blend-mode:screen" filter="url(#b18)">';
-  for (let i = 0; i < 6; i++) { const k = ((t * .35 + i / 6) % 1), x = lerp(1250, -250, k), y = 200 + i * 230 + Math.sin(i) * 60; s += `<ellipse cx="${x}" cy="${y}" rx="${90 + i * 12}" ry="${36 + i * 6}" fill="${i % 2 ? '#ffb060' : '#fff0d0'}" opacity=".12"/>`; }
+  for (let i = 0; i < 6; i++) { const k = ((t * .35 + i / 6) % 1), x = lerp(1250, -250, k), y = 200 + i * 230 + Math.sin(i) * 60; s += `<ellipse cx="${x}" cy="${y}" rx="${90 + i * 12}" ry="${36 + i * 6}" fill="${day ? '#ffffff' : i % 2 ? '#ffb060' : '#fff0d0'}" opacity="${day ? .08 : .12}"/>`; }
   s += `<path d="M${lerp(1300, -300, (t * .5) % 1)},0 l-260,${H}" stroke="#ffd8a0" stroke-width="14" opacity=".08"/></g>`;
   return s;
 }
 // Lucas dirigindo: grande, as duas mãos no volante, pisca e respira
 function lucasDriving(t, o = {}) {
-  const x = o.x || 560, y = o.y || 760, S = o.s || 1.75, top = LUCAS.top;
-  let s = bust({ ...LUCAS, x, y: y + (o.sink || 0), s: S, eyes: blinkAt(t, 3.1) ? 'dot' : (o.eyes || 'dot'), blink: blinkAt(t, 3.1), mouth: o.mouth || 'flat', brows: o.brows || 'neutral', look: o.look || 0, breath: t, sweat: o.sweat });
+  const P = o.who || LUCAS, x = o.x || 560, y = o.y || 760, S = o.s || 1.75, top = P.top;
+  let s = bust({ ...P, x, y: y + (o.sink || 0), s: S, eyes: blinkAt(t, 3.1) ? 'dot' : (o.eyes || 'dot'), blink: blinkAt(t, 3.1), mouth: o.mouth || 'flat', brows: o.brows || 'neutral', look: o.look || 0, breath: t, sweat: o.sweat });
   // volante baixo, na altura da barriga, NA FRENTE do corpo; coluna de direção descendo até o painel
   const wx = x, wy = 1560 + (o.sink || 0) * .2, rx = 340, ry = 190;
   const sq = 1 + .03 * Math.sin(t * (o.grip || 0));
@@ -526,13 +536,14 @@ function lucasDriving(t, o = {}) {
   };
   window.__lucasArm = armPath;
   if (!o.noLeft) s += armPath(-1, grip(-1));
-  s += armPath(1, grip(1));
+  if (o.windowArm) s += armPath(1, [1150, 1150 + Math.sin(t * 2) * 6], [980, 1230]);
+  else s += armPath(1, grip(1));
   s += `<path d="M${wx - 70},${wy} L${wx + 70},${wy} L${wx + 110},1840 L${wx - 110},1840Z" fill="#121316"/><path d="M${wx + 30},${wy} L${wx + 70},${wy} L${wx + 110},1840 L${wx + 60},1840Z" fill="#000" opacity=".3"/>`;
   s += `<ellipse cx="${wx}" cy="${wy}" rx="${rx}" ry="${ry}" fill="none" stroke="#111215" stroke-width="54"/><ellipse cx="${wx}" cy="${wy - 8}" rx="${rx}" ry="${ry}" fill="none" stroke="#3a3c44" stroke-width="6" opacity=".7"/>`;
   s += `<path d="M${wx - 80},${wy + 10} L${wx - rx + 20},${wy + 20} L${wx - rx + 24},${wy + 60} L${wx - 70},${wy + 60}Z M${wx + 80},${wy + 10} L${wx + rx - 20},${wy + 20} L${wx + rx - 24},${wy + 60} L${wx + 70},${wy + 60}Z M${wx - 50},${wy + 60} L${wx + 50},${wy + 60} L${wx + 40},${wy + ry} L${wx - 40},${wy + ry}Z" fill="#17181c"/>`;
   s += `<ellipse cx="${wx}" cy="${wy + 30}" rx="110" ry="74" fill="#1c1d22" stroke="#2c2e34" stroke-width="5"/><ellipse cx="${wx - 20}" cy="${wy + 14}" rx="50" ry="20" fill="#fff" opacity=".07"/>`;
   if (!o.noLeft) s += hand(grip(-1)[0], grip(-1)[1] - 10, .95 * sq, -60, { fist: true });
-  s += hand(grip(1)[0], grip(1)[1] - 10, .95 * sq, 60, { fist: true });
+  if (!o.windowArm) s += hand(grip(1)[0], grip(1)[1] - 10, .95 * sq, 60, { fist: true });
   return s;
 }
 
@@ -557,14 +568,25 @@ const SCENES = [
     if (music) for (let i = 0; i < 5; i++) { const q = (((t - 1.25) * .7 + i * .2) % 1); if (t - 1.25 < i * .25) continue; s += txt(300 + Math.sin(t * 2 + i) * 50, 1640 - q * 900, '♪', 64, '#ffe08a', { op: (1 - q) * .85 }); }
     return g(s, `translate(${Math.sin(t * 1.7) * 6 + Math.sin(t * 11) * 1.5 + hit * 4},${Math.sin(t * 2.3) * 5 + Math.sin(t * 13) * 1.5})`) + vignette();
   } },
-  // PLANO 3 — lembrança 1 (match cut): dia, avô dirigindo, Lucas criança cantando; solavanco no fim
-  { at: 8, z: [1.0, 1.06], c: [540, 900], f: (t, p) => {
-    const bump = seg(p, .88, 1), sh = bump > 0 ? Math.sin(bump * 50) * 30 * (1 - bump) : 0;
-    const drv = bust({ ...AVO_VELHO, x: 740, y: 640, s: .9, eyes: 'dot', mouth: 'smile', brows: 'neutral', look: -6 });
-    const kid = bust({ ...KID, x: 340, y: 760, s: .62, eyes: 'closed', mouth: 'open', brows: 'up' });
-    let s = cabin(t, { day: 1, driver: drv, passenger: kid, col: '#dfe5ea' });
-    for (let i = 0; i < 4; i++) { const k = ((t * .7 + i * .25) % 1); s += txt(300 + i * 30 + Math.sin(t * 3 + i) * 30, 760 - k * 400, '♪', 64, '#fff', { op: 1 - k }); }
-    return flash(g(s, `translate(0,${sh})`), 8) + (bump > .3 ? `<rect width="${W}" height="${H}" fill="#fff" opacity="${(bump - .3) * 1.2}"/>` : '');
+  // PLANO 3 — lembrança 1 (match cut com o plano 2): dia, avô mais novo dirigindo com o braço na janela,
+  // Lucas criança no banco do passageiro cantando a mesma música; solavanco de buraco no fim
+  { at: 8, z: [1.0, 1.07], c: [560, 900], f: (t, p) => {
+    const bump = clamp((t - 3.3) / .25), sh = bump > 0 ? Math.sin(bump * 38) * 34 * (1 - bump * .6) : 0;
+    const sing = Math.sin(t * 7.5) > 0;
+    let kid = `<path d="M60,1010 L330,1500" stroke="#3a3a3a" stroke-width="26"/>`;
+    kid = bust({ ...KID, x: 170, y: 1000 + Math.abs(Math.sin(t * 4)) * -14, s: 1.0, eyes: blinkAt(t, 2.7, .5) ? 'dot' : 'closed', blink: false, mouth: sing ? 'open' : 'o', brows: 'up', breath: t }) + `<path d="M60,1200 L290,1560" stroke="#2a2a2a" stroke-width="28"/><path d="M60,1200 L290,1560" stroke="#555" stroke-width="6" opacity=".6"/>`;
+    const drv = lucasDriving(t, { who: AVO_MEIO, x: 650, y: 760, s: 1.75, mouth: 'smile', brows: 'neutral', look: -14, windowArm: 1 });
+    let s = cabinClose(t, p, { day: 1, x: 650, person: drv, passenger: kid, radio: { on: 1 } });
+    for (let i = 0; i < 6; i++) { const q = ((t * .6 + i / 6) % 1); s += txt(180 + Math.sin(t * 2 + i) * 70, 1000 - q * 700, '♪', 66, '#fff6d0', { op: (1 - q) * .9 }); }
+    let out = flash(g(s, `translate(${Math.sin(t * 1.7) * 6 + sh * .3},${Math.sin(t * 2.3) * 5 + sh})`), 8);
+    if (bump > .55) out += `<rect width="${W}" height="${H}" fill="#fff" opacity="${(bump - .55) * 2}"/>`;
+    return out;
+  } },
+  // volta ao presente: o mesmo enquadramento, Lucas sozinho chacoalhando com o buraco
+  { at: 11.6, z: [1.07, 1.03], c: [560, 900], f: (t, p) => {
+    const sh = Math.sin(t * 40) * 26 * Math.max(0, 1 - t / .35);
+    const s = cabinClose(t + 7.6, p, { x: 560, radio: { on: 1 }, person: lucasDriving(t + 7.6, { x: 560, y: 760 + sh * .5, s: 1.75, mouth: 'o', brows: 'up', eyes: 'wide' }) });
+    return g(s, `translate(0,${sh})`) + vignette() + `<rect width="${W}" height="${H}" fill="#fff" opacity="${Math.max(0, .6 - t * 3)}"/>`;
   } },
   // PLANO 4 — drone descendo sobre o posto
   { at: 12, z: [0.9, 1.18], c: [540, 960], f: (t, p) => {

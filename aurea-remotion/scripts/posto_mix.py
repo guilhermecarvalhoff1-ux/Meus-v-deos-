@@ -21,7 +21,7 @@ put(None, 0, .25, src=loop('marcha_lenta', 12), fi=.3, fo=1)
 # 2 rádio chiando, tapa, música de fita
 put('chiado', 4.0, .5, dur=1.25, fo=.15); put('impacto', 4.45, .4); put('impacto', 4.85, .45); put('fita_radio', 5.15, .55, dur=2.85, fi=.05)
 # 3 lembrança: mesma música, limpa (continua do mesmo ponto); solavanco
-put('fita_limpa', 8.0, .55, off=2.85, dur=3.7, fo=.15); put('impacto', 11.55, .7); put('whoosh', 11.6, .4)
+put('fita_limpa', 8.0, .55, off=2.85, dur=3.7, fo=.15); put('impacto', 11.55, .8); put('whoosh', 11.5, .4); put('fita_radio', 11.6, .5, off=6.5, dur=.4, fo=.3)
 # 4–5 grave dos carros, para com o disco arranhando
 put(None, 12.0, .75, src=lp(loop('grave', 4.7), 500), fi=.4, fo=.05); put('arranhao', 16.6, .7)
 put(None, 15.0, .25, src=loop('marcha_lenta', 9), fi=.5, fo=.6)
