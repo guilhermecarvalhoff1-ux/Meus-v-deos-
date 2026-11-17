@@ -711,7 +711,7 @@ function abSide(t, side) {
 // =====================================================================
 const LEADER = { hair: 'marina', hairCol: '#14110f', top: '#121418', outfit: 'coat' };
 delete PART.gap;
-PART.end = 99.6; PART.abTime = 89.63;
+PART.end = 104.6; PART.abTime = 96.04;
 PART.merges = [
   [['duzentos','e','quarenta','mil','reais'], 'R$ 240 MIL'],
   [['duzentos','e','quarenta','mil'], '240 MIL'],

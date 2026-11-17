@@ -27,3 +27,10 @@ Tarefa: gravar a narração, trocar os tempos estimados pelos reais e renderizar
 ## O que já foi conferido
 - Um quadro de cada uma das 47 cenas. O movimento não foi assistido rodando: vale revisar a prévia.
 - Fato real do roteiro: golpe da Guiding Hand Social Club no EVE Online (2005), cerca de um ano de infiltração, estimado em US$ 16.500.
+
+## Feito em 17/11/2026
+- Texto para a voz: `aurea-remotion/public/ep2/narracao_tts.txt` (frases curtas juntadas com vírgula; "CaioLadrão_07" lido como "Caio Ladrão zero sete").
+- Voz: `scripts/edge_narr.py` → `public/ep2/narracao_voz.mp3` (103,6 s) e `words_tts.json`; `public/ep2/narracao.mp3` é a mesma voz com 1 s de silêncio no fim.
+- Tempos: `scripts/mapear_palavras.py` passa os tempos falados para as 277 palavras do roteiro → `public/ep2/words.json` (única diferença: CaioLadrão_07).
+- `PART.end = 104.6`, `PART.abTime = 96.04`; `Root.tsx` com `seconds: 104.6, audio: true`. `node scripts/times.js public ep2`: 47 cenas, nenhum "NAO ACHEI".
+- Som: `scripts/mix_ep2.py sfx <tempos> public/ep2/words.json 104.6 out/ep2_sfx.wav` (efeitos nos impactos + música que abaixa sob a voz), somado ao render com ffmpeg `amix`.
