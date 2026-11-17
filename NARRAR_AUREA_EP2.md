@@ -34,3 +34,4 @@ Tarefa: gravar a narração, trocar os tempos estimados pelos reais e renderizar
 - Tempos: `scripts/mapear_palavras.py` passa os tempos falados para as 277 palavras do roteiro → `public/ep2/words.json` (única diferença: CaioLadrão_07).
 - `PART.end = 104.6`, `PART.abTime = 96.04`; `Root.tsx` com `seconds: 104.6, audio: true`. `node scripts/times.js public ep2`: 47 cenas, nenhum "NAO ACHEI".
 - Som: `scripts/mix_ep2.py sfx <tempos> public/ep2/words.json 104.6 out/ep2_sfx.wav` (efeitos nos impactos + música que abaixa sob a voz), somado ao render com ffmpeg `amix`.
+- Final: `aurea_ep2.mp4` (1080x1920, 104,6 s, áudio normalizado em −14 LUFS) e `aurea_ep2_leve.mp4` (720x1280).
