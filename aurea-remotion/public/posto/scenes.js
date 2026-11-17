@@ -447,8 +447,8 @@ function cabinClose(t, p, o = {}) {
   s += `<rect x="40" y="640" width="1000" height="700" rx="60" fill="#1a1b21"/>`;
   for (let i = 0; i < 26; i++) s += `<path d="M${60 + i * 38},660 V1320" stroke="#000" stroke-width="5" opacity=".25"/>`;
   s += `<rect x="40" y="640" width="1000" height="700" rx="60" fill="url(#${id}f)"/>`;
-  // encosto/apoio de cabeça do motorista atrás do Lucas
-  s += `<rect x="${o.x - 200}" y="560" width="400" height="300" rx="90" fill="#24252c"/>` + Array.from({ length: 9 }, (_, i) => `<path d="M${o.x - 170 + i * 42},580 V840" stroke="#000" stroke-width="5" opacity=".22"/>`).join('');
+  // encosto/apoio de cabeça do motorista: costura e desgaste
+  s += seatBack(o.x, t);
   s += dust(31, 46, 0, 300, W, 1300, t);
   // MEIO: personagem grande
   s += o.person || '';
@@ -458,12 +458,51 @@ function cabinClose(t, p, o = {}) {
   // PRIMEIRO PLANO: retrovisor + terço, borda do para-brisa, painel e limpador desfocados
   s += g(`<rect x="-120" y="-50" width="240" height="96" rx="24" fill="#16181d"/><rect x="-104" y="-38" width="208" height="72" rx="16" fill="#2a3448"/><path d="M-90,-30 L-20,-30 L-70,30 L-100,30Z" fill="#fff" opacity=".15"/>`, `translate(${o.mx ?? 380},150)`, 'filter="url(#b5)"');
   if (o.terco !== false) s += g(terco(t, Math.sin(t * 2.6) * 16 + Math.sin(t * 6.1) * 3, 1.15), `translate(${o.mx ?? 380},196)`, 'filter="url(#b2)"');
-  s += `<g filter="url(#b18)"><path d="M0,0 L120,0 L60,${H} L0,${H}Z" fill="#9aa1a8" opacity=".85"/><path d="M${W},0 L${W - 120},0 L${W - 60},${H} L${W},${H}Z" fill="#6a7078" opacity=".85"/><rect x="-40" y="1720" width="${W + 80}" height="260" fill="#0e0f12"/><path d="M40,1760 L700,1650" stroke="#050506" stroke-width="40" stroke-linecap="round"/></g>`;
-  for (let i = 0; i < 4; i++) s += `<rect x="${200 + i * 160}" y="1760" width="100" height="10" rx="5" fill="#2a2c32" filter="url(#b5)"/>`;
+  s += `<g filter="url(#b18)"><path d="M0,0 L120,0 L60,${H} L0,${H}Z" fill="#9aa1a8" opacity=".85"/><path d="M${W},0 L${W - 120},0 L${W - 60},${H} L${W},${H}Z" fill="#6a7078" opacity=".85"/></g>`;
+  s += dashboard(t, o.radio || {});
   // vidro: reflexo, sujeirinha e neblina leve
-  s += `<path d="M150,0 L420,0 L120,${H} L-40,${H}Z" fill="#fff" opacity=".05"/>`;
+  s += `<path d="M150,0 L420,0 L120,${H} L-40,${H}Z" fill="#fff" opacity=".05"/>` + glassReflections(t);
   { const r = rng(91); for (let i = 0; i < 70; i++) s += `<circle cx="${r() * W}" cy="${r() * H}" r="${1 + r() * 2.5}" fill="#d8dce8" opacity="${.12 + r() * .18}"/>`; }
   s += `<rect width="${W}" height="${H}" fill="#9ab0d8" opacity=".05"/>`;
+  return s;
+}
+
+// banco com costuras, desgaste e um rasgadinho
+function seatBack(x, t) {
+  let s = `<rect x="${x - 230}" y="560" width="460" height="320" rx="100" fill="#24252c"/>`;
+  for (let i = 0; i < 10; i++) s += `<path d="M${x - 196 + i * 43},584 V856" stroke="#000" stroke-width="5" opacity=".22"/>`;
+  s += `<rect x="${x - 212}" y="578" width="424" height="284" rx="86" fill="none" stroke="#5a5c66" stroke-width="3" stroke-dasharray="10 8" opacity=".7"/>`;
+  s += `<path d="M${x - 200},720 H${x + 200}" stroke="#5a5c66" stroke-width="3" stroke-dasharray="10 8" opacity=".6"/>`;
+  s += `<ellipse cx="${x + 120}" cy="640" rx="70" ry="40" fill="#4a4c56" opacity=".35"/><ellipse cx="${x - 140}" cy="810" rx="60" ry="30" fill="#4a4c56" opacity=".3"/>`;
+  s += `<path d="M${x + 150},800 l18,-14 l10,20 l16,-16 l8,22" stroke="#0a0a0c" stroke-width="6" fill="#c8a860" fill-opacity=".5"/>`;
+  return s;
+}
+// painel em primeiro plano: textura, rachaduras e o rádio de fita
+function dashboard(t, r) {
+  const id = uid('db');
+  let s = `<defs>${linGrad(id, [[0, '#2e3038'], [.25, '#1e2026'], [1, '#0c0d10']])}<filter id="${id}n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".35"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/></filter></defs>`;
+  const d = `M-40,1620 C200,1590 880,1590 ${W + 40},1620 L${W + 40},${H + 40} L-40,${H + 40}Z`;
+  s += `<path d="${d}" fill="url(#${id})"/><path d="${d}" fill="#fff" filter="url(#${id}n)" opacity=".5"/>`;
+  s += `<path d="M-40,1620 C200,1590 880,1590 ${W + 40},1620" stroke="#4a4c56" stroke-width="5" fill="none" opacity=".7"/>`;
+  // rachaduras
+  for (const [x0, y0, sd] of [[470, 1640, 1], [640, 1660, 2], [900, 1630, 3], [120, 1700, 4]]) { const q = rng(sd); let pth = `M${x0},${y0}`, x = x0, y = y0; for (let k = 0; k < 6; k++) { x += (q() - .3) * 40; y += 8 + q() * 16; pth += ` L${x},${y}`; if (k === 2) pth += ` M${x},${y} l${30 + q() * 20},${10 + q() * 10} M${x},${y}`; } s += `<path d="${pth}" stroke="#050506" stroke-width="3" fill="none" opacity=".85"/><path d="${pth}" stroke="#5a5c66" stroke-width="1.5" fill="none" opacity=".4" transform="translate(2,1)"/>`; }
+  // saída de ar
+  for (let i = 0; i < 5; i++) s += `<rect x="${720 + i * 34}" y="1700" width="22" height="70" rx="6" fill="#0a0b0d"/>`;
+  // rádio de fita
+  const sh = r.shake || 0, on = r.on || 0;
+  let rd = `<rect x="-190" y="-80" width="380" height="160" rx="16" fill="#15161a" stroke="#3a3c44" stroke-width="5"/><rect x="-170" y="-60" width="200" height="56" rx="6" fill="${on ? '#0e2a1a' : '#0a0c0b'}"/>`;
+  rd += txt(-70, -20, on ? (on > .5 ? '▶ FITA' : '~ ~ ~') : '- - -', 30, on ? '#7aff9a' : '#2a3a2e', { w: 900, extra: on ? 'filter="url(#glow)"' : '' });
+  rd += `<rect x="-170" y="14" width="200" height="40" rx="6" fill="#0a0b0d"/><rect x="-150" y="26" width="160" height="14" rx="4" fill="#26282e"/><circle cx="80" cy="-30" r="30" fill="#2a2c32" stroke="#4a4c56" stroke-width="4"/><circle cx="150" cy="-30" r="22" fill="#2a2c32" stroke="#4a4c56" stroke-width="4"/>`;
+  for (let i = 0; i < 4; i++) rd += `<rect x="${56 + i * 30}" y="20" width="20" height="30" rx="4" fill="#3a3c44"/>`;
+  rd += `<path d="M-180,-70 L-120,-70" stroke="#fff" stroke-width="3" opacity=".15"/>`;
+  s += g(rd, `translate(${270 + sh * 4},${1720 + sh * 6}) rotate(${-3 + sh})`);
+  return s;
+}
+// reflexos das luzes da rua no para-brisa
+function glassReflections(t) {
+  let s = '<g style="mix-blend-mode:screen" filter="url(#b18)">';
+  for (let i = 0; i < 6; i++) { const k = ((t * .35 + i / 6) % 1), x = lerp(1250, -250, k), y = 200 + i * 230 + Math.sin(i) * 60; s += `<ellipse cx="${x}" cy="${y}" rx="${90 + i * 12}" ry="${36 + i * 6}" fill="${i % 2 ? '#ffb060' : '#fff0d0'}" opacity=".12"/>`; }
+  s += `<path d="M${lerp(1300, -300, (t * .5) % 1)},0 l-260,${H}" stroke="#ffd8a0" stroke-width="14" opacity=".08"/></g>`;
   return s;
 }
 // Lucas dirigindo: grande, as duas mãos no volante, pisca e respira
@@ -471,14 +510,24 @@ function lucasDriving(t, o = {}) {
   const x = o.x || 560, y = o.y || 760, S = o.s || 1.75, top = LUCAS.top;
   let s = bust({ ...LUCAS, x, y: y + (o.sink || 0), s: S, eyes: blinkAt(t, 3.1) ? 'dot' : (o.eyes || 'dot'), blink: blinkAt(t, 3.1), mouth: o.mouth || 'flat', brows: o.brows || 'neutral', look: o.look || 0, breath: t, sweat: o.sweat });
   const wy = 1420 + (o.sink || 0) * .3, wx = x;
-  // braços até o volante
-  s += `<path d="M${x - 250},${y + 330} C${x - 330},${wy - 160} ${x - 330},${wy - 60} ${x - 300},${wy - 40} L${x - 230},${wy - 70} C${x - 240},${wy - 160} ${x - 200},${y + 420} ${x - 150},${y + 380}Z" fill="${top}"/>`;
-  s += `<path d="M${x + 250},${y + 330} C${x + 330},${wy - 160} ${x + 330},${wy - 60} ${x + 300},${wy - 40} L${x + 230},${wy - 70} C${x + 240},${wy - 160} ${x + 200},${y + 420} ${x + 150},${y + 380}Z" fill="${top}"/><path d="M${x + 250},${y + 330} C${x + 330},${wy - 160} ${x + 330},${wy - 60} ${x + 300},${wy - 40}" stroke="#000" stroke-width="20" opacity=".15" fill="none"/>`;
   // volante
   s += `<ellipse cx="${wx}" cy="${wy + 60}" rx="360" ry="250" fill="none" stroke="#111215" stroke-width="56"/><ellipse cx="${wx}" cy="${wy + 52}" rx="360" ry="250" fill="none" stroke="#3a3c44" stroke-width="6" opacity=".7"/><path d="M${wx - 120},${wy + 140} L${wx + 120},${wy + 140} L${wx + 70},${wy + 320} L${wx - 70},${wy + 320}Z" fill="#141518"/><circle cx="${wx}" cy="${wy + 180}" r="70" fill="#1c1d22"/>`;
-  // mãos fechadas no aro (10h e 2h)
+  // antebraços com manga: ombro -> cotovelo -> punho; mão fechada no punho
   const sq = 1 + .03 * Math.sin(t * (o.grip || 0));
-  s += hand(wx - 300, wy - 30, 1.05 * sq, -60, { fist: true }) + hand(wx + 300, wy - 30, 1.05 * sq, 60, { fist: true });
+  const arm = (side, wr, rot) => {
+    const sx = x + side * 235, sy = y + 360, ex = x + side * 345, ey = wy + 20;
+    const d = `M${sx},${sy} Q${ex},${ey - 40} ${wr[0]},${wr[1]}`;
+    let a = `<path d="${d}" stroke="${top}" stroke-width="104" fill="none" stroke-linecap="round"/>`;
+    a += `<path d="${d}" stroke="#000" stroke-width="104" fill="none" stroke-linecap="round" opacity=".14" transform="translate(${side * 8},6)" style="mix-blend-mode:multiply"/>`;
+    a += `<path d="M${sx - side * 30},${sy + 10} Q${ex - side * 34},${ey - 50} ${wr[0] - side * 28},${wr[1] - 10}" stroke="#fff" stroke-width="8" fill="none" opacity=".12"/>`;
+    // dobras do tecido e punho da manga
+    a += `<path d="M${lerp(sx, ex, .55) - 30},${lerp(sy, ey, .55)} q30,14 60,0 M${lerp(sx, ex, .75) - 30},${lerp(sy, ey, .75)} q30,14 60,0" stroke="#000" stroke-width="5" fill="none" opacity=".2"/>`;
+    a += `<circle cx="${wr[0]}" cy="${wr[1]}" r="56" fill="${top}"/><circle cx="${wr[0]}" cy="${wr[1]}" r="56" fill="#000" opacity=".22"/>`;
+    a += o.slap && side < 0 ? hand(wr[0], wr[1] + 30, 1.0, 180, {}) : hand(wr[0], wr[1] - 10, 1.05 * sq, rot, { fist: true });
+    return a;
+  };
+  const wrL = o.wristL || [wx - 300, wy - 10], wrR = [wx + 300, wy - 10];
+  s += arm(-1, wrL, -60) + arm(1, wrR, 60);
   return s;
 }
 
@@ -486,12 +535,21 @@ function lucasDriving(t, o = {}) {
 const SCENES = [
   // PLANO 1 — painel: reserva
   { at: 0, z: [1.15, 1.0], c: [540, 860], f: (t, p) => fuelGauge(t, p) + vignette(true) },
-  // PLANO 2 — colado no para-brisa, noite: Lucas grande, mãos no volante, terço balançando, luz de poste no rosto
+  // PLANO 2 — colado no para-brisa: dois tapas no rádio, a música pega; terço balançando, luz de poste no rosto
   { at: 4, z: [1.0, 1.07], c: [560, 900], f: (t, p) => {
-    const music = p > .5;
-    let s = cabinClose(t, p, { x: 560, person: lucasDriving(t, { x: 560, y: 760, s: 1.75, mouth: music ? 'smile' : 'flat', brows: music ? 'neutral' : 'serious', look: music ? 0 : -8, grip: 0 }) });
-    if (music) for (let i = 0; i < 5; i++) { const k = ((t * .7 + i * .2) % 1); s += txt(780 + Math.sin(t * 2 + i) * 60, 1260 - k * 700, '♪', 64, '#ffe08a', { op: (1 - k) * .8 }); }
-    return g(s, `translate(${Math.sin(t * 1.7) * 6 + Math.sin(t * 11) * 1.5},${Math.sin(t * 2.3) * 5 + Math.sin(t * 13) * 1.5})`) + vignette();
+    // mão direita do Lucas (lado esquerdo da tela): vai ao rádio, 2 tapas (0,45 s e 0,85 s), volta ao volante
+    const rest = [260, 1410], radio = [270, 1640];
+    const tap = (c) => Math.max(0, 1 - Math.abs(t - c) / .09);
+    let k = t < .3 ? easeInOut(t / .3) : t < 1.15 ? 1 : 1 - easeInOut(clamp((t - 1.15) / .35));
+    const lift = (t > .3 && t < 1.15) ? (1 - tap(.45) - tap(.85)) * 70 : 0;
+    const wr = [lerp(rest[0], radio[0], k), lerp(rest[1], radio[1], k) - lift];
+    const hit = tap(.45) + tap(.85), on = t > 1.0 ? clamp((t - 1.0) / .25) : 0;
+    const music = t > 1.25;
+    let s = cabinClose(t, p, { x: 560, radio: { shake: hit, on }, person: lucasDriving(t, { x: 560, y: 760, s: 1.75, mouth: music ? 'smile' : 'flat', brows: music ? 'neutral' : 'serious', look: music ? 0 : -14, wristL: wr, slap: k > .5 && t < 1.15 }) });
+    if (k > .35) { const top = LUCAS.top; s += `<path d="M${wr[0] + 60},${wr[1] - 220} Q${wr[0] + 40},${wr[1] - 90} ${wr[0]},${wr[1]}" stroke="${top}" stroke-width="104" fill="none" stroke-linecap="round"/><path d="M${wr[0] + 60},${wr[1] - 220} Q${wr[0] + 40},${wr[1] - 90} ${wr[0]},${wr[1]}" stroke="#000" stroke-width="104" fill="none" stroke-linecap="round" opacity=".15" transform="translate(-8,4)"/><circle cx="${wr[0]}" cy="${wr[1]}" r="56" fill="${top}"/><circle cx="${wr[0]}" cy="${wr[1]}" r="56" fill="#000" opacity=".22"/>` + hand(wr[0] - 6, wr[1] + 40, 1.05, 172, {}); }
+    if (hit > .3) s += txt(250, 1520, 'TUM!', 80, '#fff', { w: 900, op: hit, extra: 'stroke="#000" stroke-width="10" paint-order="stroke"' });
+    if (music) for (let i = 0; i < 5; i++) { const q = (((t - 1.25) * .7 + i * .2) % 1); if (t - 1.25 < i * .25) continue; s += txt(300 + Math.sin(t * 2 + i) * 50, 1560 - q * 900, '♪', 64, '#ffe08a', { op: (1 - q) * .85 }); }
+    return g(s, `translate(${Math.sin(t * 1.7) * 6 + Math.sin(t * 11) * 1.5 + hit * 4},${Math.sin(t * 2.3) * 5 + Math.sin(t * 13) * 1.5})`) + vignette();
   } },
   // PLANO 3 — lembrança 1 (match cut): dia, avô dirigindo, Lucas criança cantando; solavanco no fim
   { at: 8, z: [1.0, 1.06], c: [540, 900], f: (t, p) => {
