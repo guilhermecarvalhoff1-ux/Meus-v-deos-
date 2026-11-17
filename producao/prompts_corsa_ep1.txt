@@ -1,33 +1,32 @@
-PROMPTS — O CORSA DO AVÔ, EP1 "O POSTO" — gerar no app do Gemini
+PROMPTS — O CORSA DO AVÔ, EP1 "O POSTO" — gerar no app do Gemini (estilo DESENHO, nada realista)
 Teste de 10 s: planos 4–5 (o Corsa entra no posto à noite) e plano 9 (frentista de baixo para cima).
-Ordem: 1 → 2 → 3 → 4, todos na MESMA conversa do Gemini.
 
-PASSO 0 — referência de estilo
-Anexe junto do prompt 1 um print do estilo que você quer (ex.: a cena da adaga).
-Ela serve só de referência de traço/luz; personagens e lugares são os da série.
-
-------------------------------------------------------------
-1) FICHA DO LUCAS (protagonista)
-------------------------------------------------------------
-Flat 2D cartoon vector illustration in the exact art style of the attached image: simple geometric shapes, clean dark outlines, flat colors with soft gradient shading, subtle fabric grain texture, cinematic lighting. NOT realistic, NOT photographic, NOT 3D render, NOT anime. Character design sheet of Lucas, a Brazilian young man about 18 years old: tan-brown skin, short dark brown hair, simple cartoon face with dot eyes and expressive eyebrows, navy blue hoodie (#2d4a7a) with fabric texture, dark jeans, worn sneakers. Three views side by side: front, back, side profile, full body, same proportions. Plus three small head expressions: embarrassed, sad, determined. Plain light gray background, no text.
+PASSO 0 — anexe no Gemini, junto do prompt 1, as DUAS imagens de producao/ref_gemini/:
+  estilo_corsa_lucas.png (o Lucas como já está na série) e estilo_adaga.png (o acabamento que você quer).
+Faça tudo na MESMA conversa.
 
 ------------------------------------------------------------
-2) O CORSA (o carro do avô)
+1) FICHA DO LUCAS
 ------------------------------------------------------------
-Same flat 2D cartoon vector style, NOT realistic, NOT 3D. An old small silver 1990s Brazilian hatchback car (inspired by a Chevrolet Corsa hatch, no logos, no brand names): faded dusty silver paint, small dents and scratches, one headlight dimmer than the other, worn bald tires, slightly loose side mirror, a wooden rosary hanging from the inner rear-view mirror visible through the windshield. Front three-quarter view from a low angle, full car, on a plain flat solid white background, no shadow on the background, no text, no license plate text.
+Cartoon drawing. Redraw the boy from the first attached image (Lucas) in the cartoon style of the second attached image. Keep it a simple flat 2D cartoon: round simple head, dot eyes, simple eyebrows, small mouth, clean outlines, flat colors with soft shading, no realistic details. He wears a navy blue hoodie, dark jeans and sneakers, short dark brown hair, tan skin. Make a character sheet: front, back and side, full body, plus 3 small faces (embarrassed, sad, determined). Plain light gray background. Not realistic, not a photo, not 3D.
 
 ------------------------------------------------------------
-3) CENÁRIO — POSTO DE GASOLINA À NOITE, vertical 9:16 (sem pessoas, sem carros)
+2) O CORSA
 ------------------------------------------------------------
-Same flat 2D cartoon vector style, NOT realistic, NOT 3D. Vertical 9:16 background: a small Brazilian neighborhood gas station at night seen from a HIGH angle, like a drone slowly descending: bright white LED canopy glowing over two fuel pumps, empty concrete forecourt with oil stains and reflections, a tall price sign with yellow border, dark city buildings with a few lit windows behind, deep blue night sky, light mist around the lights, warm orange street lamps on the side. No people, no cars, no readable text.
+Same cartoon style as before (flat 2D cartoon, clean outlines, flat colors, simple shapes, not realistic, not 3D). A cute old small silver hatchback car from the 90s, cartoon version, simple rounded shapes: dusty faded silver paint, a couple of dents, one headlight weaker than the other, bald tires, a slightly loose side mirror, a small wooden rosary hanging inside on the rear-view mirror. No logos, no text. Front three-quarter view seen from slightly below. Isolated on a plain white background.
 
 ------------------------------------------------------------
-4) FRENTISTA DE BAIXO PARA CIMA (plano 9)
+3) POSTO À NOITE (só o cenário), vertical 9:16
 ------------------------------------------------------------
-Same flat 2D cartoon vector style, NOT realistic, NOT 3D. A Brazilian gas station attendant seen from a very LOW angle looking UP (camera at waist height): middle-aged man, tan skin, thick dark mustache, blue cap and blue work shirt with a small yellow circle logo (no text), holding a fuel nozzle, trying hard not to laugh, cheeks puffed, eyes squinting with amusement. White LED canopy light from above, deep blue night sky behind him. Waist up, vertical 9:16, no text.
+Same cartoon style as before (flat 2D cartoon, simple shapes, clean outlines, flat colors with soft glow, not realistic, not 3D). Vertical 9:16 background: a small neighborhood gas station at night seen from above, like a drone shot: white glowing canopy over two simple fuel pumps, empty floor, a tall price sign with yellow border and no readable text, simple dark buildings with a few lit windows behind, dark blue night sky with a few stars, soft mist around the lights, orange street lamps. No people, no cars.
 
-SE SAIR REALISTA, responda no chat:
-"Too realistic. Redo it as a flat 2D vector cartoon exactly like the style of the image I attached: simple shapes, outlines, flat colors."
+------------------------------------------------------------
+4) FRENTISTA DE BAIXO PARA CIMA, vertical 9:16
+------------------------------------------------------------
+Same cartoon style as Lucas (flat 2D cartoon, round simple head, dot eyes, clean outlines, flat colors, not realistic, not 3D). A gas station attendant seen from a low angle looking up at him: tan skin, thick dark mustache, blue cap and blue work shirt, holding a fuel nozzle, trying not to laugh with puffed cheeks and squinting eyes. White canopy light above, dark blue night sky behind. Waist up. No text.
+
+SE AINDA SAIR REALISTA, responda no chat:
+"Too realistic. Make it a simple flat cartoon exactly like the first image I attached: round head, dot eyes, flat colors, simple shapes."
 SE O CENÁRIO VIER QUADRADO: "faça em formato vertical 9:16".
 
 DEPOIS (episódio inteiro): ficha do Avô (velho: cabelo e bigode grisalhos, camisa marrom;
