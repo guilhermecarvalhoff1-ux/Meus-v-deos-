@@ -2,7 +2,7 @@
 Quando as vozes chegarem, passe o wav das vozes: a música abaixa sob a fala."""
 import wave, sys, numpy as np
 from scipy.signal import butter, lfilter
-S, out = sys.argv[1], sys.argv[2]; SR = 44100; TOTAL = 90
+S, out = sys.argv[1], sys.argv[2]; SR = 44100; TOTAL = 95
 def load(n):
     with wave.open(f'{S}/{n}.wav') as w: return np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767
 def lp(x, f): b, a = butter(2, f / (SR / 2)); return lfilter(b, a, x)
@@ -53,7 +53,7 @@ for t in (72.6, 74.2, 75.8, 77.4): put('coracao', t, .4)
 for k in range(14): put('tecla', 78.3 + k * .17, .5)
 # 21 final A/B
 put('impacto', 83.05, .8); put('whoosh', 83.5, .5)
-put(None, 83.0, .3, src=np.tile(fast, 2)[:int(7 * SR)], fi=.3, fo=1)
+put(None, 83.0, .3, src=np.tile(fast, 3)[:int(12 * SR)], fi=.3, fo=1.5)
 # vozes (quando houver): soma e abaixa o resto sob a fala
 if len(sys.argv) > 3:
     with wave.open(sys.argv[3]) as w: v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767

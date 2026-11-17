@@ -87,7 +87,7 @@ function hand(x, y, s, rot = 0, opts = {}) {
     h += `<path d="M-20,-112 L-20,-50 M15,-120 L15,-50" stroke="${shade}" stroke-width="4" stroke-linecap="round" opacity=".55"/>`;
     h += `<path d="M30,10 C40,40 20,60 -10,60" stroke="${shade}" stroke-width="4" fill="none" opacity=".35"/>`;
   }
-  return g(h, `translate(${x},${y}) rotate(${rot}) scale(${s})`);
+  return g(h, `translate(${x},${y}) rotate(${rot}) scale(${opts.mirror ? -s : s},${s})`);
 }
 
 // =====================================================================
@@ -104,7 +104,7 @@ function face2(o) {
   if (o.must) s += `<path d="M-30,26 C-20,16 -6,20 0,24 C6,20 20,16 30,26 C24,34 10,32 0,30 C-10,32 -24,34 -30,26Z" fill="#1a1410"/>`;
   return s;
 }
-const PART = { words: 'words.json', end: 90, abTime: 84, merges: [], hl: ['a','b'] };
+const PART = { words: 'words.json', end: 95, abTime: 83, merges: [[['vinte','reais'], 'R$ 20']], hl: ['corsa','abastecer','missão','carro','teu','dia','vinte','casa','cheiro','vô','vergonha','careca','pneu','tio','embora','avô','lembrou','posto','bonito','rua','lata','ninguém','fica','risada','comenta','a','b'] };
 
 // ---------- utilidades ----------
 function pop(p, a, d = .12) { const k = seg(p, a, a + d); return k <= 0 ? 0.001 : k < 1 ? 1.25 - .25 * Math.cos(k * Math.PI) * (1 - k) - .25 * (1 - k) : 1; }
@@ -361,6 +361,7 @@ function posto(t, o = {}) {
   s += `<ellipse cx="540" cy="1200" rx="700" ry="380" fill="url(#${id}l)"/>`;
   // bombas
   for (const bx of [380, 700]) s += g(`<rect x="-60" y="-260" width="120" height="260" rx="10" fill="#e8ecf0"/><rect x="-60" y="-260" width="120" height="50" rx="10" fill="#1e5aa8"/><rect x="-40" y="-190" width="80" height="50" rx="6" fill="#0e1a10"/>` + txt(0, -152, '0,00', 26, '#7aff7a', { w: 900 }) + `<path d="M60,-120 C100,-120 100,-40 70,-20" stroke="#222" stroke-width="10" fill="none"/>`, `translate(${bx},1120)`, 'filter="url(#b2)"');
+  s += postoAtmos(t);
   return s;
 }
 function topCar(x, y, rot, col, glow) {
@@ -417,7 +418,8 @@ function ignition(t, p, turn) {
   for (let i = 0; i < 4; i++) { const on = turn > .3 && Math.sin(t * 30 + i) > 0; s += `<circle cx="${300 + i * 160}" cy="460" r="22" fill="${['#ff4a3a', '#ffb020', '#ff4a3a', '#4aff8a'][i]}" opacity="${on ? 1 : .2}" ${on ? 'filter="url(#glow)"' : ''}/>`; }
   s += g(keyIcon(0, 0, 2.2, 0), `translate(540,900) rotate(${-90 + turn * 55})`);
   s += hand(lerp(560, 600, turn), 1150, 2.2, -10 + turn * 30, { fist: true });
-  return s;
+  s += dust(66, 30, 0, 300, W, 1400, t) + `<g filter="url(#b18)"><ellipse cx="540" cy="1950" rx="700" ry="200" fill="#0e0f12"/></g>`;
+  return g(s, 'translate(540,900) scale(1.35) translate(-540,-900)');
 }
 
 
@@ -542,9 +544,35 @@ function lucasDriving(t, o = {}) {
   s += `<ellipse cx="${wx}" cy="${wy}" rx="${rx}" ry="${ry}" fill="none" stroke="#111215" stroke-width="54"/><ellipse cx="${wx}" cy="${wy - 8}" rx="${rx}" ry="${ry}" fill="none" stroke="#3a3c44" stroke-width="6" opacity=".7"/>`;
   s += `<path d="M${wx - 80},${wy + 10} L${wx - rx + 20},${wy + 20} L${wx - rx + 24},${wy + 60} L${wx - 70},${wy + 60}Z M${wx + 80},${wy + 10} L${wx + rx - 20},${wy + 20} L${wx + rx - 24},${wy + 60} L${wx + 70},${wy + 60}Z M${wx - 50},${wy + 60} L${wx + 50},${wy + 60} L${wx + 40},${wy + ry} L${wx - 40},${wy + ry}Z" fill="#17181c"/>`;
   s += `<ellipse cx="${wx}" cy="${wy + 30}" rx="110" ry="74" fill="#1c1d22" stroke="#2c2e34" stroke-width="5"/><ellipse cx="${wx - 20}" cy="${wy + 14}" rx="50" ry="20" fill="#fff" opacity=".07"/>`;
-  if (!o.noLeft) s += hand(grip(-1)[0], grip(-1)[1] - 10, .95 * sq, -60, { fist: true });
+  if (!o.noLeft) s += hand(grip(-1)[0], grip(-1)[1] - 10, .95 * sq, -60, { fist: true, mirror: true });
   if (!o.windowArm) s += hand(grip(1)[0], grip(1)[1] - 10, .95 * sq, 60, { fist: true });
   return s;
+}
+
+
+// ---------- atmosfera e camadas (padrão visual) ----------
+let __T = 0;
+function postoAtmos(t) {
+  let s = '<g style="mix-blend-mode:screen">';
+  for (let i = 0; i < 7; i++) s += `<path d="M${80 + i * 150},386 L${20 + i * 150},1300 L${160 + i * 150},1300 L${130 + i * 150},386Z" fill="#dff0ff" opacity="${.05 + .02 * Math.sin(t * 1.3 + i)}" filter="url(#b18)"/>`;
+  s += `<circle cx="70" cy="520" r="34" fill="#ffb050" filter="url(#glow2)"/><path d="M70,540 L-200,1500 L380,1500Z" fill="#ff9a3a" opacity=".12" filter="url(#b30)"/></g>`;
+  s += `<rect x="58" y="520" width="20" height="900" fill="#1a1c22"/><rect y="1050" width="${W}" height="260" fill="#c8d4ec" opacity=".08" filter="url(#b30)"/>`;
+  s += dust(55, 50, 0, 380, W, 1100, t);
+  return s;
+}
+// luz laranja de poste batendo de lado no rosto (oscila devagar)
+function orangeKey(x, y, r = 300, t = 0) { return `<circle cx="${x}" cy="${y}" r="${r}" fill="#ff9a3a" opacity="${.22 + .06 * Math.sin(t * 1.7)}" style="mix-blend-mode:screen" filter="url(#b30)"/>`; }
+// primeiro plano desfocado: bico da bomba, mangueira e para-lama
+function postoFG(t, v = 0) {
+  const sw = Math.sin(t * .8) * 10;
+  if (v === 1) return `<g filter="url(#b18)"><path d="M${W - 260 + sw},${H} C${W - 200},1500 ${W - 40},1500 ${W + 20},1380 L${W + 20},${H}Z" fill="#c8312e"/><path d="M${W - 230 + sw},${H} C${W - 180},1560 ${W - 60},1540 ${W},1450" stroke="#ff9a8a" stroke-width="10" fill="none" opacity=".4"/></g>`;
+  return `<g filter="url(#b18)"><path d="M-40,${H} C60,1500 40,1100 -20,900" stroke="#15161a" stroke-width="40" fill="none"/><g transform="translate(${30 + sw},1260) rotate(25)"><rect x="-50" y="-30" width="160" height="70" rx="20" fill="#2a2c32"/><rect x="100" y="-12" width="120" height="26" rx="10" fill="#9aa1a8"/></g></g>`;
+}
+// sobre o ombro do Lucas (dentro do carro): moldura da janela, nuca e ombro desfocados
+function overShoulder(side = -1) {
+  const x = side < 0 ? 150 : W - 150;
+  return `<g filter="url(#b18)"><path d="M${side < 0 ? -40 : W + 40},300 L${side < 0 ? 120 : W - 120},300 L${side < 0 ? 60 : W - 60},${H} L${side < 0 ? -40 : W + 40},${H}Z" fill="#9aa1a8"/>` +
+    `<path d="M${x - 330},${H} C${x - 330},1500 ${x - 200},1380 ${x},1370 C${x + 200},1380 ${x + 330},1500 ${x + 330},${H}Z" fill="${LUCAS.top}"/><ellipse cx="${x}" cy="1220" rx="170" ry="200" fill="#2a1d17"/><ellipse cx="${x + side * -150}" cy="1240" rx="26" ry="40" fill="#b8734a"/></g>`;
 }
 
 // ---------- cenas (por tempo, em segundos) ----------
@@ -563,7 +591,7 @@ const SCENES = [
     const hit = tap(.45) + tap(.85), on = t > 1.0 ? clamp((t - 1.0) / .25) : 0;
     const music = t > 1.25;
     let s = cabinClose(t, p, { x: 560, radio: { shake: hit, on }, person: lucasDriving(t, { x: 560, y: 760, s: 1.75, mouth: music ? 'smile' : 'flat', brows: music ? 'neutral' : 'serious', look: music ? 0 : -14, noLeft: 1 }) });
-    s += window.__lucasArm(-1, wr, ctrl) + (k > .4 ? hand(wr[0] - 4, wr[1] + 30, .72, 172, {}) : hand(wr[0], wr[1] - 10, .95, -60, { fist: true }));
+    s += window.__lucasArm(-1, wr, ctrl) + (k > .4 ? hand(wr[0] - 4, wr[1] + 30, .72, 172, {}) : hand(wr[0], wr[1] - 10, .95, -60, { fist: true, mirror: true }));
     if (hit > .3) s += txt(250, 1600, 'TUM!', 80, '#fff', { w: 900, op: hit, extra: 'stroke="#000" stroke-width="10" paint-order="stroke"' });
     if (music) for (let i = 0; i < 5; i++) { const q = (((t - 1.25) * .7 + i * .2) % 1); if (t - 1.25 < i * .25) continue; s += txt(300 + Math.sin(t * 2 + i) * 50, 1640 - q * 900, '♪', 64, '#ffe08a', { op: (1 - q) * .85 }); }
     return g(s, `translate(${Math.sin(t * 1.7) * 6 + Math.sin(t * 11) * 1.5 + hit * 4},${Math.sin(t * 2.3) * 5 + Math.sin(t * 13) * 1.5})`) + vignette();
@@ -604,31 +632,31 @@ const SCENES = [
     s += g(tuned(0, 0, .55, '#c8312e'), 'translate(150,1330)', 'filter="url(#b5)"') + g(tuned(0, 0, .55, '#2a6ad8', { flip: 1, glow: '#2fd0ff' }), 'translate(930,1330)', 'filter="url(#b5)"');
     const k = easeOut(seg(p, 0, .85));
     s += corsaFront(540, lerp(1330, 1640, k), lerp(.38, .95, k), { lights: 1, dim: .3 + .2 * Math.sin(t * 20), dust: 1 });
-    return s + vignette();
+    return s + postoFG(t, 0) + vignette();
   } },
   // PLANO 6 — panorâmica rápida pelos rostos virando
   { at: 18, z: [1.0, 1.0], c: [540, 960], f: (t, p) => {
     let s = posto(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".35"/>`;
     const pan = lerp(0, -2400, easeInOut(p));
     let row = '';
-    GALERA.concat([CARA1]).forEach((o, i) => { const turn = clamp((p * 5 - i * .9) * 2); row += bust({ ...o, x: 540 + i * 800, y: 760, s: 1.25, eyes: turn > .5 ? 'wide' : 'dot', mouth: turn > .7 ? 'o' : 'flat', brows: turn > .5 ? 'up' : 'neutral', look: lerp(30, -26, turn) }); });
-    s += g(row, `translate(${pan},0)`);
+    GALERA.concat([CARA1]).forEach((o, i) => { const turn = clamp((p * 5 - i * .9) * 2); row += bust({ ...o, x: 540 + i * 800, y: 700, s: 1.7, eyes: turn > .5 ? 'wide' : 'dot', mouth: turn > .7 ? 'o' : 'flat', brows: turn > .5 ? 'up' : 'neutral', look: lerp(30, -26, turn) }); });
+    s += g(row, `translate(${pan},0)`) + orangeKey(300, 700, 380, t);
     for (let i = 0; i < 8; i++) s += `<path d="M${i * 160},${300 + i * 150} h-400" stroke="#fff" stroke-width="4" opacity="${.12 * Math.sin(p * Math.PI)}"/>`;
     return s + vignette();
   } },
-  // PLANO 7 — Lucas afunda no banco; depois o terço balançando
-  { at: 21, z: [1.0, 1.08], c: [540, 860], f: (t, p) => {
-    const sink = easeOut(seg(p, .1, .5));
-    const drv = bust({ ...LUCAS, x: 740, y: 640 + sink * 110, s: .9, eyes: 'dot', mouth: 'small', brows: 'sad', look: -16 });
-    return cabin(t, { driver: drv, terco: 3, dust: 1 }) + `<rect width="${W}" height="${H}" fill="#000" opacity=".15"/>` + vignette();
+  // PLANO 7 — Lucas afunda no banco tentando parecer tranquilo; depois close extremo no terço
+  { at: 21, z: [1.0, 1.08], c: [560, 900], f: (t, p) => {
+    const sink = easeOut(seg(p, .1, .6)) * 120;
+    const s = cabinClose(t, p, { x: 560, radio: { on: 0 }, person: lucasDriving(t, { x: 560, y: 760, s: 1.75, sink, mouth: 'small', brows: 'sad', look: -18 + Math.sin(t * 3) * 6 }) });
+    return g(s, `translate(${Math.sin(t * 1.7) * 5},${Math.sin(t * 2.3) * 4})`) + vignette();
   } },
-  { at: 22.8, z: [1.0, 1.08], c: [540, 700], f: (t, p) => (() => {
-    let s = `<g filter="url(#b18)">${cabin(t, { driver: bust({ ...LUCAS, x: 740, y: 750, s: .9, eyes: 'dot', mouth: 'small', brows: 'sad' }) })}</g>`;
-    const sw = Math.sin(t * 3) * 14; let b = '';
-    for (let k = 0; k < 14; k++) { const a = (k / 13) * Math.PI; b += `<circle cx="${Math.cos(a) * 34}" cy="${Math.sin(a) * 130}" r="9" fill="#6a3a2a" stroke="#3a1a10" stroke-width="2"/>`; }
-    s += `<rect x="460" y="380" width="160" height="66" rx="16" fill="#1a1c20"/>` + g(b + `<path d="M0,130 V210 M-22,156 H22" stroke="#c9a24a" stroke-width="10" stroke-linecap="round"/>`, `translate(540,440) rotate(${sw})`);
-    return g(s, 'translate(540,820) scale(2.4) translate(-540,-560)') + vignette(true);
-  })() },
+  { at: 22.8, z: [1.0, 1.1], c: [540, 700], f: (t, p) => {
+    let s = `<g filter="url(#b18)">${cabinClose(t, p, { x: 560, terco: false, person: lucasDriving(t, { x: 560, y: 880, s: 1.75, mouth: 'small', brows: 'sad' }) })}</g>`;
+    s += lampSweep(t + 1, 1.7, .4);
+    s += g(`<rect x="-150" y="-70" width="300" height="130" rx="30" fill="#16181d"/><rect x="-130" y="-52" width="260" height="96" rx="22" fill="#2a3448"/>`, 'translate(540,260)', 'filter="url(#b5)"');
+    s += g(terco(t, Math.sin(t * 2.6) * 14 + Math.sin(t * 6.1) * 3, 3.2), 'translate(540,320)', 'filter="url(#shs)"');
+    return s + vignette(true);
+  } },
   // PLANO 8 — lembrança 2: mãos do avô pendurando o terço no carro novinho
   { at: 24, z: [1.0, 1.1], c: [540, 860], f: (t, p) => {
     let s = `<rect width="${W}" height="${H}" fill="#e8d8b8"/><g filter="url(#b18)"><rect x="0" y="900" width="${W}" height="1020" fill="#c8b48a"/><rect x="100" y="200" width="880" height="600" fill="#f8f0d8"/></g>`;
@@ -640,22 +668,26 @@ const SCENES = [
     s += `<rect x="40" y="1350" width="1000" height="10" fill="#fff" opacity=".5" filter="url(#b5)"/>` + txt(540, 1450, 'NOVINHO', 40, '#7a5a3a', { w: 800, ls: 12, op: .6 });
     return flash(s, 24);
   } },
-  // PLANO 9 — frentista de baixo para cima, segurando o riso
-  { at: 27, z: [1.0, 1.06], c: [540, 960], f: (t, p) => {
+  // PLANO 9 — frentista de baixo para cima, por cima do ombro do Lucas, segurando o riso
+  { at: 27, z: [1.0, 1.07], c: [600, 900], f: (t, p) => {
     let s = posto(t, {});
-    s += `<rect width="${W}" height="${H}" fill="#000" opacity=".3"/>`;
-    for (let i = 0; i < 9; i++) s += `<path d="M${i * 135},${H} L540,-600" stroke="#fff" stroke-width="3" opacity=".06"/>`;
+    s += `<rect width="${W}" height="${H}" fill="#000" opacity=".2"/>`;
+    for (let i = 0; i < 9; i++) s += `<path d="M${i * 135},${H} L600,-600" stroke="#fff" stroke-width="3" opacity=".05"/>`;
     const hold = Math.sin(t * 18) * 3 * seg(p, .5, 1);
-    s += pessoa({ ...FRENT, x: 540 + hold, y: 900, s: 2.1, eyes: p > .5 ? 'closed' : 'dot', mouth: p > .5 ? 'smile' : 'flat', brows: p > .3 ? 'up' : 'neutral', look: p < .4 ? lerp(-20, 20, Math.sin(t * 2) * .5 + .5) : 0 });
+    s += pessoa({ ...FRENT, x: 640 + hold, y: 860, s: 2.2, eyes: p > .5 ? 'closed' : 'dot', mouth: p > .5 ? 'smile' : 'flat', brows: p > .3 ? 'up' : 'neutral', look: p < .4 ? lerp(-20, 20, Math.sin(t * 2) * .5 + .5) : -10 });
+    s += orangeKey(380, 700, 320, t);
+    s += overShoulder(-1);
     s += panel(830, 300, 320, 140, txt(0, -6, 'SÓ', 40, '#fff', { w: 800 }) + txt(0, 48, 'R$ 20?', 70, GOLD, { w: 900 }), { s: pop(p, .55), rot: 6 });
     return s + vignette();
   } },
-  // PLANO 10 — cara 1 encostado no carro tunado, braços cruzados
-  { at: 31, z: [1.0, 1.06], c: [540, 900], f: (t, p) => {
+  // PLANO 10 — cara 1 encostado no carro tunado, braços cruzados (por cima do ombro do Lucas)
+  { at: 31, z: [1.0, 1.07], c: [520, 900], f: (t, p) => {
     let s = posto(t);
-    s += g(tuned(0, 0, 1.1, '#c8312e'), 'translate(540,1420)');
-    const laugh = seg(p, .75, 1);
-    s += laugh > 0 ? rindo({ ...CARA1, x: 540, y: 640, s: 1.45, cruzado: 1 }, t, laugh) : pessoa({ ...CARA1, x: 540, y: 640, s: 1.45, cruzado: 1, eyes: 'dot', mouth: 'smile', brows: 'serious', look: -10 });
+    s += g(tuned(0, 0, 1.1, '#c8312e'), 'translate(500,1440)');
+    const laugh = seg(p, .78, 1);
+    const o = { ...CARA1, x: 470, y: 600, s: 1.7, cruzado: 1 };
+    s += laugh > 0 ? rindo(o, t, laugh) : pessoa({ ...o, eyes: 'dot', mouth: 'smile', brows: 'serious', look: 10 });
+    s += orangeKey(250, 650, 300, t) + overShoulder(1) + postoFG(t, 0);
     return s + vignette();
   } },
   // PLANO 11 — close no retrovisor caindo, depois o cara 2 rindo
@@ -667,7 +699,7 @@ const SCENES = [
     if (p > .6) s += txt(560, 1360, 'PLEC!', 130, '#fff', { w: 900, op: 1 - seg(p, .85, 1), extra: 'stroke="#000" stroke-width="14" paint-order="stroke"' });
     return s + vignette();
   } },
-  { at: 36.4, z: [1.0, 1.1], c: [540, 760], f: (t, p) => posto(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".3"/>` + rindo({ ...CARA2, x: 540, y: 760, s: 1.7 }, t) + g(rindo({ ...MINA, x: 0, y: 0, s: 1.1 }, t + .3), 'translate(140,1100)', 'filter="url(#b10)"') + vignette() },
+  { at: 36.4, z: [1.0, 1.1], c: [600, 760], f: (t, p) => posto(t) + `<rect width="${W}" height="${H}" fill="#000" opacity=".25"/>` + g(rindo({ ...MINA, x: 0, y: 0, s: 1.1 }, t + .3), 'translate(960,900)', 'filter="url(#b10)"') + rindo({ ...CARA2, x: 620, y: 740, s: 1.85 }, t) + orangeKey(380, 640, 300, t) + overShoulder(-1) + vignette() },
   // PLANO 12 — rente ao pneu careca; alguém filmando ao fundo
   { at: 39, z: [1.0, 1.08], c: [540, 1000], f: (t, p) => {
     let s = `<g filter="url(#b10)">${posto(t)}${pessoa({ ...MINA, x: 820, y: 700, s: .9, filmando: 1, eyes: 'dot', mouth: 'smile' })}</g>`;
@@ -685,10 +717,9 @@ const SCENES = [
     s += panel(540, 280, 520, 120, txt(0, 22, `TENTATIVA ${p < .55 ? 1 : 2}`, 66, '#fff', { w: 900 }), { s: 1 });
     return g(s, `translate(${turn > .5 ? Math.sin(t * 60) * 6 : 0},0)`) + vignette(true);
   } },
-  { at: 45.4, z: [1.0, 1.15], c: [540, 760], f: (t, p) => {
-    const drv = bust({ ...LUCAS, x: 740, y: 640, s: .9, eyes: 'wide', mouth: 'small', brows: 'sad', sweat: t, look: -14 });
-    let s = cabin(t, { driver: drv, dust: 1 });
-    return g(s, `translate(-340,-150) scale(1.4)`) + vignette(true);
+  { at: 45.4, z: [1.0, 1.12], c: [560, 760], f: (t, p) => {
+    const s = cabinClose(t, p, { x: 560, person: lucasDriving(t, { x: 560, y: 760, s: 1.75, eyes: 'wide', mouth: 'small', brows: 'sad', sweat: t, look: -14, grip: 9 }) });
+    return g(s, `translate(${Math.sin(t * 1.7) * 5},${Math.sin(t * 2.3) * 4})`) + vignette(true);
   } },
   { at: 46.6, z: [1.0, 1.05], c: [540, 900], f: (t, p) => {
     const turn = Math.max(0, Math.sin(seg(p, 0, 1) * Math.PI)) * (1 + Math.sin(t * 40) * .05);
@@ -699,23 +730,21 @@ const SCENES = [
     let s = posto(t);
     GALERA.forEach((o, i) => { const cough = seg(p, .45, .6); s += g(cough > 0 ? rindo({ ...o, x: 0, y: 0, s: .55 }, t + i, .4) : bust({ ...o, x: 0, y: 0, s: .55, eyes: 'closed', mouth: 'open', brows: 'up' }), `translate(${220 + i * 210},${1000 + (i % 2) * 30})`, 'filter="url(#b5)"'); });
     const go = p > .35, shake = go ? Math.sin(t * 70) * 4 : Math.sin(t * 50) * 2;
-    s += corsaRear(540 + shake, 1720, 1.15, { dust: 1, brake: go ? .8 : 0 });
+    s += corsaRear(540 + shake, 1720, 1.15, { dust: 1, brake: go ? .8 : 0 }) + postoFG(t, 1);
     const sm = seg(p, .35, 1);
     if (sm > 0) { const r = rng(12); for (let i = 0; i < 26; i++) { const k = clamp(sm * 1.4 - i * .03); if (k <= 0) continue; s += `<circle cx="${780 + (r() - .3) * 900 * k}" cy="${1650 - r() * 900 * k}" r="${40 + k * (120 + r() * 120)}" fill="${['#9a9a9a', '#7a7a7a', '#b0b0b0'][i % 3]}" opacity="${.75 * (1 - k * .5)}" filter="url(#b18)"/>`; } }
     s += panel(540, 260, 560, 120, txt(0, 22, p > .35 ? 'TENTATIVA 3 ✓' : 'TENTATIVA 3', 66, p > .35 ? '#7aff9a' : '#fff', { w: 900 }), {});
     if (p > .55) s += txt(300, 760, 'COF! COF!', 80, '#fff', { w: 900, extra: 'stroke="#000" stroke-width="10" paint-order="stroke" transform="rotate(-8,300,760)"' });
     return s + vignette();
   } },
-  // PLANO 15 — mão apertando o volante (som abafado)
-  { at: 52, z: [1.0, 1.1], c: [540, 900], f: (t, p) => {
+  // PLANO 15 — close na mão apertando o volante; tudo abafado, como debaixo d'água
+  { at: 52, z: [1.0, 1.12], c: [300, 1450], f: (t, p) => {
     const id = uid('uw');
-    let s = `<defs><filter id="${id}"><feTurbulence type="turbulence" baseFrequency="0.008 0.02" numOctaves="2" seed="${Math.floor(t * 6)}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="26"/></filter></defs>`;
-    let bgx = `<g filter="url(#b18)">${posto(t)}</g><rect width="${W}" height="${H}" fill="#0a2a4a" opacity=".45"/>`;
-    bgx += `<path d="M-200,1500 C200,700 900,700 1300,1500" stroke="#141416" stroke-width="140" fill="none"/>`;
-    const grip = .5 + .5 * Math.sin(t * 4);
-    bgx += hand(560, 980, 2.6 + grip * .05, -10, { fist: true, sleeve: LUCAS.top });
-    for (let i = 0; i < 5; i++) { const k = (t * .4 + i * .2) % 1; bgx += `<circle cx="${200 + i * 170}" cy="${1700 - k * 1400}" r="${8 + i * 3}" fill="none" stroke="#bfe6ff" stroke-width="3" opacity="${.5 * (1 - k)}"/>`; }
-    s += `<g filter="url(#${id})">${bgx}</g>`;
+    let in1 = cabinClose(t, p, { x: 560, person: lucasDriving(t, { x: 560, y: 760, s: 1.75, mouth: 'flat', brows: 'serious', grip: 14 }) });
+    in1 = g(in1, 'translate(420,1250) scale(2.7) translate(-262,-1470)');
+    let s = `<defs><filter id="${id}"><feTurbulence type="turbulence" baseFrequency="0.006 0.018" numOctaves="2" seed="${Math.floor(t * 6)}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="22"/></filter></defs>`;
+    s += `<g filter="url(#${id})">${in1}<rect width="${W}" height="${H}" fill="#0a2a4a" opacity=".35"/></g>`;
+    for (let i = 0; i < 6; i++) { const k = (t * .4 + i / 6) % 1; s += `<circle cx="${150 + i * 150}" cy="${1800 - k * 1500}" r="${8 + i * 3}" fill="none" stroke="#bfe6ff" stroke-width="3" opacity="${.45 * (1 - k)}"/>`; }
     return s + vignette(true);
   } },
   // PLANO 16 — lembrança 3: estrada no pôr do sol, travelling lateral
@@ -801,10 +830,12 @@ const SCENES = [
     const gl = .5 + .5 * Math.sin(t * 4);
     s += `<path d="${BODY}" transform="translate(560,1640) scale(.9) translate(0,40)" fill="none" stroke="#d58cff" stroke-width="7" stroke-dasharray="18 10" opacity="${.5 + .5 * gl}" filter="url(#glow)"/>`;
     s += g(`<circle r="64" fill="none" stroke="#d58cff" stroke-width="7" stroke-dasharray="12 8" filter="url(#glow)"/>`, 'translate(366,1574)') + g(`<circle r="64" fill="none" stroke="#d58cff" stroke-width="7" stroke-dasharray="12 8" filter="url(#glow)"/>`, 'translate(812,1574)');
-    s += txt(560, 1310, 'JDM?', 60, '#d58cff', { w: 900, op: gl });
     s += `<circle cx="150" cy="1130" r="90" fill="#c04dff"/>` + txt(150, 1166, 'B', 110, '#111', { w: 900 }) + `</g>`;
     s += `<rect y="930" width="${W}" height="60" fill="#0b0b0f"/>` + txt(540, 980, 'COMENTA AÍ', 92, '#fff', { w: 900, extra: `stroke="#000" stroke-width="12" paint-order="stroke" transform="translate(540,960) scale(${pop(p, .2) * (1 + .03 * Math.sin(t * 6))}) translate(-540,-960)"` });
     return s;
   } },
 ];
 const easeInOut = ease;
+const __bustBase = bust;
+bust = function (o) { const b = { ...o }; if (b.breath == null) b.breath = __T; if (b.blink == null && (!b.eyes || b.eyes === 'dot' || b.eyes === 'wide')) b.blink = blinkAt(__T + (b.x || 0) * .0013, 3.4); return __bustBase(b); };
+SCENES.forEach(sc => { const f = sc.f; sc.f = (t, p, d) => { __T = (sc.at || 0) + t; return f(t, p, d); }; });
