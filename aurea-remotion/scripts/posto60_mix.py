@@ -29,7 +29,7 @@ put(None, 13.5, .45, src=loop('grilo', 2), fi=.2, fo=.5); put('magia', 15.35, .2
 # 18–34 comédia: música animada
 tr = load('trilha'); fast = np.interp(np.arange(0, len(tr) - 1, 1.12), np.arange(len(tr)), tr)
 put(None, 17.9, .3, src=np.tile(fast, 4)[:int(16.4 * SR)], fi=.4, fo=.3)
-put('whoosh', 24.75, .3); put('plec', 25.15, 1.0); put('impacto', 25.15, .35)
+put('whoosh', 24.85, .3); put('plec', 25.25, 1.0); put('impacto', 25.25, .35)
 for t in (28.0, 28.6, 29.2): put('impacto', t, .3)
 put('arranque_falha', 30.15, .8, dur=.9, fo=.2); put('arranque_falha', 31.85, .8, dur=.75, fo=.2)
 put('motor_pega', 32.4, .9); put('whoosh', 33.2, .6)

@@ -14,7 +14,7 @@ FALAS = [  # versão curta: (arquivo, recorte_ini, recorte_fim, posição, trech
  ('Avo.wav', 0.0, 1.55, 15.4, [(.19, 1.39, '"Esse carro / vai ser teu / um dia."')]),
  ('Frentista.wav', 0.0, 3.43, 17.65, [(.36, .98, '"Completa…'), (1.23, 3.40, 'ou só vinte reais / pra ele / chegar em casa?"')]),
  ('Cara_1.wav', 0.0, 3.43, 20.95, [(.24, .53, '"Ô,'), (.78, 3.40, 'esse aí veio / com o vô junto / ou só o cheiro?"')]),
- ('Cara_2.wav', 0.0, 2.2, 25.2, [(.45, 1.87, '"Até o carro / tá com vergonha, mano!"')]),
+ ('Cara_2.wav', 0.0, 2.2, 25.3, [(.45, 1.87, '"Até o carro / tá com vergonha, mano!"')]),
  ('Cara_3.wav', 0.0, 3.43, 26.95, [(.37, 1.20, '"Esse pneu'), (1.39, 3.03, 'é mais careca / que o meu tio."')]),
  ('Narrac_a_o.wav', 5.60, 10.60, 34.0, [(5.76, 8.22, 'Ele podia / ter ido embora / rindo junto.'), (8.89, 10.48, 'Mas ele lembrou / do avô.')], 1.08),
  ('Avo.wav', 1.55, 3.6, 38.6, [(1.69, 2.55, '"Segura firme,'), (2.79, 3.55, 'que ele é teu."')]),
@@ -46,5 +46,7 @@ for fala in FALAS:
 mix = mix / max(1e-9, np.max(np.abs(mix))) * .95
 with wave.open(os.path.join(D, 'vozes.wav'), 'w') as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((mix * 32767).astype(np.int16).tobytes())
+for w in words:
+    if w['text'] == 'cheiro?"': w['hold'] = .12  # legenda do cara 1 sai antes do corte para o retrovisor
 json.dump({'words': words}, open(os.path.join(D, 'words.json'), 'w'), ensure_ascii=False)
 print(len(words), 'palavras; última termina em', words[-1]['end'])

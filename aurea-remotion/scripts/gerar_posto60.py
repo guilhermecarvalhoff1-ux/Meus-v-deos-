@@ -12,7 +12,7 @@ s += '''
 // ===== versão curta (60 s): reordena as cenas do episódio completo e põe um gancho na frente =====
 (function () {
   const byAt = {}; SCENES.forEach(sc => { byAt[sc.at] = sc; });
-  const MAP = [[0, 3], [4, 6], [12, 10], [15, 12], [22.8, 14], [24, 15.3], [27, 17.9], [31, 21.1], [35, 24.4], [36.3, 25.5], [39, 27.2],
+  const MAP = [[0, 3], [4, 6], [12, 10], [15, 12], [22.8, 14], [24, 15.3], [27, 17.9], [31, 21.1], [35, 24.5], [36.3, 25.6], [39, 27.2],
     [43, 30], [44.7, 31.1], [45.6, 31.8], [46.9, 32.6], [50.4, 34], [59.4, 38], [64.4, 42], [69.4, 47], [72.5, 48.5], [81.5, 50]];
   const mirror = byAt[35], cara2 = byAt[36.3];
   const picked = MAP.map(([o, n]) => { const sc = byAt[o]; sc.at = n; return sc; });

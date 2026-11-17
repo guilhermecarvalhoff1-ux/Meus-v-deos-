@@ -34,7 +34,7 @@ function buildCaptions(words) {
     }
     if (done) continue;
     const w = words[i];
-    toks.push({ t: w.text.replace(/"/g, ''), s: w.start, e: w.end, hl: false, br: w.br });
+    toks.push({ t: w.text.replace(/"/g, ''), s: w.start, e: w.end, hl: false, br: w.br, hold: w.hold });
     i++;
   }
   // regra especial: A e B no fim só destacam quando são as opções
@@ -50,7 +50,7 @@ function buildCaptions(words) {
     if (/[.,:…!?]$/.test(tk.t)) flush();
   }
   flush();
-  window.AUREA_CHUNKS = CHUNKS = chunks.map((c, i) => ({ s: c[0].s, e: Math.min(chunks[i + 1] ? chunks[i + 1][0].s : 1e9, c[c.length - 1].e + .8), toks: c }));
+  window.AUREA_CHUNKS = CHUNKS = chunks.map((c, i) => ({ s: c[0].s, e: Math.min(chunks[i + 1] ? chunks[i + 1][0].s : 1e9, c[c.length - 1].e + (c[c.length - 1].hold ?? .8)), toks: c }));
 }
 function captionSVG(t) {
   const c = CHUNKS.find(c => t >= c.s - 0.03 && t < c.e);
