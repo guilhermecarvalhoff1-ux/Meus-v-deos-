@@ -10,7 +10,8 @@ def load(n):
 # (arquivo, recorte_ini, recorte_fim, posição no vídeo, [(trecho_ini, trecho_fim, frase), ...]) — tempos dos trechos dentro do arquivo
 FALAS = [
  ('Narrac_a_o.wav', 0.30, 5.05, 0.20, [(.44, 2.08, 'Primeiro dia com o Corsa.'), (2.56, 3.68, 'E primeira missão:'), (4.15, 4.94, 'abastecer.')]),
- ('Avo.wav', 0.0, 3.6, 24.0, [(.19, 1.39, '"Esse carro'), (1.69, 2.55, 'vai ser teu'), (2.79, 3.55, 'um dia."')]),
+ ('Avo.wav', 0.0, 1.55, 24.3, [(.19, 1.39, '"Esse carro vai ser teu um dia."')]),
+ ('Avo.wav', 1.55, 3.6, 63.2, [(1.69, 2.55, '"Segura firme,'), (2.79, 3.55, 'que ele é teu."')]),
  ('Frentista.wav', 0.0, 3.43, 27.0, [(.36, .98, '"Completa…'), (1.23, 3.40, 'ou só vinte reais pra ele chegar em casa?"')]),
  ('Cara_1.wav', 0.0, 3.43, 31.0, [(.24, .53, '"Ô,'), (.78, 3.40, 'esse aí veio com o vô junto ou só o cheiro?"')]),
  ('Cara_2.wav', 0.0, 2.2, 36.2, [(.45, 1.87, '"Até o carro tá com vergonha, mano!"')]),

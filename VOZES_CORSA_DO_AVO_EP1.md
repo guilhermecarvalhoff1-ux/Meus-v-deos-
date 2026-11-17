@@ -14,7 +14,6 @@ Vozes recebidas e encaixadas (`aurea-remotion/public/posto/vozes/`), montadas po
 | Narração (3º trecho) | "Nesse mesmo posto, o Corsa já foi o carro mais bonito da rua." | 67,4 s |
 | Narração (4º trecho) | "A: vende essa lata... Comenta aí." | 83,2 s (vídeo vai até 95 s) |
 
-**Falta:** a 2ª fala do avô, "Segura firme, que ele é teu." (plano 17, ~63,6 s). O arquivo Avo tem só uma fala;
-foi usada no plano 8. Quando chegar, acrescentar em `FALAS` no `posto_vozes.py`.
+As duas falas do avô estão no mesmo arquivo: "Esse carro vai ser teu um dia." (plano 8, 24,3 s) e "Segura firme, que ele é teu." (plano 17, 63,2 s).
 
 As palavras foram alinhadas pelas pausas de cada gravação (não foi possível baixar o modelo de transcrição).
