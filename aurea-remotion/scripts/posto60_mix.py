@@ -37,16 +37,16 @@ for t in (33.6, 34.0): put('tosse', t, .55)
 put('trombone', 33.5, .5, dur=2.0, fo=.8)
 # 34–39 tudo abafado
 slow = lp(np.interp(np.arange(0, len(tr) - 1, .85), np.arange(len(tr)), tr), 500)
-put(None, 34.3, .45, src=np.tile(slow, 3)[:int(4.8 * SR)], fi=.3, fo=.5)
-for t in (34.6, 35.5, 36.4, 37.3): put('coracao', t, .45)
+put(None, 34.0, .45, src=np.tile(slow, 3)[:int(4.0 * SR)], fi=.3, fo=.5)
+for t in (34.3, 35.2, 36.1, 37.0): put('coracao', t, .45)
 # 39–47 lembranças
-put('vento', 39.1, .3, dur=3, fo=1); put('fita_limpa', 39.1, .22, dur=3, fi=.5, fo=.6); put('riser', 44.0, .35)
+put('vento', 38.0, .3, dur=4, fo=1); put('fita_limpa', 38.0, .22, dur=4, fi=.5, fo=.6); put('riser', 44.0, .35)
 # 47–49 câmera lenta
-put(None, 47.0, .25, src=np.tile(slow, 2)[:int(5.8 * SR)], fi=.4, fo=.4)
-for t in (47.4, 48.6, 50.0, 51.4): put('coracao', t, .4)
+put(None, 47.0, .25, src=np.tile(slow, 2)[:int(3.0 * SR)], fi=.4, fo=.4)
+for t in (47.4, 48.5, 49.5): put('coracao', t, .4)
 # 49–60 final A/B
-put('impacto', 52.85, .8); put('whoosh', 53.4, .5); put('impacto', 57.57, .7)
-put(None, 52.8, .3, src=np.tile(fast, 2)[:int(7.2 * SR)], fi=.3, fo=1.2)
+put('impacto', 50.05, .8); put('whoosh', 50.6, .5); put('impacto', 55.32, .7)
+put(None, 50.0, .3, src=np.tile(fast, 2)[:int(10 * SR)], fi=.3, fo=1.5)
 # vozes (quando houver): soma e abaixa o resto sob a fala
 if len(sys.argv) > 3:
     with wave.open(sys.argv[3]) as w: v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32767

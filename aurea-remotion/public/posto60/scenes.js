@@ -104,7 +104,7 @@ function face2(o) {
   if (o.must) s += `<path d="M-30,26 C-20,16 -6,20 0,24 C6,20 20,16 30,26 C24,34 10,32 0,30 C-10,32 -24,34 -30,26Z" fill="#1a1410"/>`;
   return s;
 }
-const PART = { words: 'words.json', end: 60, abTime: 52.8, manualChunks: true, noCapsFrom: 52.8, merges: [], hl: ['vinte','corsa','abastecer','missão','carro','teu','dia','casa','cheiro','vô','vergonha','careca','pneu','tio','embora','avô','lembrou','firme','posto','bonito','rua','melhor','projeto','comenta','junto'] };
+const PART = { words: 'words.json', end: 60, abTime: 50, manualChunks: true, noCapsFrom: 50, merges: [], hl: ['vinte','corsa','abastecer','missão','carro','teu','dia','casa','cheiro','vô','vergonha','careca','pneu','tio','embora','avô','lembrou','firme','posto','bonito','rua','melhor','projeto','comenta','junto'] };
 
 // ---------- utilidades ----------
 function pop(p, a, d = .12) { const k = seg(p, a, a + d); return k <= 0 ? 0.001 : k < 1 ? 1.25 - .25 * Math.cos(k * Math.PI) * (1 - k) - .25 * (1 - k) : 1; }
@@ -864,13 +864,13 @@ const SCENES = [
   { at: 81.5, z: [1.0, 1.03], c: [540, 960], f: (t, p) => {
     const id = uid('fn'), T = __T, CH = window.AUREA_CHUNKS || [];
     const ch = CH.find(c => T >= c.s - .03 && T < c.e) || null;
-    const bStart = (CH.find(c => c.s > 52 && /^ou$/i.test(c.toks[0].t)) || { s: 1e9 }).s;
-    const cStart = (CH.find(c => c.s > 52 && /^comenta/i.test(c.toks[0].t)) || { s: 1e9 }).s;
+    const bStart = (CH.find(c => c.s > 49.5 && /^ou$/i.test(c.toks[0].t)) || { s: 1e9 }).s;
+    const cStart = (CH.find(c => c.s > 49.5 && /^comenta/i.test(c.toks[0].t)) || { s: 1e9 }).s;
     const cap = (c, x, y, size) => { if (!c) return ''; const sc = T - c.s < .1 ? lerp(.85, 1, (T - c.s) / .1) : 1; return `<g transform="translate(${x},${y}) scale(${sc})"><text font-family="RC" font-weight="900" font-size="${size}" text-anchor="start" stroke="#000" stroke-width="12" stroke-linejoin="round" paint-order="stroke">${c.toks.map((k, i) => { const w = k.t.replace(/[.,:…!?]+$/, ''); const hl = /^(avô|melhor|corsa|projeto|A|B)$/i.test(w); return `<tspan fill="${hl ? GOLD : '#fff'}">${(i ? ' ' : '') + w.toUpperCase()}</tspan>`; }).join('')}</text></g>`; };
     let s = `<defs><clipPath id="${id}a"><rect width="${W}" height="930"/></clipPath><clipPath id="${id}b"><rect y="990" width="${W}" height="930"/></clipPath></defs>`;
     const actA = T < bStart, actB = T >= bStart && T < cStart;
     s += `<g clip-path="url(#${id}a)" opacity="${actB ? .55 : 1}">${lab(t, { glow: '#ffc928' })}`;
-    { const k = easeInOut(clamp((T - 53.5) / .8)); s += g(corsa(0, 0, .42, { dust: 1 }) + txt(0, 70, 'VENDE', 44, '#ff6a5a', { w: 900 }), `translate(${lerp(330, 250, k)},640) scale(${lerp(1, .85, k)})`, `opacity="${lerp(1, .6, k)}"`);
+    { const k = easeInOut(clamp((T - 51.4) / .8)); s += g(corsa(0, 0, .42, { dust: 1 }) + txt(0, 70, 'VENDE', 44, '#ff6a5a', { w: 900 }), `translate(${lerp(330, 250, k)},640) scale(${lerp(1, .85, k)})`, `opacity="${lerp(1, .6, k)}"`);
       s += g(`<path d="M-70,0 H50 M20,-34 L60,0 L20,34" stroke="${GOLD}" stroke-width="18" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`, `translate(540,560) scale(${k || .001})`);
       s += g(newCar(0, 0, .42, '#c8312e') + txt(0, 70, 'UM MELHOR', 44, GOLD, { w: 900 }), `translate(${lerp(1100, 820, k)},640)`, `opacity="${k}"`); }
     s += `<circle cx="140" cy="190" r="90" fill="${GOLD}"/>` + txt(140, 226, 'A', 110, '#111', { w: 900 }) + `</g>`;
@@ -882,7 +882,7 @@ const SCENES = [
     s += txt(560, 1360, 'PROJETO', 54, '#d58cff', { w: 900, ls: 6, op: .9 }) + `<circle cx="140" cy="1110" r="90" fill="#c04dff"/>` + txt(140, 1146, 'B', 110, '#111', { w: 900 }) + `</g>`;
     s += `<rect y="930" width="${W}" height="60" fill="#0b0b0f"/>`;
     // falas: A só ao lado do A, B só ao lado do B
-    if (ch && actA && T > 52.9) s += cap(ch, 260, 220, 66);
+    if (ch && actA && T > 50.1) s += cap(ch, 260, 220, 66);
     if (ch && actB) s += cap(ch, 260, 1140, 66);
     // COMENTA AÍ: uma vez só, no centro, no fim
     if (T >= cStart) { const k = pop(T - cStart, 0, .18); s += `<rect width="${W}" height="${H}" fill="#000" opacity="${.45 * Math.min(1, (T - cStart) * 4)}"/>` + txt(540, 1000, 'COMENTA AÍ', 140, '#fff', { w: 900, extra: `stroke="#000" stroke-width="16" paint-order="stroke" transform="translate(540,960) scale(${k * (1 + .03 * Math.sin(t * 6))}) translate(-540,-960)"` }) + txt(540, 1110, 'A OU B?', 70, GOLD, { w: 900, op: Math.min(1, (T - cStart) * 3), extra: 'stroke="#000" stroke-width="10" paint-order="stroke"' }); }
@@ -898,7 +898,7 @@ SCENES.forEach(sc => { const f = sc.f; sc.f = (t, p, d) => { __T = (sc.at || 0) 
 (function () {
   const byAt = {}; SCENES.forEach(sc => { byAt[sc.at] = sc; });
   const MAP = [[0, 3], [4, 6], [12, 10], [15, 12], [22.8, 14], [24, 15.3], [27, 17.9], [31, 21.1], [35, 24.4], [36.3, 25.5], [39, 27.2],
-    [43, 30], [44.7, 31.1], [45.6, 31.8], [46.9, 32.6], [50.4, 34.3], [59.4, 39.1], [64.4, 42.1], [69.4, 47], [72.5, 49.8], [81.5, 52.8]];
+    [43, 30], [44.7, 31.1], [45.6, 31.8], [46.9, 32.6], [50.4, 34], [59.4, 38], [64.4, 42], [69.4, 47], [72.5, 48.5], [81.5, 50]];
   const mirror = byAt[35], cara2 = byAt[36.3];
   const picked = MAP.map(([o, n]) => { const sc = byAt[o]; sc.at = n; return sc; });
   const title = (t) => {

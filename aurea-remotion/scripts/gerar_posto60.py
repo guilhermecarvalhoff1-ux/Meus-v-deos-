@@ -4,16 +4,16 @@ import os
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'public')
 s = open(os.path.join(R, 'posto', 'scenes.js')).read()
 a = s.index("const PART = {"); b = s.index("};", a) + 2
-s = s[:a] + "const PART = { words: 'words.json', end: 60, abTime: 52.8, manualChunks: true, noCapsFrom: 52.8, merges: [], hl: ['vinte','corsa','abastecer','missão','carro','teu','dia','casa','cheiro','vô','vergonha','careca','pneu','tio','embora','avô','lembrou','firme','posto','bonito','rua','melhor','projeto','comenta','junto'] };" + s[b:]
+s = s[:a] + "const PART = { words: 'words.json', end: 60, abTime: 50, manualChunks: true, noCapsFrom: 50, merges: [], hl: ['vinte','corsa','abastecer','missão','carro','teu','dia','casa','cheiro','vô','vergonha','careca','pneu','tio','embora','avô','lembrou','firme','posto','bonito','rua','melhor','projeto','comenta','junto'] };" + s[b:]
 assert s.count("c.s > 78") == 2 and "T > 81.6" in s and "(T - 82.2)" in s
-s = s.replace("c.s > 78", "c.s > 52").replace("T > 81.6", "T > 52.9").replace("(T - 82.2)", "(T - 53.5)")
+s = s.replace("c.s > 78", "c.s > 49.5").replace("T > 81.6", "T > 50.1").replace("(T - 82.2)", "(T - 51.4)")
 s = s.replace("// O CORSA DO AVÔ — EP1 O POSTO", "// O CORSA DO AVÔ — EP1 O POSTO (VERSÃO CURTA, 60 s) — gerado por scripts/gerar_posto60.py", 1)
 s += '''
 // ===== versão curta (60 s): reordena as cenas do episódio completo e põe um gancho na frente =====
 (function () {
   const byAt = {}; SCENES.forEach(sc => { byAt[sc.at] = sc; });
   const MAP = [[0, 3], [4, 6], [12, 10], [15, 12], [22.8, 14], [24, 15.3], [27, 17.9], [31, 21.1], [35, 24.4], [36.3, 25.5], [39, 27.2],
-    [43, 30], [44.7, 31.1], [45.6, 31.8], [46.9, 32.6], [50.4, 34.3], [59.4, 39.1], [64.4, 42.1], [69.4, 47], [72.5, 49.8], [81.5, 52.8]];
+    [43, 30], [44.7, 31.1], [45.6, 31.8], [46.9, 32.6], [50.4, 34], [59.4, 38], [64.4, 42], [69.4, 47], [72.5, 48.5], [81.5, 50]];
   const mirror = byAt[35], cara2 = byAt[36.3];
   const picked = MAP.map(([o, n]) => { const sc = byAt[o]; sc.at = n; return sc; });
   const title = (t) => {

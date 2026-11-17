@@ -16,10 +16,10 @@ FALAS = [  # versão curta: (arquivo, recorte_ini, recorte_fim, posição, trech
  ('Cara_1.wav', 0.0, 3.43, 20.95, [(.24, .53, '"Ô,'), (.78, 3.40, 'esse aí veio / com o vô junto / ou só o cheiro?"')]),
  ('Cara_2.wav', 0.0, 2.2, 25.2, [(.45, 1.87, '"Até o carro / tá com vergonha, mano!"')]),
  ('Cara_3.wav', 0.0, 3.43, 26.95, [(.37, 1.20, '"Esse pneu'), (1.39, 3.03, 'é mais careca / que o meu tio."')]),
- ('Narrac_a_o.wav', 5.60, 10.60, 34.25, [(5.76, 8.22, 'Ele podia / ter ido embora / rindo junto.'), (8.89, 10.48, 'Mas ele lembrou / do avô.')]),
- ('Avo.wav', 1.55, 3.6, 39.15, [(1.69, 2.55, '"Segura firme,'), (2.79, 3.55, 'que ele é teu."')]),
- ('Narrac_a_o.wav', 11.15, 15.90, 42.05, [(11.31, 12.62, 'Nesse mesmo posto,'), (12.95, 15.76, 'o Corsa já foi / o carro mais bonito / da rua.')]),
- ('Narrac_a_o_2.wav', 0.15, 5.55, 52.85, [(.30, 2.10, 'A: ele vende / o carro do avô / e compra um melhor.'), (2.29, 2.63, 'Ou B:'), (3.04, 4.62, 'fica com o Corsa / e faz um projeto.'), (4.87, 5.28, 'Comenta aí!')]),
+ ('Narrac_a_o.wav', 5.60, 10.60, 34.0, [(5.76, 8.22, 'Ele podia / ter ido embora / rindo junto.'), (8.89, 10.48, 'Mas ele lembrou / do avô.')], 1.08),
+ ('Avo.wav', 1.55, 3.6, 38.6, [(1.69, 2.55, '"Segura firme,'), (2.79, 3.55, 'que ele é teu."')]),
+ ('Narrac_a_o.wav', 11.15, 15.90, 41.9, [(11.31, 12.62, 'Nesse mesmo posto,'), (12.95, 15.76, 'o Corsa já foi / o carro mais bonito / da rua.')]),
+ ('Narrac_a_o_2.wav', 0.15, 5.55, 50.6, [(.30, 2.10, 'A: ele vende / o carro do avô / e compra um melhor.'), (2.29, 2.63, 'Ou B:'), (3.04, 4.62, 'fica com o Corsa / e faz um projeto.'), (4.87, 5.28, 'Comenta aí!')]),
 ]
 TOTAL = 60
 COLA = {'"Ô,', 'A:', 'B:'}
