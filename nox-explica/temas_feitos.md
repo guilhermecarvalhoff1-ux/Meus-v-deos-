@@ -6,3 +6,4 @@
 | 2 | Tubarão é mais velho que árvore | curiosidade (natureza) — só roteirizado | — |
 | 3 | Caso Suzane e a mídia | polêmica (Brasil) | `NOX_EXPLICA_03.mp4` |
 | 4 | Oxford é mais velha que o Império Asteca (asteca ≠ maia; Bolonha 1088) | curiosidade (história) | `episodios/04-oxford-astecas/` |
+| 5 | Apagão mundial de 17/11/2026 que não aconteceu (Simpsons 2023, teste de alerta EUA, kit 72 h; regional ≠ mundial) | assunto do momento / polêmica leve (mundo + Brasil) — sem voz | `episodios/05-apagao-17-novembro/` |
