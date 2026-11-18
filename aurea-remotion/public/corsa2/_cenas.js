@@ -10,7 +10,7 @@ function face2(o) {
   return s;
 }
 const JF = { hair: 'none', top: '#35557f', outfit: 'shirt', cap: '#c0392b', must: '#bdbdbd', beard: '#bdbdbd' };
-const LF = { hair: 'short', hairCol: '#2a1d17', top: '#2f4f86', outfit: 'hoodie' };
+const LF = LUCAS;
 
 // ---------- objetos ----------
 function ponteira(x, y, s, t, o = {}) {
@@ -77,6 +77,17 @@ function oficinaPorta(t, o = {}) {
   return s;
 }
 
+
+// ===== visual igual ao Ep1: cenário da garagem do Ep1 + atmosfera do posto + mesmos personagens =====
+function oficina(t, o = {}) {
+  let s = garage(t, { lightR: 640 });
+  s += `<g filter="url(#b5)">${[0, 1, 2].map(k => `<ellipse cx="930" cy="${1090 - k * 64}" rx="120" ry="38" fill="#141416" stroke="#26272c" stroke-width="20"/>`).join('')}</g>`;
+  s += `<rect x="20" y="900" width="560" height="34" fill="#5a4030"/><rect x="40" y="934" width="26" height="216" fill="#2a2420"/><rect x="530" y="934" width="26" height="216" fill="#2a2420"/>`;
+  s += `<g style="mix-blend-mode:screen">${[0, 1, 2, 3].map(i => `<path d="M${430 + i * 40},250 L${120 + i * 160},1500 L${260 + i * 160},1500 L${470 + i * 40},250Z" fill="#ffe2b0" opacity="${.05 + .02 * Math.sin(t * 1.3 + i)}" filter="url(#b18)"/>`).join('')}</g>`;
+  return s;
+}
+function grade(t) { return vignette(); }
+
 // ---------- cenas ----------
 const EP2 = [
   // GANCHO 0–3: ponteira torta tremendo, "FÓÓÓN", gato fugindo
@@ -96,8 +107,8 @@ const EP2 = [
   { at: 3, z: [1.0, 1.06], c: [540, 1150], f: (t, p) => {
     let s = oficina(t);
     s += corsa(640, 1470, .95, { dust: 1 });
-    s += rig(CH.jorge, { x: 250, y: 1560, s: 1.25, pose: POSE.stand(t), face: { mouth: 'flat', brows: 'serious', blink: blinkAt(t, 3.3), look: 2 } });
-    s += rig(CH.lucas, { x: lerp(1200, 720, easeOut(clamp(t / 3.5))), y: 1760, s: 1.4, flip: 1, pose: t < 3.5 ? POSE.walk(t) : POSE.stand(t), face: { mouth: 'smile', blink: blinkAt(t, 2.9) } });
+    s += fullBody({ x: 250, y: 1580, s: .95, top: JF.top, legs: JF.top, armL: 12, armR: -10, head: { ...JF, eyes: blinkAt(t, 3.3) ? 'dot' : 'dot', blink: blinkAt(t, 3.3), mouth: 'flat', brows: 'serious', look: 10 } }, t);
+    s += fullBody({ x: lerp(1150, 740, easeOut(clamp(t / 3.5))), y: 1760, s: 1.05, top: LUCAS.top, legs: '#2a2a32', walk: t < 3.5, armL: 10, armR: -10, head: { ...LUCAS, eyes: 'dot', blink: blinkAt(t, 2.9), mouth: 'smile', brows: 'neutral', look: -12 } }, t);
     s += `<g filter="url(#b18)"><ellipse cx="-20" cy="1880" rx="200" ry="120" fill="#141416" stroke="#26272c" stroke-width="40"/></g>`;
     return s + grade(t);
   } },
@@ -105,7 +116,7 @@ const EP2 = [
   { at: 7.7, z: [1.0, 1.06], c: [540, 900], f: (t, p) => {
     let s = oficina(t, { lampX: 560 });
     for (let i = 0; i < 9; i++) s += `<path d="M${i * 135},${H} L540,-700" stroke="#fff" stroke-width="3" opacity=".05"/>`;
-    s += rig(CH.jorge, { x: 520, y: 2350, s: 3.0, pose: POSE.crossed(t), face: { mouth: 'flat', brows: 'serious', blink: blinkAt(t, 3.1) } });
+    s += pessoa({ ...JF, x: 540, y: 860, s: 2.2, cruzado: 1, eyes: 'dot', mouth: 'flat', brows: 'serious', look: 0 });
     s += orangeKey(700, 700, 360, t);
     return s + grade(t);
   } },
@@ -116,8 +127,8 @@ const EP2 = [
     const tap = Math.max(0, Math.sin(t * 7)) > .9;
     s += `<path d="M300,1440 L120,1452" stroke="#6a5a4a" stroke-width="22" stroke-linecap="round"/>`;
     for (let i = 0; i < 14; i++) { const k = ((t * .8 + i / 14) % 1); s += `<rect x="${140 + (i * 37) % 160}" y="${1460 + k * 200}" width="${6 + i % 3 * 3}" height="${5 + i % 2 * 3}" fill="#8a4a1e" opacity="${1 - k}" transform="rotate(${i * 40 + k * 200},${150 + (i * 37) % 160},${1460 + k * 200})"/>`; }
-    s += rig(CH.jorge, { x: 90, y: 1620, s: 1.3, pose: { ...POSE.kneel(t), shN: 80 + (tap ? -12 : 0), elN: 20 }, face: { mouth: 'flat', brows: 'serious', blink: blinkAt(t, 3.1) } });
-    s += g(rig(CH.lucas, { x: 0, y: 0, s: 1.1, flip: 1, pose: POSE.stand(t), face: { mouth: 'o', brows: 'up', blink: blinkAt(t, 2.7) } }), 'translate(560,1600)', 'filter="url(#b5)"');
+    s += bust({ ...JF, x: 150, y: 1180, s: 1.15, eyes: 'dot', mouth: 'flat', brows: 'serious', look: 12 }) + hand(lerp(300, 270, tap ? 1 : 0), 1400, 1.05, -70, { fist: true, sleeve: JF.top });
+    s += g(fullBody({ x: 0, y: 0, s: .9, top: LUCAS.top, legs: '#2a2a32', head: { ...LUCAS, eyes: 'dot', mouth: 'o', brows: 'up', look: -14 } }, t), 'translate(980,1640)', 'filter="url(#b5)"');
     if (tap) s += txt(300, 1330, 'TOC', 60, '#fff', { w: 900, extra: 'stroke="#000" stroke-width="8" paint-order="stroke"' });
     return s + grade(t);
   } },
@@ -142,12 +153,11 @@ const EP2 = [
   // 22.8–27.5: sentado num pneu, no canto, rolando o celular
   { at: 22.8, z: [1.0, 1.08], c: [600, 1200], f: (t, p) => {
     let s = oficina(t, { lampX: 380 });
-    s += `<g filter="url(#b10)">${rig(CH.jorge, { x: 240, y: 1500, s: 1.1, pose: POSE.kneel(t), face: { blink: blinkAt(t, 3) } })}${corsa(380, 1440, .8, { dust: 1 })}</g>`;
-    s += `<ellipse cx="760" cy="1680" rx="170" ry="50" fill="#141416" stroke="#26272c" stroke-width="40"/>`;
-    const ph = `<rect x="-26" y="-50" width="52" height="96" rx="10" fill="#16181d"/><rect x="-20" y="-42" width="40" height="80" rx="6" fill="#9ad0ff"/>`;
-    s += rig(CH.lucas, { x: 780, y: 1820, s: 1.45, flip: 1, pose: { hipN: 85, kneeN: 95, hipF: 80, kneeF: 90, drop: 150, lean: 18, shN: 55, elN: 70, shF: 50, elF: 75, tilt: 18 }, itemN: ph, face: { mouth: p > .55 ? 'smile' : 'flat', brows: p > .55 ? 'up' : 'neutral', blink: blinkAt(t, 2.8), look: 4 } });
-    s += `<ellipse cx="610" cy="1340" rx="140" ry="160" fill="#7ab8ff" opacity=".22" style="mix-blend-mode:screen" filter="url(#b30)"/>`;
-    if (p > .55) s += g(`<circle r="46" fill="#ffe14a" filter="url(#glow2)"/><rect x="-18" y="40" width="36" height="30" rx="6" fill="#9a9a9a"/>`, `translate(600,1060) scale(${pop(p, .55)})`);
+    s += `<g filter="url(#b10)">${bust({ ...JF, x: 200, y: 900, s: .9, eyes: 'dot', mouth: 'flat', look: 10 })}${corsa(330, 1440, .8, { dust: 1 })}</g>`;
+    s += bust({ ...LUCAS, x: 620, y: 760, s: 1.6, eyes: 'dot', mouth: p > .55 ? 'smile' : 'flat', brows: p > .55 ? 'up' : 'neutral', look: 8 });
+    s += phone(640, 1540, .75, 8, `<rect width="400" height="820" fill="#f4f4f6"/>` + Array.from({ length: 6 }, (_, i) => `<rect x="20" y="${30 + ((i * 130 + t * 160) % 780)}" width="360" height="110" rx="12" fill="#ddd"/>`).join(''));
+    s += `<ellipse cx="620" cy="900" rx="300" ry="360" fill="#7ab8ff" opacity=".18" style="mix-blend-mode:screen" filter="url(#b30)"/>`;
+    if (p > .55) s += g(`<circle r="46" fill="#ffe14a" filter="url(#glow2)"/><rect x="-18" y="40" width="36" height="30" rx="6" fill="#9a9a9a"/>`, `translate(840,420) scale(${pop(p, .55)})`);
     return s + grade(t);
   } },
   // 27.5–29.2: close no rosto com a luz do celular
@@ -178,7 +188,7 @@ const EP2 = [
   // 35.8–40: de baixo do carro; seu Jorge instala de má vontade, Lucas rói a unha
   { at: 35.8, z: [1.0, 1.06], c: [540, 900], f: (t, p) => {
     let s = debaixoDoCarro(t);
-    s += g(rig(CH.lucas, { x: 0, y: 0, s: 1.25, flip: 1, pose: POSE.bite(t), face: { mouth: 'bite', brows: 'up', eyes: 'wide', blink: blinkAt(t, 2.6) } }), 'translate(900,1880)', 'filter="url(#b2)"');
+    s += g(bust({ ...LUCAS, x: 0, y: 0, s: .95, eyes: 'wide', mouth: 'small', brows: 'up', look: -16 }) + hand(-10 + Math.sin(t * 14) * 4, 90, .6, 170, { sleeve: LUCAS.top }), 'translate(900,1420)', 'filter="url(#b2)"');
     const pull = Math.sin(t * 5) * 14;
     s += `<path d="M330,1400 Q300,900 ${470 + pull},470" stroke="#35557f" stroke-width="80" fill="none" stroke-linecap="round"/><path d="M750,1400 Q780,900 ${620 + pull},470" stroke="#35557f" stroke-width="80" fill="none" stroke-linecap="round"/>`;
     s += g(`<rect x="-14" y="-110" width="28" height="160" rx="10" fill="#9aa1a8"/><path d="M-40,-140 a40,40 0 1 1 80,0 l-20,0 a20,20 0 1 0 -40,0Z" fill="#9aa1a8"/>`, `translate(${540 + pull},480) rotate(${pull * 2})`);
