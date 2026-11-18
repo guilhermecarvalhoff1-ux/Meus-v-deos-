@@ -50,3 +50,7 @@ Para cada cena, escolha o ângulo que melhor conta aquele momento, sem esperar i
 1. Antes do vídeo inteiro, renderize uma prévia de ~10 s e mostre ao usuário.
 2. Salve os MP4 finais na raiz do repositório e faça commit.
 3. Se a janela de contexto estiver enchendo, registre o progresso em arquivo antes de continuar.
+
+## Séries e formatos
+- **O Corsa do Avô:** a série inteira segue o visual do Ep1 (personagens de frente/busto e corpo inteiro do Ep1, garagem/posto com lâmpada e luz laranja). Projeto em `aurea-remotion/public/posto`, `posto60` e `corsa2`.
+- **Próximas séries (depois do Corsa do Avô):** usar o formato novo inspirado no vídeo de referência — personagens articulados de corpo inteiro (andando, agachando, de perfil), cenários escuros com textura e uma luz principal, grão de filme. A base está pronta em `aurea-remotion/public/corsa2/_novo.js` (funções `rig`, `POSE`, `oficina`, `grade`, `texFill`).
