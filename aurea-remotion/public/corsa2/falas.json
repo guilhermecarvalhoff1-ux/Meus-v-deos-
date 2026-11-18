@@ -1,0 +1,68 @@
+[
+ {
+  "who": "narr",
+  "start": 3.2,
+  "end": 7.66,
+  "text": "Vocês escolheram o projeto. Então o Lucas levou o Corsa pro seu Jorge."
+ },
+ {
+  "who": "narr",
+  "start": 7.81,
+  "end": 11.66,
+  "text": "Mecânico do bairro há quarenta anos. E amigo do avô."
+ },
+ {
+  "who": "jorge",
+  "start": 11.81,
+  "end": 14.35,
+  "text": "Esse escapamento tá podre, moleque."
+ },
+ {
+  "who": "jorge",
+  "start": 15.3,
+  "end": 19.09,
+  "text": "Escape novo, instalado: seiscentos e cinquenta."
+ },
+ {
+  "who": "narr",
+  "start": 19.4,
+  "end": 20.87,
+  "text": "O Lucas tinha trezentos."
+ },
+ {
+  "who": "narr",
+  "start": 23.6,
+  "end": 25.0,
+  "text": "Aí ele teve uma ideia."
+ },
+ {
+  "who": "jorge",
+  "start": 29.4,
+  "end": 31.25,
+  "text": "Barato sai caro, hein."
+ },
+ {
+  "who": "lucas",
+  "start": 31.4,
+  "end": 32.08,
+  "text": "Confia."
+ },
+ {
+  "who": "narr",
+  "start": 37.0,
+  "end": 39.41,
+  "text": "Instalaram. Hora do teste."
+ },
+ {
+  "who": "jorge",
+  "start": 44.3,
+  "end": 48.23,
+  "text": "Falei. Agora tem dois jeitos de arrumar isso."
+ },
+ {
+  "who": "narr2",
+  "start": 50.2,
+  "end": 59.05,
+  "text": "A: gasta quase tudo num escape de verdade, com ronco grave. Ou B: aguenta o escape de pato por enquanto e guarda o dinheiro pras rodas. Comenta aí."
+ }
+]

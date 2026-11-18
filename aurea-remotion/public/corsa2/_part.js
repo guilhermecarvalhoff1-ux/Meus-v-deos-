@@ -1,0 +1,1 @@
+const PART = { words: 'words.json', end: 60, abTime: 50.1, manualChunks: true, noCapsFrom: 50.1, merges: [[['seiscentos','e','cinquenta'], 'R$ 650'], [['trezentos'], 'R$ 300'], [['quarenta','anos'], '40 ANOS']], hl: ['projeto','corsa','jorge','avô','podre','ideia','caro','confia','teste','falei','jeitos','verdade','grave','pato','rodas','comenta'] };

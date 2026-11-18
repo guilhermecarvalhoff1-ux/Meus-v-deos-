@@ -10,6 +10,7 @@ const EPISODES = [
   { id: "AureaEp2", ep: "ep2", seconds: 104.6, audio: true },
   { id: "CorsaAvoEp1", ep: "posto", seconds: 90, audio: false },
   { id: "CorsaAvoEp1Curto", ep: "posto60", seconds: 60, audio: false },
+  { id: "CorsaAvoEp2", ep: "corsa2", seconds: 60, audio: false },
 ];
 
 export const RemotionRoot: React.FC = () => {
