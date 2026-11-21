@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #041826; }
+      #bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, #0f4b6e 0%, #072a40 45%, #020d16 100%); }
+      .bub { position: absolute; border-radius: 50%; border: 3px solid rgba(180,230,255,.35); background: rgba(180,230,255,.06); }
+      #rays { position: absolute; inset: 0; background: repeating-linear-gradient(100deg, rgba(160,220,255,.05) 0 40px, transparent 40px 140px); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1080" data-height="1920">
+      <div id="bg"></div><div id="rays"></div>
+      <div id="b0" class="bub" style="left:80px;top:1900px;width:24px;height:24px"></div><div id="b1" class="bub" style="left:200px;top:1900px;width:38px;height:38px"></div><div id="b2" class="bub" style="left:320px;top:1900px;width:52px;height:52px"></div><div id="b3" class="bub" style="left:440px;top:1900px;width:24px;height:24px"></div><div id="b4" class="bub" style="left:560px;top:1900px;width:38px;height:38px"></div><div id="b5" class="bub" style="left:680px;top:1900px;width:52px;height:52px"></div><div id="b6" class="bub" style="left:800px;top:1900px;width:24px;height:24px"></div><div id="b7" class="bub" style="left:920px;top:1900px;width:38px;height:38px"></div>
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/s1.html" data-start="0" data-duration="4.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/s2.html" data-start="4.4" data-duration="5.1" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/s3.html" data-start="9.5" data-duration="5.3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="s4" data-composition-id="s4" data-composition-src="compositions/s4.html" data-start="14.8" data-duration="4.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="s5" data-composition-id="s5" data-composition-src="compositions/s5.html" data-start="19.2" data-duration="5.8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="25" data-track-index="2" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+      <audio id="voz" src="assets/voz.mp3" data-start="0" data-duration="24.19" data-volume="1" data-track-index="3"></audio>
+      <audio id="musica" src="assets/sfx/trilha.wav" data-start="0" data-duration="25" data-volume="0.14" data-fade-out="1.5" data-track-index="4"></audio>
+      <audio id="fx0" src="assets/sfx/whoosh.wav" data-start="4.32" data-duration="0.60" data-volume="0.5" data-track-index="5"></audio>
+      <audio id="fx1" src="assets/sfx/whoosh.wav" data-start="9.42" data-duration="0.60" data-volume="0.45" data-track-index="5"></audio>
+      <audio id="fx2" src="assets/sfx/whoosh.wav" data-start="14.72" data-duration="0.60" data-volume="0.45" data-track-index="5"></audio>
+      <audio id="fx3" src="assets/sfx/whoosh.wav" data-start="19.12" data-duration="0.60" data-volume="0.5" data-track-index="5"></audio>
+      <audio id="fx4" src="assets/sfx/coracao.wav" data-start="1.5" data-duration="0.80" data-volume="0.55" data-track-index="5"></audio>
+      <audio id="fx5" src="assets/sfx/coracao.wav" data-start="7.6" data-duration="0.80" data-volume="0.5" data-track-index="5"></audio>
+      <audio id="fx6" src="assets/sfx/impacto.wav" data-start="18.0" data-duration="1.20" data-volume="0.8" data-track-index="6"></audio>
+      <audio id="fx7" src="assets/sfx/magia.wav" data-start="0.08" data-duration="1.20" data-volume="0.45" data-track-index="5"></audio>
+      <audio id="fx8" src="assets/sfx/magia.wav" data-start="10.9" data-duration="1.20" data-volume="0.35" data-track-index="5"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      for (let i = 0; i < 8; i++) { tl.fromTo("#b" + i, { y: 0, x: 0 }, { y: -2100, x: (i % 2 ? 30 : -30), duration: 9 + (i % 4) * 2, ease: "none" }, i * 1.7); }
+      tl.fromTo("#rays", { x: -40 }, { x: 40, duration: 25, ease: "none" }, 0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

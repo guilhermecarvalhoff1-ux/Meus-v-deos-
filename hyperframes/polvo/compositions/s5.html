@@ -1,0 +1,26 @@
+<template>
+<style>
+#root{position:absolute;inset:0;}
+.t{position:absolute;left:120px;width:768px;text-align:center;font-family:"Inter";font-weight:900;color:#fff;letter-spacing:-0.02em;text-transform:uppercase;}
+.gold{color:#FFC424;}
+
+#s5-svg{position:absolute;left:0;top:0;width:1080px;height:1920px;}
+#s5-tit{top:300px;font-size:86px;}
+#s5-cta{position:absolute;left:140px;width:720px;top:560px;padding:30px 20px;border-radius:36px;background:#FFC424;color:#041826;text-align:center;font-family:"Inter";font-weight:900;font-size:58px;line-height:1.1;text-transform:uppercase;}
+
+</style>
+<div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+<svg id="s5-svg" viewBox="0 0 1080 1920"><rect x="0" y="980" width="1080" height="80" fill="#0d3b55"/><g transform="translate(300,760)"><g id="s5-o"><g transform="scale(0.7)"><g id="s5ot0" style="transform-origin:-105px 40px"><path d="M-117,40 C-121,140 -145,190 -125,250 C-115,262 -105,236 -119,220 C-95,170 -91,120 -93,40Z" fill="#b13a5c"/></g><g id="s5ot1" style="transform-origin:-75px 40px"><path d="M-87,40 C-91,140 -115,190 -95,250 C-85,262 -75,236 -89,220 C-65,170 -61,120 -63,40Z" fill="#e2557a"/></g><g id="s5ot2" style="transform-origin:-45px 40px"><path d="M-57,40 C-61,140 -85,190 -65,250 C-55,262 -45,236 -59,220 C-35,170 -31,120 -33,40Z" fill="#b13a5c"/></g><g id="s5ot3" style="transform-origin:-15px 40px"><path d="M-27,40 C-31,140 -55,190 -35,250 C-25,262 -15,236 -29,220 C-5,170 -1,120 -3,40Z" fill="#e2557a"/></g><g id="s5ot4" style="transform-origin:15px 40px"><path d="M3,40 C-1,140 55,190 35,250 C25,262 15,236 29,220 C25,170 29,120 27,40Z" fill="#b13a5c"/></g><g id="s5ot5" style="transform-origin:45px 40px"><path d="M33,40 C29,140 85,190 65,250 C55,262 45,236 59,220 C55,170 59,120 57,40Z" fill="#e2557a"/></g><g id="s5ot6" style="transform-origin:75px 40px"><path d="M63,40 C59,140 115,190 95,250 C85,262 75,236 89,220 C85,170 89,120 87,40Z" fill="#b13a5c"/></g><g id="s5ot7" style="transform-origin:105px 40px"><path d="M93,40 C89,140 145,190 125,250 C115,262 105,236 119,220 C115,170 119,120 117,40Z" fill="#e2557a"/></g><ellipse cx="0" cy="-60" rx="140" ry="160" fill="#e2557a"/><ellipse cx="-40" cy="-120" rx="40" ry="60" fill="#fff" opacity=".12"/><ellipse cx="-55" cy="10" rx="26" ry="30" fill="#fff"/><ellipse cx="55" cy="10" rx="26" ry="30" fill="#fff"/><circle cx="-50" cy="16" r="13" fill="#10202c"/><circle cx="60" cy="16" r="13" fill="#10202c"/></g></g></g></svg>
+<div id="s5-tit" class="t">PREFERE <span class="gold">ANDAR</span></div>
+<div id="s5-cta">COMENTA: QUAL BICHO<br/>NO PRÓXIMO?</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s5-o",{x:0},{x:420,duration:5.8,ease:"none"},0);
+for(let k=0;k<8;k++){tl.fromTo("#s5ot"+k,{rotation:-10},{rotation:10,duration:.45,ease:"sine.inOut",yoyo:true,repeat:11},k*.06);}
+tl.fromTo("#s5-tit",{opacity:0,scale:1.3},{opacity:1,scale:1,duration:.3,ease:"power4.out"},0.95);
+tl.fromTo("#s5-cta",{opacity:0,y:60},{opacity:1,y:0,duration:.35,ease:"back.out(2)"},2.0);
+tl.fromTo("#s5-cta",{scale:1},{scale:1.04,duration:.35,ease:"sine.inOut",yoyo:true,repeat:5},2.5);
+window.__timelines["s5"] = tl;
+</script>
+</template>

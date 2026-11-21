@@ -1,0 +1,34 @@
+<template>
+<style>
+#root{position:absolute;inset:0;}
+.t{position:absolute;left:120px;width:768px;text-align:center;font-family:"Inter";font-weight:900;color:#fff;letter-spacing:-0.02em;text-transform:uppercase;}
+.gold{color:#FFC424;}
+
+.tile{position:absolute;top:470px;width:340px;height:400px;border-radius:36px;background:rgba(4,24,38,.8);border:6px solid;text-align:center;}
+.sym{font-family:"League Gothic";font-size:250px;line-height:1;margin-top:30px;}
+.nm{font-family:"Inter";font-weight:900;font-size:46px;color:#fff;text-transform:uppercase;}
+#s3-cu{left:130px;border-color:#2f8cff;box-shadow:0 0 60px rgba(47,140,255,.45);} #s3-cu .sym{color:#e8894a;}
+#s3-fe{left:540px;border-color:#ff4d6d;} #s3-fe .sym{color:#b9c2cc;}
+#s3-x{position:absolute;left:520px;top:450px;width:380px;height:440px;}
+#s3-tit{top:300px;font-size:64px;}
+#s3-nosso{top:900px;left:540px;width:340px;font-size:40px;color:#ff8da1;}
+
+</style>
+<div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+<div id="s3-tit" class="t">SANGUE <span class="gold">AZUL</span></div>
+<div id="s3-cu" class="tile"><div class="sym">Cu</div><div class="nm">COBRE</div></div>
+<div id="s3-fe" class="tile"><div class="sym">Fe</div><div class="nm">FERRO</div></div>
+<svg id="s3-x" viewBox="0 0 380 440"><path id="s3-x1" d="M40,40 L340,400" stroke="#ff2f55" stroke-width="34" stroke-linecap="round" fill="none"/><path id="s3-x2" d="M340,40 L40,400" stroke="#ff2f55" stroke-width="34" stroke-linecap="round" fill="none"/></svg>
+<div id="s3-nosso" class="t">O NOSSO</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s3-tit",{opacity:0,y:-30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.1);
+tl.fromTo("#s3-cu",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:"back.out(2.2)"},1.4);
+tl.fromTo("#s3-cu",{y:0},{y:-12,duration:2.5,ease:"sine.inOut"},1.8);
+tl.fromTo("#s3-fe",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:"back.out(2.2)"},3.3);
+tl.fromTo(["#s3-x1","#s3-x2"],{strokeDasharray:500,strokeDashoffset:500},{strokeDashoffset:0,duration:.22,ease:"power3.in",stagger:.12},3.7);
+tl.fromTo("#s3-nosso",{opacity:0},{opacity:1,duration:.25},4.15);
+window.__timelines["s3"] = tl;
+</script>
+</template>
