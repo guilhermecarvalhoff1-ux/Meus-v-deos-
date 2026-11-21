@@ -9,3 +9,4 @@
 | 5 | Apagão mundial de 17/11/2026 que não aconteceu (Simpsons 2023, teste de alerta EUA, kit 72 h; regional ≠ mundial) | assunto do momento / polêmica leve (mundo + Brasil) — sem voz | `episodios/05-apagao-17-novembro/` |
 | 6 | Itaipu deixou ~R$ 1 bi num banco paraguaio de 1 ano (Ueno Bank): aprovado em 12 dias, intervenção, diretor PY trocado; lado BR ≠ lado PY | polêmica (mundo/Paraguai, ligação com o Brasil) — sem voz | `episodios/06-itaipu-ueno-bank/` |
 | 7 | ESPECIAL — Cleópatra viveu mais perto da Lua (1969) do que da Grande Pirâmide (~2560 a.C.); Cleópatra ≠ egípcia de sangue (família grega/macedônia) | curiosidade (história) — com voz | `episodios/07-cleopatra-lua/` |
+| 8 | GTA 6 lançado (19/11): 13 anos de espera, US$ 1,5 bi em pré-venda, R$ 449,90, Anitta é a Dra. Nita | assunto do momento (games) — roteiro do dono, com voz | `episodios/08-gta-6/` |

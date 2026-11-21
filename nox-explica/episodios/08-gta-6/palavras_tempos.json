@@ -26,937 +26,622 @@
  },
  {
   "text": "e",
-  "start": 3.007,
-  "end": 3.07
+  "start": 3.004,
+  "end": 3.067
  },
  {
   "text": "vai",
-  "start": 3.082,
-  "end": 3.282
+  "start": 3.067,
+  "end": 3.242
  },
  {
   "text": "pagar",
-  "start": 3.282,
-  "end": 3.707
+  "start": 3.242,
+  "end": 3.679
  },
  {
   "text": "quase",
-  "start": 3.707,
-  "end": 4.107
+  "start": 3.679,
+  "end": 4.054
  },
  {
   "text": "quinhentos",
-  "start": 4.107,
-  "end": 4.532
+  "start": 4.067,
+  "end": 4.504
  },
  {
   "text": "conto",
-  "start": 4.532,
-  "end": 4.857
+  "start": 4.504,
+  "end": 4.842
  },
  {
   "text": "pra",
-  "start": 4.857,
-  "end": 4.995
+  "start": 4.842,
+  "end": 4.967
  },
  {
   "text": "ouvir",
-  "start": 4.995,
-  "end": 5.357
+  "start": 4.967,
+  "end": 5.367
  },
  {
   "text": "a",
-  "start": 5.357,
-  "end": 5.445
+  "start": 5.367,
+  "end": 5.454
  },
  {
   "text": "Anitta",
-  "start": 5.445,
-  "end": 5.97
- },
- {
-  "text": "num",
-  "start": 6.257,
-  "end": 6.42
- },
- {
-  "text": "podcast",
-  "start": 6.432,
-  "end": 7.107
+  "start": 5.454,
+  "end": 5.854
  },
  {
   "text": "dentro",
-  "start": 7.432,
-  "end": 7.832
+  "start": 6.142,
+  "end": 6.579
  },
  {
   "text": "do",
-  "start": 7.845,
-  "end": 7.932
+  "start": 6.579,
+  "end": 6.667
  },
  {
   "text": "GTA",
-  "start": 7.945,
-  "end": 8.495
+  "start": 6.679,
+  "end": 7.254
  },
  {
   "text": "O",
-  "start": 8.857,
-  "end": 8.92
+  "start": 7.617,
+  "end": 7.667
  },
  {
   "text": "Nox",
-  "start": 8.932,
-  "end": 9.295
+  "start": 7.667,
+  "end": 7.967
  },
  {
   "text": "explica",
-  "start": 9.295,
-  "end": 10.007
- },
- {
-  "text": "Pois",
-  "start": 10.487,
-  "end": 10.712
- },
- {
-  "text": "é",
-  "start": 10.712,
-  "end": 10.949
+  "start": 7.967,
+  "end": 8.629
  },
  {
   "text": "O",
-  "start": 11.324,
-  "end": 11.399
+  "start": 9.065,
+  "end": 9.128
  },
  {
   "text": "GTA",
-  "start": 11.399,
-  "end": 11.924
+  "start": 9.14,
+  "end": 9.653
  },
  {
-  "text": "6 finalmente",
-  "start": 11.924,
-  "end": 12.912
- },
- {
-  "text": "saiu",
-  "start": 12.924,
-  "end": 13.449
+  "text": "6 saiu",
+  "start": 9.653,
+  "end": 10.478
  },
  {
   "text": "nessa",
-  "start": 13.712,
-  "end": 14.024
+  "start": 10.665,
+  "end": 11.003
  },
  {
   "text": "quinta",
-  "start": 14.037,
-  "end": 14.462
+  "start": 11.003,
+  "end": 11.415
  },
  {
-  "text": "A",
-  "start": 14.824,
-  "end": 14.937
+  "text": "No",
+  "start": 11.815,
+  "end": 11.965
  },
  {
-  "text": "última",
-  "start": 14.937,
-  "end": 15.324
- },
- {
-  "text": "vez",
-  "start": 15.324,
-  "end": 15.599
- },
- {
-  "text": "que",
-  "start": 15.612,
-  "end": 15.712
- },
- {
-  "text": "lançaram",
-  "start": 15.712,
-  "end": 16.274
- },
- {
-  "text": "um",
-  "start": 16.274,
-  "end": 16.337
+  "text": "último",
+  "start": 11.978,
+  "end": 12.328
  },
  {
   "text": "GTA",
-  "start": 16.337,
-  "end": 16.824
- },
- {
-  "text": "novo",
-  "start": 16.837,
-  "end": 17.162
+  "start": 12.34,
+  "end": 12.828
  },
  {
   "text": "você",
-  "start": 17.612,
-  "end": 17.837
- },
- {
-  "text": "provavelmente",
-  "start": 17.849,
-  "end": 18.699
+  "start": 13.29,
+  "end": 13.565
  },
  {
   "text": "ainda",
-  "start": 18.712,
-  "end": 19.112
+  "start": 13.578,
+  "end": 13.953
  },
  {
   "text": "tinha",
-  "start": 19.112,
-  "end": 19.437
+  "start": 13.953,
+  "end": 14.315
  },
  {
   "text": "Orkut",
-  "start": 19.449,
-  "end": 19.962
+  "start": 14.328,
+  "end": 14.915
  },
  {
   "text": "Antes",
-  "start": 20.376,
-  "end": 20.751
- },
- {
-  "text": "mesmo",
-  "start": 20.751,
-  "end": 21.126
+  "start": 15.329,
+  "end": 15.704
  },
  {
   "text": "de",
-  "start": 21.126,
-  "end": 21.226
+  "start": 15.704,
+  "end": 15.817
  },
  {
   "text": "sair",
-  "start": 21.226,
-  "end": 21.601
- },
- {
-  "text": "o",
-  "start": 22.076,
-  "end": 22.126
- },
- {
-  "text": "jogo",
-  "start": 22.126,
-  "end": 22.464
+  "start": 15.817,
+  "end": 16.217
  },
  {
   "text": "já",
-  "start": 22.464,
-  "end": 22.614
+  "start": 16.604,
+  "end": 16.717
  },
  {
   "text": "tinha",
-  "start": 22.626,
-  "end": 22.864
+  "start": 16.717,
+  "end": 16.979
  },
  {
-  "text": "movimentado",
-  "start": 22.876,
-  "end": 23.626
+  "text": "feito",
+  "start": 16.992,
+  "end": 17.342
  },
  {
   "text": "mais",
-  "start": 23.639,
-  "end": 24.014
+  "start": 17.342,
+  "end": 17.704
  },
  {
   "text": "de",
-  "start": 24.026,
-  "end": 24.126
+  "start": 17.717,
+  "end": 17.792
  },
  {
   "text": "um",
-  "start": 24.126,
-  "end": 24.189
+  "start": 17.792,
+  "end": 17.842
  },
  {
   "text": "bilhão",
-  "start": 24.201,
-  "end": 24.639
+  "start": 17.842,
+  "end": 18.279
  },
  {
   "text": "e",
-  "start": 24.826,
-  "end": 24.864
+  "start": 18.292,
+  "end": 18.342
  },
  {
   "text": "meio",
-  "start": 24.864,
-  "end": 25.239
+  "start": 18.342,
+  "end": 18.692
  },
  {
   "text": "de",
-  "start": 25.251,
-  "end": 25.364
+  "start": 18.704,
+  "end": 18.804
  },
  {
   "text": "dólares",
-  "start": 25.364,
-  "end": 25.764
+  "start": 18.804,
+  "end": 19.217
  },
  {
   "text": "em",
-  "start": 25.764,
-  "end": 25.901
+  "start": 19.217,
+  "end": 19.379
  },
  {
   "text": "pré-venda",
-  "start": 25.901,
-  "end": 26.489
- },
- {
-  "text": "Gente",
-  "start": 26.876,
-  "end": 27.176
- },
- {
-  "text": "comprando",
-  "start": 27.176,
-  "end": 27.614
- },
- {
-  "text": "jogo",
-  "start": 27.614,
-  "end": 28.126
- },
- {
-  "text": "que",
-  "start": 28.139,
-  "end": 28.289
- },
- {
-  "text": "nem",
-  "start": 28.301,
-  "end": 28.651
- },
- {
-  "text": "existia",
-  "start": 28.651,
-  "end": 29.351
- },
- {
-  "text": "ainda",
-  "start": 29.351,
-  "end": 29.764
+  "start": 19.392,
+  "end": 19.979
  },
  {
   "text": "O",
-  "start": 30.151,
-  "end": 30.201
+  "start": 20.367,
+  "end": 20.417
  },
  {
   "text": "Nox",
-  "start": 30.201,
-  "end": 30.526
+  "start": 20.417,
+  "end": 20.817
  },
  {
   "text": "respeita",
-  "start": 30.526,
-  "end": 31.001
+  "start": 20.817,
+  "end": 21.329
  },
  {
   "text": "a",
-  "start": 31.001,
-  "end": 31.039
+  "start": 21.329,
+  "end": 21.379
  },
  {
   "text": "fé",
-  "start": 31.051,
-  "end": 31.314
+  "start": 21.392,
+  "end": 21.679
  },
  {
   "text": "Aqui",
-  "start": 31.752,
-  "end": 32.002
- },
- {
-  "text": "no",
-  "start": 32.014,
-  "end": 32.114
- },
- {
-  "text": "Brasil",
-  "start": 32.127,
-  "end": 32.614
+  "start": 22.113,
+  "end": 22.438
  },
  {
   "text": "ele",
-  "start": 32.614,
-  "end": 32.739
+  "start": 22.438,
+  "end": 22.563
  },
  {
   "text": "chegou",
-  "start": 32.739,
-  "end": 33.239
+  "start": 22.576,
+  "end": 23.051
  },
  {
   "text": "por",
-  "start": 33.252,
-  "end": 33.414
+  "start": 23.051,
+  "end": 23.188
  },
  {
   "text": "R$ 449,90",
-  "start": 33.427,
-  "end": 36.989
+  "start": 23.188,
+  "end": 26.763
  },
  {
   "text": "É",
-  "start": 37.389,
-  "end": 37.539
- },
- {
-  "text": "caramba",
-  "start": 37.927,
-  "end": 38.452
- },
- {
-  "text": "Dá",
-  "start": 38.827,
-  "end": 38.964
- },
- {
-  "text": "pra",
-  "start": 38.964,
-  "end": 39.102
- },
- {
-  "text": "comprar",
-  "start": 39.102,
-  "end": 39.514
+  "start": 27.151,
+  "end": 27.251
  },
  {
   "text": "o",
-  "start": 39.514,
-  "end": 39.564
+  "start": 27.251,
+  "end": 27.351
  },
  {
   "text": "jogo",
-  "start": 39.577,
-  "end": 40.064
+  "start": 27.363,
+  "end": 27.913
  },
  {
   "text": "ou",
-  "start": 40.077,
-  "end": 40.189
- },
- {
-  "text": "fazer",
-  "start": 40.189,
-  "end": 40.639
+  "start": 27.926,
+  "end": 28.076
  },
  {
   "text": "a",
-  "start": 40.639,
-  "end": 40.689
+  "start": 28.076,
+  "end": 28.138
  },
  {
   "text": "feira",
-  "start": 40.689,
-  "end": 41.077
+  "start": 28.151,
+  "end": 28.563
  },
  {
   "text": "do",
-  "start": 41.077,
-  "end": 41.164
+  "start": 28.576,
+  "end": 28.663
  },
  {
   "text": "mês",
-  "start": 41.164,
-  "end": 41.602
+  "start": 28.676,
+  "end": 29.051
  },
  {
   "text": "O",
-  "start": 41.977,
-  "end": 42.052
+  "start": 29.438,
+  "end": 29.513
  },
  {
   "text": "povo",
-  "start": 42.064,
-  "end": 42.389
+  "start": 29.526,
+  "end": 29.826
  },
  {
   "text": "escolheu",
-  "start": 42.389,
-  "end": 42.902
+  "start": 29.826,
+  "end": 30.351
  },
  {
   "text": "o",
-  "start": 43.014,
-  "end": 43.064
+  "start": 30.501,
+  "end": 30.551
  },
  {
   "text": "jogo",
-  "start": 43.064,
-  "end": 43.502
+  "start": 30.551,
+  "end": 30.976
  },
  {
   "text": "E",
-  "start": 43.923,
-  "end": 43.998
- },
- {
-  "text": "agora",
-  "start": 43.998,
-  "end": 44.373
+  "start": 31.402,
+  "end": 31.49
  },
  {
   "text": "a",
-  "start": 44.373,
-  "end": 44.423
- },
- {
-  "text": "parte",
-  "start": 44.423,
-  "end": 44.836
- },
- {
-  "text": "que",
-  "start": 44.836,
-  "end": 44.923
- },
- {
-  "text": "ninguém",
-  "start": 44.923,
-  "end": 45.348
- },
- {
-  "text": "esperava",
-  "start": 45.348,
-  "end": 45.923
- },
- {
-  "text": "a",
-  "start": 46.448,
-  "end": 46.523
+  "start": 31.49,
+  "end": 31.615
  },
  {
   "text": "Anitta",
-  "start": 46.523,
-  "end": 46.948
+  "start": 31.615,
+  "end": 32.04
  },
  {
   "text": "tá",
-  "start": 46.961,
-  "end": 47.111
+  "start": 32.052,
+  "end": 32.215
  },
  {
   "text": "no",
-  "start": 47.111,
-  "end": 47.198
+  "start": 32.215,
+  "end": 32.302
  },
  {
   "text": "jogo",
-  "start": 47.198,
-  "end": 47.598
+  "start": 32.315,
+  "end": 32.715
  },
  {
-  "text": "Ela",
-  "start": 47.986,
-  "end": 48.248
- },
- {
-  "text": "dubla",
-  "start": 48.261,
-  "end": 48.661
+  "text": "é",
+  "start": 33.115,
+  "end": 33.215
  },
  {
   "text": "a",
-  "start": 48.673,
-  "end": 48.711
+  "start": 33.215,
+  "end": 33.29
  },
  {
   "text": "Dra.",
-  "start": 48.711,
-  "end": 49.298
+  "start": 33.29,
+  "end": 33.84
  },
  {
   "text": "Nita",
-  "start": 49.673,
-  "end": 50.048
- },
- {
-  "text": "apresentadora",
-  "start": 50.486,
-  "end": 51.261
+  "start": 34.215,
+  "end": 34.615
  },
  {
   "text": "de",
-  "start": 51.273,
-  "end": 51.361
+  "start": 35.015,
+  "end": 35.115
  },
  {
   "text": "um",
-  "start": 51.361,
-  "end": 51.436
+  "start": 35.115,
+  "end": 35.202
  },
  {
   "text": "podcast",
-  "start": 51.436,
-  "end": 52.098
- },
- {
-  "text": "dentro",
-  "start": 52.098,
-  "end": 52.548
- },
- {
-  "text": "do",
-  "start": 52.561,
-  "end": 52.661
- },
- {
-  "text": "GTA",
-  "start": 52.673,
-  "end": 53.173
+  "start": 35.202,
+  "end": 35.952
  },
  {
   "text": "e",
-  "start": 53.661,
-  "end": 53.748
+  "start": 36.34,
+  "end": 36.402
  },
  {
-  "text": "ainda",
-  "start": 53.748,
-  "end": 54.011
- },
- {
-  "text": "colocou",
-  "start": 54.011,
-  "end": 54.536
- },
- {
-  "text": "a",
-  "start": 54.536,
-  "end": 54.598
+  "text": "tem",
+  "start": 36.402,
+  "end": 36.602
  },
  {
   "text": "música",
-  "start": 54.611,
-  "end": 55.136
- },
- {
-  "text": "dela",
-  "start": 55.148,
-  "end": 55.436
+  "start": 36.615,
+  "end": 37.04
  },
  {
   "text": "na",
-  "start": 55.436,
-  "end": 55.561
+  "start": 37.04,
+  "end": 37.177
  },
  {
   "text": "trilha",
-  "start": 55.561,
-  "end": 55.973
+  "start": 37.19,
+  "end": 37.602
  },
  {
-  "text": "Do",
-  "start": 56.336,
-  "end": 56.473
+  "text": "junto",
+  "start": 38.04,
+  "end": 38.402
  },
  {
-  "text": "lado",
-  "start": 56.473,
-  "end": 56.823
- },
- {
-  "text": "de",
-  "start": 56.823,
-  "end": 56.923
- },
- {
-  "text": "nomes",
-  "start": 56.936,
-  "end": 57.273
- },
- {
-  "text": "como",
-  "start": 57.286,
-  "end": 57.548
+  "text": "com",
+  "start": 38.415,
+  "end": 38.615
  },
  {
   "text": "Travis",
-  "start": 57.561,
-  "end": 58.036
+  "start": 38.615,
+  "end": 39.027
  },
  {
   "text": "Scott",
-  "start": 58.036,
-  "end": 58.686
+  "start": 39.027,
+  "end": 39.615
  },
  {
   "text": "Dua",
-  "start": 59.173,
-  "end": 59.423
+  "start": 39.915,
+  "end": 40.14
  },
  {
   "text": "Lipa",
-  "start": 59.436,
-  "end": 59.936
+  "start": 40.14,
+  "end": 40.652
  },
  {
   "text": "e",
-  "start": 60.186,
-  "end": 60.286
- },
- {
-  "text": "até",
-  "start": 60.286,
-  "end": 60.686
+  "start": 40.79,
+  "end": 40.827
  },
  {
   "text": "Sepultura",
-  "start": 60.698,
-  "end": 61.386
+  "start": 40.84,
+  "end": 41.527
  },
  {
   "text": "Ou",
-  "start": 61.85,
-  "end": 61.975
+  "start": 42.002,
+  "end": 42.114
  },
  {
   "text": "seja",
-  "start": 61.975,
-  "end": 62.388
+  "start": 42.114,
+  "end": 42.527
  },
  {
   "text": "você",
-  "start": 62.875,
-  "end": 63.1
+  "start": 42.989,
+  "end": 43.214
  },
  {
-  "text": "pode",
-  "start": 63.113,
-  "end": 63.463
- },
- {
-  "text": "roubar",
-  "start": 63.463,
-  "end": 63.863
+  "text": "rouba",
+  "start": 43.227,
+  "end": 43.639
  },
  {
   "text": "um",
-  "start": 63.863,
-  "end": 63.963
+  "start": 43.639,
+  "end": 43.752
  },
  {
   "text": "carro",
-  "start": 63.975,
-  "end": 64.425
+  "start": 43.764,
+  "end": 44.189
  },
  {
   "text": "em",
-  "start": 64.438,
-  "end": 64.538
+  "start": 44.189,
+  "end": 44.277
  },
  {
   "text": "Vice",
-  "start": 64.538,
-  "end": 64.888
+  "start": 44.277,
+  "end": 44.627
  },
  {
   "text": "City",
-  "start": 64.888,
-  "end": 65.25
+  "start": 44.627,
+  "end": 44.989
  },
  {
   "text": "ouvindo",
-  "start": 65.25,
-  "end": 65.663
+  "start": 44.989,
+  "end": 45.377
  },
  {
   "text": "Anitta",
-  "start": 65.675,
-  "end": 66.088
+  "start": 45.377,
+  "end": 45.777
  },
  {
   "text": "A",
-  "start": 66.463,
-  "end": 66.55
+  "start": 46.152,
+  "end": 46.227
  },
  {
   "text": "Rockstar",
-  "start": 66.55,
-  "end": 67.188
+  "start": 46.239,
+  "end": 46.927
  },
  {
   "text": "levou",
-  "start": 67.2,
-  "end": 67.775
+  "start": 47.264,
+  "end": 47.852
  },
  {
   "text": "treze",
-  "start": 67.975,
-  "end": 68.413
+  "start": 48.014,
+  "end": 48.427
  },
  {
   "text": "anos",
-  "start": 68.425,
-  "end": 68.838
+  "start": 48.439,
+  "end": 48.852
  },
  {
   "text": "e",
-  "start": 69.514,
-  "end": 69.577
+  "start": 49.513,
+  "end": 49.576
  },
  {
   "text": "entregou",
-  "start": 69.577,
-  "end": 70.164
- },
- {
-  "text": "exatamente",
-  "start": 70.177,
-  "end": 70.877
+  "start": 49.576,
+  "end": 50.063
  },
  {
   "text": "o",
-  "start": 70.889,
-  "end": 70.914
+  "start": 50.076,
+  "end": 50.101
  },
  {
   "text": "Brasil",
-  "start": 70.927,
-  "end": 71.377
+  "start": 50.101,
+  "end": 50.576
  },
  {
   "text": "Vai",
-  "start": 71.814,
-  "end": 72.026
+  "start": 51.012,
+  "end": 51.237
  },
  {
   "text": "comprar",
-  "start": 72.039,
-  "end": 72.614
+  "start": 51.249,
+  "end": 51.849
  },
  {
   "text": "ou",
-  "start": 72.626,
-  "end": 72.826
- },
- {
-  "text": "vai",
-  "start": 72.826,
-  "end": 73.064
+  "start": 52.049,
+  "end": 52.212
  },
  {
   "text": "esperar",
-  "start": 73.076,
-  "end": 73.501
+  "start": 52.212,
+  "end": 52.662
  },
  {
   "text": "baixar",
-  "start": 73.501,
-  "end": 73.964
- },
- {
-  "text": "de",
-  "start": 73.976,
-  "end": 74.076
- },
- {
-  "text": "preço",
-  "start": 74.076,
-  "end": 74.501
+  "start": 52.662,
+  "end": 53.199
  },
  {
   "text": "Comenta",
-  "start": 74.901,
-  "end": 75.289
+  "start": 53.587,
+  "end": 54.012
  },
  {
   "text": "aí",
-  "start": 75.301,
-  "end": 75.539
- },
- {
-  "text": "E",
-  "start": 75.914,
-  "end": 75.976
- },
- {
-  "text": "se",
-  "start": 75.989,
-  "end": 76.101
- },
- {
-  "text": "quiser",
-  "start": 76.114,
-  "end": 76.489
+  "start": 54.012,
+  "end": 54.237
  },
  {
   "text": "que",
-  "start": 76.501,
-  "end": 76.601
+  "start": 54.237,
+  "end": 54.374
  },
  {
   "text": "o",
-  "start": 76.601,
-  "end": 76.639
+  "start": 54.374,
+  "end": 54.424
  },
  {
   "text": "Nox",
-  "start": 76.639,
-  "end": 76.889
- },
- {
-  "text": "explique",
-  "start": 76.889,
-  "end": 77.401
- },
- {
-  "text": "outra",
-  "start": 77.401,
-  "end": 77.714
- },
- {
-  "text": "coisa",
-  "start": 77.726,
-  "end": 78.114
- },
- {
-  "text": "deixa",
-  "start": 78.401,
-  "end": 78.726
- },
- {
-  "text": "nos",
-  "start": 78.726,
-  "end": 78.851
- },
- {
-  "text": "comentários",
-  "start": 78.864,
-  "end": 79.526
- },
- {
-  "text": "que",
-  "start": 79.539,
-  "end": 79.651
- },
- {
-  "text": "o",
-  "start": 79.651,
-  "end": 79.689
- },
- {
-  "text": "Nox",
-  "start": 79.689,
-  "end": 80.001
+  "start": 54.424,
+  "end": 54.737
  },
  {
   "text": "explica",
-  "start": 80.014,
-  "end": 80.601
+  "start": 54.737,
+  "end": 55.424
  }
 ]
