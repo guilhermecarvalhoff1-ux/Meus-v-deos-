@@ -4,7 +4,7 @@
 
 **Tema:** Itaipu (lado paraguaio) deixou cerca de R$ 1 bilhão num banco digital paraguaio de pouco mais de um ano (Ueno Bank); o Banco Central do Paraguai interveio no banco, o dinheiro ficou travado e o diretor-geral paraguaio da usina foi trocado em 18/11. "Não confundir": o lado brasileiro diz que nunca aplicou lá, e o diretor que saiu nega ter descumprido regras; o caso está em apuração.
 **Tipo:** polêmica (mundo — Paraguai — com ligação direta com o Brasil, porque Itaipu é binacional).
-**Vídeo:** `NOX_EXPLICA_06.mp4` — 1080x1920, 30 fps, **54,5 s, SEM VOZ** (trilha + legendas com tempos estimados). Prévia de 10 s: `NOX_EXPLICA_06_previa.mp4`. Legendas: `NOX_EXPLICA_06_legendas.srt`. Falas: `narracao.txt`. Roteiro com fontes: `roteiro.md`.
+**Vídeo:** `NOX_EXPLICA_06.mp4` — 1080x1920, 30 fps, **47,7 s, com voz** (narração + trilha, legendas sincronizadas com a voz). Prévia de 10 s: `NOX_EXPLICA_06_previa.mp4`. Legendas: `NOX_EXPLICA_06_legendas.srt`. Falas: `narracao.txt`. Roteiro com fontes: `roteiro.md`.
 
 ## Pontos sensíveis
 - **Nenhum nome de pessoa** é citado (nem diretores, nem presidente, nem donos do banco). O vídeo fala de cargos ("o diretor paraguaio").
@@ -15,11 +15,10 @@
 - Deboche vai para a situação ("que merda de confiança é essa"), não para pessoas nem para o Paraguai. Sem bandeiras, logotipos ou fotos: só ícones (barragem, prédio de banco genérico, cadeado, cadeira, lupa).
 - Assunto em andamento: antes de postar, confira se houve novidade (acusação formal, devolução do dinheiro, nova versão oficial).
 
-## Voz — NÃO GERADA (limitação desta execução)
-- A rede deste ambiente bloqueou `pypi.org` (403 no proxy; não deu para instalar `edge-tts` nem `faster-whisper`) e `speech.platform.bing.com` (sem conexão). Mesma limitação do #05.
-- Vídeo renderizado com tempos estimados (2,6 palavras/s). `falas_tempos.json` não foi gerado.
-- Voz a usar: a oficial de `nox-explica/CLAUDE.md` (`en-US-AndrewMultilingualNeural`, +0%, −2Hz). `nox-explica/voz.txt` não existe; o agendamento manda cair para `pt-BR-AntonioNeural` nesse caso, mas segui o CLAUDE.md do canal, que diz que a voz já foi escolhida (igual ao #04 e #05). Se quiser outra, crie `voz.txt`.
-- Para finalizar com voz numa máquina com acesso, na pasta do episódio: `python gerar_narracao.py && python montar_tempos.py && python make.py && python audio.py && ffmpeg -y -i nox_video.mp4 -i trilha.wav -c:v copy -c:a aac -b:a 192k -shortest NOX_EXPLICA_06.mp4` (e refazer o .srt a partir de `caps.json`).
+## Voz (finalizado em 21/11/2026)
+- Narração com a voz oficial do Nox: edge-tts `en-US-AndrewMultilingualNeural`, +0%, −2Hz (`gerar_narracao.py` → `narracao.wav`, 7 trechos, 117 palavras, 47,3 s de fala).
+- `montar_tempos.py`: 38 legendas, 117 de 117 palavras usadas, **0 diferenças** (texto do roteiro, tempos do áudio).
+- `make.py` + `audio.py` refeitos com os tempos reais (música abaixando sob a voz); `.srt` regerado de `caps.json`; prévia de 10 s refeita.
 
 ## Fontes (detalhes, valores e o que cada uma diz em `roteiro.md`)
 - [CNN Brasil, 19/11/2026 — Itaipu aprovou Ueno Bank em apenas 12 dias](https://www.cnnbrasil.com.br/infra/itaipu-aprovou-ueno-bank-em-apenas-12-dias-e-sem-diretor-financeiro/)
@@ -41,15 +40,15 @@
 | Caso em apuração | Jornal de Brasília (Justiça investiga), Gazeta (denúncia criminal, apuração), BPMoney (ações judiciais) |
 
 ## Checklist (`checklist_revisao.md`)
-- [~] Duração: 54,5 s (estimada, sem voz) — dentro do pedido do agendamento (40–55 s) e abaixo do máximo de 60 s, mas acima do ideal de 35–50 s do canal. Com a voz real, conferir; se passar de 55 s, cortar "segundo a imprensa" não é recomendado (proteção jurídica) — prefira cortar "a usina do Brasil com o Paraguai".
+- [x] Duração: 47,7 s com a voz real — abaixo do máximo de 55 s pedido e do limite de 60 s do canal, e dentro do ideal de 35–50 s.
 - [x] Mesmo Nox (`nox.py` idêntico ao do #01/#05), sem boca/nariz; poses none/point/raise/cross; círculo dourado só na abertura e no fim.
 - [x] Autorreferência em terceira pessoa ("Nox quer saber", "que Nox explica"); nenhum "eu/vou".
 - [x] Legendas = `narracao.txt`, mesma ordem, nenhuma fala a mais ou a menos (conferido por script, palavra por palavra).
 - [x] Números conferidos e ligados aos conceitos certos: R$ 1 bi (total), US$ 160 mi+ (parte em dólares), 12 dias (aprovação), 5 anos (exigência), ~1 ano (idade do banco), 18/11 (troca do diretor).
 - [x] Diagramas diferenciam os conceitos: lado BR × lado PY na barragem; exigência de 5 anos × banco de ~1 ano; quem diz o quê (lado brasileiro × diretor que saiu); "em apuração" ≠ culpa.
-- [~] Legendas: até 2 linhas, embaixo, sem cobrir olhos/diagramas — OK. Sincronia com voz: não aplicável (sem voz; tempos estimados).
+- [x] Legendas: até 2 linhas, embaixo, sem cobrir olhos/diagramas — OK. Sincronia palavra a palavra com a voz real — OK (0 diferenças).
 - [x] Texto de destaque (topo) e legenda (baixo) nunca no mesmo espaço.
-- [~] Música discreta, efeitos (whoosh/sino) só nas trocas de cena. Sem voz, não há ducking a conferir.
+- [x] Música discreta, abaixando sob a voz; efeitos (whoosh/sino) só nas trocas de cena.
 - [x] Palavrões: porra, caralho, merda (3), todos sobre a situação.
 - [x] Termina com "Tem outra treta que você quer entender? Manda nos comentários que Nox explica." + "NOX EXPLICA · MANDA SUA DÚVIDA", sem pedir curtida/seguir.
 - [x] Sem fotos, vídeos, bandeiras ou logotipos reais.
