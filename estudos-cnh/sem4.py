@@ -45,7 +45,7 @@ D23 = [
  C('Sangramento: aperte o ferimento com um pano limpo, e mantenha a pressão. Se o pano encharcar, coloque outro por cima, sem tirar o primeiro.',
    'SANGRAMENTO', [ic_mao, cartao('PANO LIMPO')], 'APERTE COM PANO'),
  C('Queimadura: só água limpa e fria corrente. Nada de pasta de dente, manteiga ou pomada. E não estoure as bolhas.',
-   'QUEIMADURA', [cartao('ÁGUA FRIA', AZUL_PLACA), x_vermelho(cartao('PASTA'))], 'SÓ ÁGUA'),
+   'QUEIMADURA', [cartao('ÁGUA FRIA', (120, 180, 255)), x_vermelho(cartao('PASTA'))], 'SÓ ÁGUA'),
  C('Suspeita de fratura, um osso quebrado: não tente colocar no lugar. Deixe a pessoa parada, na posição em que está, e espere o resgate.',
    'FRATURA', [x_vermelho(ic_mao)], 'NÃO MEXA'),
  C('E lembre: ajudar é dever de todos. Se você não sabe o que fazer, ligar para o socorro já é ajudar. Deixar de prestar socorro, podendo ajudar, é crime.',

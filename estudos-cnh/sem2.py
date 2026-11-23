@@ -142,7 +142,7 @@ D13 = [
  S(11, 'Avançar o sinal vermelho é que infração?', [semaforo('vermelho')], 'Gravíssima, sete pontos.', 'GRAVÍSSIMA'),
  S(12, 'Distância máxima do meio-fio para estacionar?', [ic_regua('?')], 'Cinquenta centímetros.', '50 CM'),
  S(13, 'Placa com E e X vermelho. Pode parar?', [E_X], 'Não. Nem parar, nem estacionar.', 'NÃO'),
- S(14, 'Dois silvos curtos do agente querem dizer o quê?', [agente('lados')], 'Pare.', 'PARE'),
+ S(14, 'Dois silvos curtos do agente querem dizer o quê?', [cartao('2 SILVOS')], 'Pare.', 'PARE'),
  S(15, 'A velocidade mínima é quanto da máxima?', [V(80)], 'A metade. Parabéns! Amanhã é descanso.', 'A METADE'),
 ]
 
