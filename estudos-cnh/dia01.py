@@ -48,7 +48,7 @@ def s_pare_x_pref(img, d, lt, dur):
     if lt > 2.5: texto(d, (1300, 760), 'PARA SÓ SE PRECISAR', 54, VERDE)
 
 def s_tarja(img, d, lt, dur):
-    titulo(d, 'TARJA VERMELHA = PROIBIDO')
+    titulo(d, 'FAIXA VERMELHA = PROIBIDO')
     r = 220
     circ_regul(d, 960, 520, r); seta_curva_esq(d, 960, 520, r)
     k = pop(lt, 1.2, .5)
@@ -76,14 +76,15 @@ def s_velocidade(img, d, lt, dur):
     chave(d, 'NÚMERO = LIMITE', alpha=1 if lt > 3 else 0)
 
 def s_obrigacao(img, d, lt, dur):
-    titulo(d, 'SEM TARJA = OBRIGAÇÃO')
+    titulo(d, 'SEM FAIXA = OBRIGAÇÃO')
     placa_siga_frente(d, 620, 520, 200 * pop(lt, .1))
     placa_vire_dir(d, 1300, 520, 200 * pop(lt, 1.5))
-    chave(d, 'FAÇA O QUE O DESENHO MOSTRA', alpha=1 if lt > 3 else 0)
+    chave(d, 'FAÇA O QUE O DESENHO MOSTRA', alpha=1 if 3 < lt < 11 else 0)
+    if lt > 11: placa_velocidade(d, 1700, 300, 110 * pop(lt, 11), '60'); chave(d, 'VELOCIDADE = LIMITE', alpha=1)
 
 def s_resumo(img, d, lt, dur):
     titulo(d, 'RESUMO DO DIA 1')
-    itens = [(placa_pare, 'PARE: PARE SEMPRE'), (placa_preferencia, 'TRIÂNGULO: CEDA A VEZ'), (None, 'TARJA: PROIBIDO'), (None, 'SEM TARJA: OBRIGAÇÃO')]
+    itens = [(placa_pare, 'PARE: PARE SEMPRE'), (placa_preferencia, 'TRIÂNGULO: CEDA A VEZ'), (None, 'FAIXA VERMELHA: PROIBIDO'), (None, 'SEM FAIXA: OBRIGAÇÃO OU LIMITE')]
     for i, (fn, s) in enumerate(itens):
         if lt < .8 + i * 1.6: continue
         y = 300 + i * 175
@@ -98,7 +99,7 @@ def q_letra_x(img, d, lt, dur): placa_letra(d, 960, 560, 230, 'E', 'x')
 def q_esquerda(img, d, lt, dur): placa_proib_esquerda(d, 960, 560, 230)
 def r_pare(img, d, lt, dur): q_pare(img, d, lt, dur); chave(d, 'PARAR TOTALMENTE, OLHAR, SEGUIR', cor=VERDE, sz=60)
 def r_letra_x(img, d, lt, dur): q_letra_x(img, d, lt, dur); chave(d, 'NÃO: NEM PARAR, NEM ESTACIONAR', cor=VERDE, sz=60)
-def r_esquerda(img, d, lt, dur): q_esquerda(img, d, lt, dur); chave(d, 'PROIBIÇÃO: TEM TARJA', cor=VERDE, sz=60)
+def r_esquerda(img, d, lt, dur): q_esquerda(img, d, lt, dur); chave(d, 'PROIBIÇÃO: TEM FAIXA', cor=VERDE, sz=60)
 
 SEG = [
  dict(fala='Olá! Bem-vindo ao Dia 1: placas de regulamentação. São as placas que dão ordens. Desobedecer é infração, com multa e pontos na carteira.', desenho=s_abertura),
@@ -109,8 +110,8 @@ SEG = [
  dict(fala='Detalhe que cai muito na prova: placa redonda com uma faixa vermelha na diagonal quer dizer proibido. Uma seta para a esquerda com a faixa por cima: proibido virar à esquerda.', desenho=s_tarja),
  dict(fala='Agora a letra E, de estacionamento. E com faixa vermelha: proibido estacionar, mas parar rapidinho para alguém descer, pode. E com um X vermelho: proibido parar e estacionar. Nem para alguém descer. E sem faixa: estacionamento regulamentado. Pode, seguindo as regras da plaquinha de baixo, como o horário.', desenho=s_estacionar, pausa=1.0),
  dict(fala='A placa de velocidade máxima mostra um número, como sessenta. Naquele trecho, você não pode passar de sessenta quilômetros por hora. É o limite, não a velocidade obrigatória.', desenho=s_velocidade),
- dict(fala='E placa redonda sem faixa vermelha é obrigação. Seta para frente: siga em frente. Seta para a direita: vire à direita. Faça o que o desenho mostra.', desenho=s_obrigacao),
- dict(fala='Resumindo. Pare: pare sempre. Triângulo: dê a preferência. Com faixa vermelha: proibido. Sem faixa: obrigação. Agora, três perguntas. Você terá cinco segundos para pensar em cada uma.', desenho=s_resumo, pausa=1.0),
+ dict(fala='E placa redonda sem faixa vermelha? Normalmente é uma obrigação. Seta para frente: siga em frente. Seta para a direita: vire à direita. Mas cuidado: algumas sem faixa mostram um limite, como a de velocidade máxima.', desenho=s_obrigacao),
+ dict(fala='Resumindo. Pare: pare sempre. Triângulo: dê a preferência. Com faixa vermelha: proibido. Sem faixa: obrigação ou limite. Agora, três perguntas. Você terá cinco segundos para pensar em cada uma.', desenho=s_resumo, pausa=1.0),
  dict(n=1, pergunta='Pergunta um. Você chega nesta placa, e não vem nenhum carro. O que você deve fazer?', desenho=q_pare,
       resposta='Resposta: parar por completo, olhar, e só depois seguir. No Pare, você para sempre, mesmo com a rua vazia.', desenho_resposta=r_pare),
  dict(n=2, pergunta='Pergunta dois. Nesta placa, com a letra E e um X vermelho, você pode parar rapidinho para um amigo descer do carro?', desenho=q_letra_x,
