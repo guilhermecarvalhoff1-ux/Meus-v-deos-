@@ -6,8 +6,8 @@ def V(n): return P(placa_velocidade, str(n))
 def carro_lado(d, cx, cy, r, k=0): carro(d, cx, cy + r * .2, r * .006)
 
 D15 = [
- C('Olá! Dia 15: álcool e direção, a Lei Seca. Essa é uma das regras mais cobradas na prova, e uma das mais importantes da vida real.',
-   'DIA 15', [ic_copo, carro_lado], 'LEI SECA'),
+ C('Olá! Começa a Semana 3: segurança no trânsito. Dia 15: álcool e direção, a Lei Seca. Essa é uma das regras mais cobradas na prova, e uma das mais importantes da vida real.',
+   'SEMANA 3 · DIA 15', [ic_copo, carro_lado], 'LEI SECA'),
  C('A regra é tolerância zero. Não existe quantidade segura. Uma latinha de cerveja, uma taça de vinho: se bebeu, não dirija.',
    'TOLERÂNCIA ZERO', [x_vermelho(ic_copo)], 'BEBEU? NÃO DIRIJA'),
  C('A punição: infração gravíssima com multa vezes dez. Isso dá dois mil, novecentos e trinta e quatro reais e setenta centavos. E a carteira fica suspensa por doze meses.',

@@ -14,8 +14,8 @@ def passos(d, cx, cy, r, k=0):
     ic_triangulo(d, cx + r * 1.3, cy, r * .45)
 
 D22 = [
- C('Olá! Dia 22: primeiros socorros, parte um. Hoje: o que fazer quando você chega num acidente. Calma: você não precisa ser médico. Precisa saber os primeiros passos.',
-   'DIA 22', [ic_cruz, ic_ambulancia], 'OS PRIMEIROS PASSOS'),
+ C('Olá! Começa a Semana 4: primeiros socorros e simulados. Dia 22: primeiros socorros, parte um. Hoje: o que fazer quando você chega num acidente. Calma: você não precisa ser médico. Precisa saber os primeiros passos.',
+   'SEMANA 4 · DIA 22', [ic_cruz, ic_ambulancia], 'OS PRIMEIROS PASSOS'),
  C('Primeiro, proteja: você e o local. Pare o seu carro num lugar seguro, ligue o pisca-alerta, e sinalize. Se você também se machucar, não vai poder ajudar ninguém.',
    '1. PROTEJA', [ic_triangulo, carro_lado], 'SEGURANÇA PRIMEIRO'),
  C('Para sinalizar, coloque o triângulo e outros avisos bem atrás do acidente. Regra prática: um passo longo para cada quilômetro por hora da via. Numa via de sessenta, sessenta passos. Na chuva ou à noite, mais ainda.',

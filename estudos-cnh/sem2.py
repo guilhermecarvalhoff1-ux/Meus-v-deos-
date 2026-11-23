@@ -8,8 +8,8 @@ def carro_parado(d, cx, cy, r, k=0): carro(d, cx, cy + r * .2, r * .006)
 E_TARJA = P(placa_letra, 'E', 'tarja'); E_X = P(placa_letra, 'E', 'x')
 
 D8 = [
- C('Olá! Dia 8: limites de velocidade. Quando não tem placa, a lei já diz qual é o limite. E isso cai muito na prova. Vamos devagar, um número de cada vez.',
-   'DIA 8', [V(80), V(60), V(40), V(30)], 'SEM PLACA? VALE A LEI'),
+ C('Olá! Começa a Semana 2: regras de trânsito e infrações. Dia 8: limites de velocidade. Quando não tem placa, a lei já diz qual é o limite. E isso cai muito na prova. Vamos devagar, um número de cada vez.',
+   'SEMANA 2 · DIA 8', [V(80), V(60), V(40), V(30)], 'SEM PLACA? VALE A LEI'),
  C('Na cidade, são quatro tipos de rua. Via de trânsito rápido, como uma marginal sem semáforo: oitenta. Via arterial, uma avenida grande com semáforo: sessenta.',
    'NA CIDADE (1)', [V(80), V(60)], None, ['TRÂNSITO RÁPIDO', 'ARTERIAL']),
  C('Via coletora, a rua que leva o trânsito do bairro até a avenida: quarenta. E via local, a rua tranquila do bairro, sem semáforo: trinta.',

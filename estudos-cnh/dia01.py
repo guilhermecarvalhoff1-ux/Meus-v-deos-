@@ -7,7 +7,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 def pop(lt, t0=0.0, d=.35): return eout((lt - t0) / d)
 
 def s_abertura(img, d, lt, dur):
-    titulo(d, 'DIA 1', 'PLACAS DE REGULAMENTAÇÃO')
+    titulo(d, 'SEMANA 1 · DIA 1', 'PLACAS DE REGULAMENTAÇÃO')
     k = [pop(lt, .3 + i * .35) for i in range(3)]
     if k[0] > 0: placa_pare(d, 560, 560, 150 * k[0])
     if k[1] > 0: placa_preferencia(d, 960, 540, 170 * k[1])
@@ -102,7 +102,7 @@ def r_letra_x(img, d, lt, dur): q_letra_x(img, d, lt, dur); chave(d, 'NÃO: NEM 
 def r_esquerda(img, d, lt, dur): q_esquerda(img, d, lt, dur); chave(d, 'PROIBIÇÃO: TEM FAIXA', cor=VERDE, sz=60)
 
 SEG = [
- dict(fala='Olá! Bem-vindo ao Dia 1: placas de regulamentação. São as placas que dão ordens. Desobedecer é infração, com multa e pontos na carteira.', desenho=s_abertura),
+ dict(fala='Olá! Começa a Semana 1: sinalização. Dia 1: placas de regulamentação. São as placas que dão ordens. Desobedecer é infração, com multa e pontos na carteira.', desenho=s_abertura),
  dict(fala='Primeiro, o formato. Quase todas são redondas, fundo branco, borda vermelha e desenho preto. Viu placa redonda com borda vermelha? É ordem, não sugestão.', desenho=s_formato),
  dict(fala='Duas placas fogem desse formato. A primeira é a de Pare: vermelha, com oito lados. Aqui você para o carro por completo, na linha do chão, mesmo com a rua vazia. Parou, olhou, e só então segue. Passar devagar não vale.', desenho=s_pare),
  dict(fala='A segunda é a de Dê a preferência: um triângulo de cabeça para baixo. Quem está na outra via tem a vez. Por exemplo, ao entrar numa avenida, você reduz, olha, e espera os carros passarem. Se não vier ninguém, segue sem parar.', desenho=s_preferencia),

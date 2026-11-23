@@ -7,8 +7,8 @@ def V(n): return P(placa_velocidade, str(n))
 E_TARJA = P(placa_letra, 'E', 'tarja'); E_X = P(placa_letra, 'E', 'x')
 
 D29 = [
- C('Olá! Dia 29: revisão relâmpago de sinalização e velocidades. Rápido e direto, para fixar de vez.',
-   'DIA 29', [PARE_, adv('curva'), V(60)], 'REVISÃO RELÂMPAGO'),
+ C('Olá! Começa a Semana 5, a última: revisão final. Dia 29: revisão relâmpago de sinalização e velocidades. Rápido e direto, para fixar de vez.',
+   'SEMANA 5 · DIA 29', [PARE_, adv('curva'), V(60)], 'REVISÃO RELÂMPAGO'),
  C('Placas. Redonda com borda vermelha: ordem. Com faixa vermelha: proibido. Sem faixa: obrigação ou limite. Pare: oito lados, para sempre. Triângulo de cabeça para baixo: dê a preferência.',
    'PLACAS DE ORDEM', [PROIB_ESQ, SIGA, PREF], None, ['PROIBIDO', 'OBRIGAÇÃO', 'PREFERÊNCIA']),
  C('Losango amarelo: aviso de perigo, reduza. Laranja: obras. Retângulo verde: estrada. Azul: cidade e serviços. Marrom: turismo.',
