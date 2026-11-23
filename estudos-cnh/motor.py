@@ -314,7 +314,8 @@ def cartao(txt, cor=AMARELO, sub=None, sub_cor=CREME):
     """número/valor grande como objeto"""
     def f(d, cx, cy, r, k=0):
         fs = r * .62; fz = fonte(int(fs))
-        while fz.getlength(txt) > r * 2.0: fs *= .92; fz = fonte(int(fs))
+        if r < 8: return
+        while fz.getlength(txt) > r * 2.0 and fs > 6: fs *= .92; fz = fonte(int(fs))
         lw = max(fz.getlength(txt), r * 1.1, fonte(int(r * .2)).getlength(sub or '') - r * .3)
         d.rounded_rectangle([cx - lw / 2 - r * .25, cy - r * .62, cx + lw / 2 + r * .25, cy + r * (.62 + (.38 if sub else 0))], radius=int(r * .18), fill=(20, 28, 38), outline=cor, width=max(4, int(r * .04)))
         d.text((cx, cy), txt, font=fz, fill=cor, anchor='mm')
