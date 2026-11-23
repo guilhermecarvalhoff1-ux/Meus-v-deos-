@@ -1,3 +1,5 @@
 .cache_voz/
 __pycache__/
 log_*.txt
+videos/*.wav
+videos/*.parcial.mp4

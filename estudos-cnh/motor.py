@@ -160,7 +160,7 @@ def montar(segmentos, saida, cache):
     with wave.open(wav, 'w') as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(mix, -1, 1) * 32767).astype(np.int16).tobytes())
     p = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-', '-i', wav,
-                          '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-shortest', saida], stdin=subprocess.PIPE)
+                          '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-shortest', saida + '.parcial.mp4'], stdin=subprocess.PIPE)
     for i in range(int(total * FPS)):
         T = i / FPS
         sg = next(s for s in reversed(tl) if s['t0'] <= T + 1e-9)
@@ -175,7 +175,7 @@ def montar(segmentos, saida, cache):
         if sg['kind'] == 'resposta':
             texto(d, (200, 200), 'RESPOSTA', 44, VERDE, 'lm')
         p.stdin.write(img.tobytes())
-    p.stdin.close(); p.wait(); os.remove(wav)
+    p.stdin.close(); p.wait(); os.remove(wav); os.replace(saida + '.parcial.mp4', saida)
     return total
 
 # =====================================================================
