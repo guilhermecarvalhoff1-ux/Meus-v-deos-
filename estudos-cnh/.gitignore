@@ -1,2 +1,3 @@
 .cache_voz/
 __pycache__/
+log_*.txt
